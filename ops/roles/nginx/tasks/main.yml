@@ -1,0 +1,14 @@
+---
+- name: Install Nginx
+  apt: pkg=nginx state=present update_cache=yes
+
+- name: Disable the default site
+  file: path="{{ nginx_conf_dir }}/sites-enabled/default" state=absent
+  notify: Reload nginx
+
+- name: Setup app config
+  template: src="etc_nginx_sites-available.conf.j2" dest={{ nginx_conf_file }} group=www-data owner=www-data
+
+- name: Enable app
+  file: src={{ nginx_conf_file }} dest="{{ nginx_conf_enabled_link_file }}" state=link
+  notify: Reload nginx

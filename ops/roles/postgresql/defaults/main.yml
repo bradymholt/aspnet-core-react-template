@@ -1,0 +1,18 @@
+---
+postgresql_client: no
+postgresql_server: no
+
+postgresql_user: postgres
+
+postgresql_runtime_root: "{{ runtime_root | default('/var/run') }}/postgresql"
+postgresql_pidfile_path: "{{ postgresql_runtime_root }}/postgresql.pid"
+
+postgresql_log_root: "{{ log_root | default('/var/log') }}/postgresql"
+postgresql_log_path: "{{ postgresql_log_root }}/postgresql-main.log"
+
+postgresql_accepts_external_connections: yes
+
+postgresql_backup_enabled: no
+postgresql_backup_path: /data/backup/postgresql
+postgresql_backup_frequency: daily
+postgresql_backup_to_s3: false

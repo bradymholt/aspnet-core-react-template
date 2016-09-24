@@ -1,0 +1,7 @@
+---
+- name: Install Supervisor
+  apt: pkg=supervisor state=present cache_valid_time=86400
+
+- name: Setup app config
+  template: src=etc_supervisor_conf.d_app_name.conf.j2 dest=/etc/supervisor/conf.d/{{app_name}}.conf
+  notify: Reload supervisor

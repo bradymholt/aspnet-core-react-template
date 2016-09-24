@@ -1,0 +1,84 @@
+---
+- name: Install Packages | apt
+  apt:
+    state: latest
+    pkg: "{{ item }}"
+  with_items:
+    - postgresql-client
+  when: postgresql_client
+  tags:
+    - software-installation
+    - using-apt
+
+- name: Install Packages | apt
+  apt:
+    state: latest
+    pkg: "{{ item }}"
+  with_items:
+    - libpq-dev
+    - python-dev
+    - python-pip
+    - postgresql
+    - postgresql-contrib
+    - postgresql-server-dev-all
+    - python-dev
+  when: postgresql_server
+  tags:
+    - software-installation
+    - using-apt
+
+- name: Install Packages | pip
+  pip:
+    state: latest
+    name: "{{ item }}"
+  with_items:
+    - psycopg2
+  when: postgresql_server
+  tags:
+    - software-installation
+    - using-pip
+    
+- name: Install Packages | apt
+  apt:
+    state: latest
+    pkg: "{{ item }}"
+  with_items:
+    - p7zip-full
+  when: postgresql_backup_enabled
+  tags:
+    - p7zip
+    - backup
+    - using-apt
+
+- name: Create Database User
+  become: true
+  become_user: postgres
+  postgresql_user:
+    state: present
+    name: "{{ database_username | mandatory }}"
+    password: "{{ database_password | mandatory }}"
+    db: template1
+    priv: CONNECT
+#    role_attr_flags: SUPERUSER
+  when: postgresql_server
+
+- name: Create Database
+  become: true
+  become_user: postgres
+  postgresql_db:
+    state: present
+    name: "{{ database_name | mandatory }}"
+    owner: "{{ database_username | mandatory }}"
+  when: postgresql_server
+
+- name: Create Database User
+  become: true
+  become_user: postgres
+  postgresql_user:
+    state: present
+    name: "{{ database_username | mandatory }}"
+    password: "{{ database_password | mandatory }}"
+    db: "{{ database_name | mandatory }}"
+    priv: ALL
+    role_attr_flags: CREATEDB
+  when: postgresql_server

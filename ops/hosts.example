@@ -1,0 +1,35 @@
+[production_web]
+0.0.0.0                                   # The IP address of the production web server host
+
+# Production hosts
+[production:children]
+production_web
+
+# Production variables
+[production:vars]
+deploy_user=jdoe
+gh_pubkey_user=johndoe1981                # The GitHub username used to pull the public key for deploy_user authorized_user access
+webserver_name={{ inventory_hostname }}   # This is the host (domain) name; i.e. abc123.youdomain.com
+database_password=super!secret            # PostgreSQL database will be configured with this password
+s3_key=ABCDEFGHIJKLMNOP                   # S3 Access Key used for uploading PostgreSQL backups
+s3_secret=ABCDEFGHIJKLMNOP                # S3 Access Secret used for uploading PostgreSQL backups
+use_ssl=true                              # If true, SSL cert will be obtained from Let's Encrypt and Nginx provisioned for SSL
+letsencrypt_use_live_ca=true              # If true, will use the Live Let's Encrypt ACME servers; otherwise will use staging server
+
+[all:children]
+production
+
+# Global variables
+[all:vars]
+app_name=vipper                           # Name of the application
+# The local deploy build asset source location (source files for deploy)
+source_directory=../../../../appName/bin/Release/netcoreapp1.0/publish/
+# The remote folder to deploy to
+deploy_directory=/home/{{ deploy_user }}/apps/{{ app_name }}
+entry_dll_file_name=AppName.dll           # The name of the .NET Core DLL to run
+database_name={{ app_name }}              # The name of the PostgresSQL database name
+database_username={{ app_name }}          # The name of the PostgreSQL database username
+postgresql_backup_to_s3=true              # If ture, PostgresSQL backups will be moved to S3 storage
+s3_bucket_name=s3://app.{{ app_name }}    # The S3 bucket name where to upload database backups to
+s3_db_backup_location=db_backups          # The folder in the S3 bucket where to upload the database backups to
+

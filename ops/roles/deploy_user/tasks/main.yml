@@ -1,0 +1,15 @@
+- name: Add deploy user  
+  user: name={{ deploy_user }} shell=/bin/bash append=true
+
+- name: Add deploy user public key to authorized_keys
+  authorized_key: user={{ deploy_user }} key=https://github.com/{{ gh_pubkey_user }}.keys
+
+- name: Add deploy user to sudoers
+  lineinfile:
+    "dest=/etc/sudoers
+    regexp='^{{ deploy_user }} ALL'
+    line='{{ deploy_user }} ALL=(ALL) NOPASSWD: ALL'
+    state=present"
+
+- name: Creates deploy directory for app
+  file: path={{ deploy_directory }} state=directory owner={{deploy_user}} group=www-data mode=0775

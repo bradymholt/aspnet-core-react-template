@@ -1,0 +1,26 @@
+---
+- name: Install Uncomplicated Firewall (ufw)
+  apt: pkg=ufw state=present cache_valid_time=86400
+
+- name: Configure ufw defaults
+  ufw: direction={{ item.direction }} policy={{ item.policy }}
+  with_items:
+    - { direction: 'incoming', policy: 'deny' }
+    - { direction: 'outgoing', policy: 'allow' }
+  notify:
+    - Restart ufw
+
+- name: Allow OpenSSH
+  ufw: rule=allow name=OpenSSH
+  notify:
+    - Restart ufw
+
+- name: Allow Nginx
+  ufw: rule=allow name="Nginx Full"
+  notify:
+    - Restart ufw
+
+- name: Enable ufw
+  ufw: state=enabled
+  notify:
+    - Restart ufw

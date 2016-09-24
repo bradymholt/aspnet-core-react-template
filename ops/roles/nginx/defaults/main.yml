@@ -1,0 +1,4 @@
+---
+nginx_conf_dir: /etc/nginx
+nginx_conf_file: "{{ nginx_conf_dir }}/sites-available/{{ app_name }}.conf"
+nginx_conf_enabled_link_file: "{{ nginx_conf_dir }}/sites-enabled/{{ app_name }}.conf"

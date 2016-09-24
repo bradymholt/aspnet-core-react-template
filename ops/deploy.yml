@@ -1,0 +1,9 @@
+---
+- name: deploy
+  hosts: all
+  gather_facts: false
+  remote_user: "{{ deploy_user }}"
+  roles:
+    - deploy
+  post_tasks:
+    - debug: msg="Deployed to http://{{webserver_name}}"

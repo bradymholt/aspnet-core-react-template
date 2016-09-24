@@ -1,0 +1,4 @@
+---
+- include: install.yml
+- { include: backup.yml,     when: postgresql_server }
+- { include: configure.yml,  when: postgresql_server }

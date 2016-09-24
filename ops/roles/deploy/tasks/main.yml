@@ -1,0 +1,15 @@
+- name: Copy app files
+  synchronize: src={{source_directory}} dest={{ deploy_directory }} delete=yes rsync_opts=--exclude=.git/
+  notify: Reload supervisor app config
+
+- name: Configure connection string
+  lineinfile: dest="{{ deploy_directory }}/appsettings.release.json"
+    regexp="defaultConnection\":"
+    line="\"defaultConnection\"{{':'}} \"Host=127.0.0.1;Username={{database_username}};Password={{database_password}};Database={{database_name}}\""
+    state="present"
+
+- name: Configure app url
+  lineinfile: dest="{{ deploy_directory }}/appsettings.release.json"
+    regexp="url\":"
+    line="\"url\"{{':'}} \"http://{{webserver_name}}/\","
+    state="present"

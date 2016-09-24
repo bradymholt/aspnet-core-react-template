@@ -1,0 +1,9 @@
+- name: Install s3cmd
+  apt: name=s3cmd state=present
+
+- name: Configure with .s3cfg file
+  become: yes
+  become_user: "{{ postgresql_user }}"
+  template:
+    src="s3cfg.j2"
+    dest="~/.s3cfg"

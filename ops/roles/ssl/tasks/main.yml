@@ -1,0 +1,65 @@
+# Source: https://gist.github.com/raphaelm/10226edb0e46f7ce844e
+---
+- name: Ensure Challenge directory exists
+  file: path="{{ challenge_root_dir }}{{challenge_relative_dir}}" state=directory mode=0755 owner=root group=www-data recurse=yes
+
+- name: Ensure curl is installed
+  apt: name=curl state=installed
+
+- name: Ensure SSL base directory exists
+  file: path={{ dehydrated_install_dir }} state=directory mode=0750 owner=root group=www-data
+
+- name: Ensure SSL domain list exists
+  command: "touch {{ dehydrated_install_dir }}/domains.txt"
+  args:
+    creates: "{{ dehydrated_install_dir }}/domains.txt"
+
+- name: Ensure LE config exists
+  template: src=config.j2 dest="{{ dehydrated_install_dir }}/config" mode=0750 owner=root
+
+- name: Download dehydrated shell script
+  get_url:
+    url: https://raw.githubusercontent.com/lukas2511/dehydrated/master/dehydrated
+    dest: "{{ dehydrated_install_dir }}/{{dehydrated_script_name}}"
+    mode: 0700
+
+- name: Add line to domains file
+  lineinfile:
+    dest: "{{ dehydrated_install_dir }}/domains.txt"
+    line: "{{ item.domains | join(' ') }}"
+  with_items: "{{ domainsets }}"
+
+- name: Configure Nginx to serve the Challenge directory
+  blockinfile:
+    dest: "{{ nginx_conf_file }}"
+    insertafter: "server_name"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK (CHALLENGE DIR CONFIG)"
+    block: |
+      location ^~ {{ challenge_relative_dir }} {
+        root {{ challenge_root_dir }};
+      }
+  register: challenge_directory_config
+
+- name: Reload nginx # Force reload when challenge_directory_config.changed because we need it to run before running LE script
+  service: name=nginx state=reloaded enabled=true
+  when: challenge_directory_config.changed
+
+- name: Execute dehydrated shell script
+  shell: "./{{dehydrated_script_name}} -c"
+  args:
+    chdir: "{{ dehydrated_install_dir }}"
+  notify: Reload nginx
+
+- name: Configure SSL in Nginx
+  blockinfile:
+    dest: "{{ nginx_conf_file }}"
+    insertafter: "listen 80"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK (SSL CONFIG)"
+    block: |
+      listen 443 ssl;
+      ssl_certificate {{dehydrated_install_dir}}/certs/{{ webserver_name }}/fullchain.pem;
+      ssl_certificate_key {{dehydrated_install_dir}}/certs/{{ webserver_name }}/privkey.pem;
+  notify: Reload nginx
+
+- name: Add LE cronjob
+  cron: name=lets-encrypt hour=4 minute=23 day=*/3 job="{{ dehydrated_install_dir }}/{{ dehydrated_script_name }} -c && service nginx reload"

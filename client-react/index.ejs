@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <title>vipper</title>
+  </head>
+  <body>
+    <div id='app'></div>
+
+    <%if (htmlWebpackPlugin.options.useCdn) { %>
+      <script src="https://unpkg.com/react@15.3.1/dist/react.min.js"></script>
+      <script src="https://unpkg.com/react-dom@15.3.1/dist/react-dom.min.js"></script>
+    <% } %>
+
+    <!-- Scripts will be injected here -->
+  </body>
+</html>

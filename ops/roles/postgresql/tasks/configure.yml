@@ -1,0 +1,48 @@
+---
+- name: "Directory Exists | {{ postgresql_runtime_root }}"
+  file:
+    state: directory
+    path: "{{ postgresql_runtime_root }}"
+    owner: "{{ postgresql_user }}"
+    group: staff
+    mode: 0775
+  tags:
+    - directory-structure
+    - runtime-data
+    - postgres
+
+- name: Configure | postgres | pidfile
+  lineinfile:
+    state: present
+    dest: "/etc/postgresql/{{ postgresql_version }}/main/postgresql.conf"
+    regexp: '^#*external_pid_file'
+    line: "external_pid_file = '{{ postgresql_pidfile_path }}'"
+  notify: Reload Service | postgres
+  tags:
+    - pidfile
+    - service
+
+- name: Configure | postgres | listen_address
+  lineinfile:
+    state: present
+    dest: "/etc/postgresql/{{ postgresql_version }}/main/postgresql.conf"
+    regexp: '^#* *listen_addresses ='
+    line: "listen_addresses = '*'"
+  notify: Reload Service | postgres
+  tags:
+    - networking
+  when: postgresql_accepts_external_connections
+
+- name: Configure | postgres | pg_hba.conf
+  lineinfile:
+    state: present
+    dest: "/etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf"
+    regexp: "^#* *host {{ item }}"
+    line: "host {{ item }} {{ database_username | default(project) }} all md5"
+  with_items:
+    - template1
+    - "{{ database_name | default(project) }}"
+  notify: Reload Service | postgres
+  tags:
+    - networking
+  when: postgresql_accepts_external_connections

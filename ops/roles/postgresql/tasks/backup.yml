@@ -1,0 +1,31 @@
+---
+- name: "Directory Exists | {{ postgresql_backup_path }}"
+  file:
+    state: directory
+    path: "{{ postgresql_backup_path }}"
+    owner: "{{ postgresql_user }}"
+    group: staff
+    mode: 0775
+  when: postgresql_backup_enabled
+  tags:
+    - directory-structure
+    - postgres
+    - backup
+
+- name: Copy backup script
+  become: true
+  become_user: postgres
+  template: src="pgsql_backup.sh.j2" dest="{{ postgresql_backup_path }}/pgsql_backup.sh" mode="u+x"
+
+- name: Setup Automated Backups via cron
+  become: true
+  become_user: postgres
+  cron:
+    name: postgres-backup
+    special_time: "{{ postgresql_backup_frequency }}"
+    job: "{{ postgresql_backup_path }}/pgsql_backup.sh"
+  when: postgresql_backup_enabled
+  tags:
+    - postgres
+    - backup
+    - using-cron

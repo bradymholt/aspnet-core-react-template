@@ -1,0 +1,25 @@
+---
+- name: provision
+  hosts: all
+  remote_user: root
+  # Do not gather facts here because if host does not have python2 installed (i.e. Ubuntu 16) this will fail initially.  Gather facts later...
+  gather_facts: false
+  pre_tasks:
+    - name: 'install python2'
+      raw: sudo apt-get -y install python-simplejson
+    - name: gather facts
+      setup: # This gather facts: http://stackoverflow.com/a/31060268/626911
+  roles:
+    - nginx
+    - role: ssl
+      when: use_ssl
+      domainsets:
+        - domains:
+          - "{{ webserver_name }}"
+    - dotnetcore
+    - supervisor
+    - { role: postgresql, postgresql_server: yes, postgresql_client: yes, postgresql_backup_enabled: yes }
+    - role: s3cmd
+      when: postgresql_backup_to_s3
+    - firewall
+    - deploy_user

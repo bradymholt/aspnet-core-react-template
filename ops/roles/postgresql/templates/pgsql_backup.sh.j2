@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Halt on error
+set -e
+
+BACKUP_FILENAME=backup-`date +\\%Y\\%m\\%d\\%H.7z`
+echo -e "Dumping {{ database_name }} to {{ postgresql_backup_path }}/${BACKUP_FILENAME}"
+
+pg_dump {{ database_name | default(project) }} | 7z a -an -txz -si -so > {{ postgresql_backup_path }}/${BACKUP_FILENAME}
+
+{% if (postgresql_backup_to_s3 | bool) == true %}
+S3_BUCKET="{{ s3_bucket_name }}/{{ s3_db_backup_location }}"
+echo -e "Uploading to S3 bucket ${S3_BUCKET}"
+s3cmd mb {{ s3_bucket_name }}
+s3cmd put {{ postgresql_backup_path }}/${BACKUP_FILENAME} ${S3_BUCKET}/${BACKUP_FILENAME}
+
+# Note: Because we are using set -e above, we should not get to this point if there was a problem uploading the backup
+# to S3.  So, the backup file will just remain on this host.
+echo -e "Removing backup file"
+rm -f "{{ postgresql_backup_path }}/${BACKUP_FILENAME}"
+{% endif %}

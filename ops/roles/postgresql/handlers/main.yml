@@ -1,0 +1,7 @@
+---
+- name: Reload Service | postgres
+  service:
+    state: reloaded
+    name: postgresql
+  tags:
+    - disruptive

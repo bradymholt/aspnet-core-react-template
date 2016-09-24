@@ -1,0 +1,5 @@
+dehydrated_install_dir: /etc/dehydrated
+dehydrated_script_name: dehydrated.sh
+challenge_root_dir: /var/www/dehydrated
+challenge_relative_dir: /.well-known/acme-challenge
+letsencrypt_use_live_ca: false

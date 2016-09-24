@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "target": "es5",
+    "jsx": "react",
+    "outDir": "./build",
+    "skipLibCheck": true,
+    "types": [
+      "jsdom",
+      "mocha",
+      "chai",
+      "react",
+      "react-dom",
+      "enzyme",
+      "react-addons-test-utils"
+    ]
+  },
+  "include": [
+    "./*.tsx"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+    "projects": [
+        "api",
+        "api.test"
+    ]
+}

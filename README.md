@@ -8,9 +8,11 @@ This app is a template application using ASP.NET Core for a REST/JSON API server
   - PostgresSQL
   - Entity Framework Core w/ EF Migrations
   - JSON Web Token (JWT) authorization with OpenIddict
+  - Docker used for development PostgresSQL database
 - Client
   - React
   - Webpack for asset bundling and HMR
+  - CSS Modules
 - Testing
   - xUnit for .NET Core
   - Enzyme for React

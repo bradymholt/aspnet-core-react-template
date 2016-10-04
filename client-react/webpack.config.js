@@ -24,6 +24,7 @@ var config = {
         loaders: [
             // Use react-hot for HMR and then awesome-typescript-loader to transpile TS (pass path to tsconfig because it is not in root (cwd) path)
             { test: /\.ts(x?)$/, loaders: ['react-hot', `awesome-typescript-loader?tsconfig=${path.join(__dirname, 'tsconfig.json')}`] },
+            // We do not use ExtractTextPlugin in development mode so that HMR will work with styles
             { test: /\.styl$/, loader: 'style-loader!css-loader?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!stylus-loader' },
             { test: /\.css/, loader: 'style-loader!css-loader' }
         ]

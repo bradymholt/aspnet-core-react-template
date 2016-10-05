@@ -12,7 +12,7 @@
     "test": "npm run test:api && npm run test:react",
     "prestart": "docker-compose up -d",
     "start": "cd ./api && NODE_PATH=../node_modules/ ASPNETCORE_ENVIRONMENT=Development dotnet watch run",
-    "start:release": "npm run prerelease && dotnet ./api/bin/Release/netcoreapp1.0/publish/api.dll",
+    "start:release": "npm run prerelease && cd ./api/bin/Release/netcoreapp1.0/publish/ && dotnet api.dll",
     "provision:prod": "ansible-playbook -l production -i ./ops/hosts ./ops/provision.yml",
     "prerelease": "ASPNETCORE_ENVIRONMENT=Production webpack --config ./client-react/webpack.config.js && cd ./api && dotnet publish --configuration Release",
     "deploy:prod": "npm run prerelease && ansible-playbook -l production -i ./ops/hosts ./ops/deploy.yml",

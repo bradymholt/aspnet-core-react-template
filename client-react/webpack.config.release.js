@@ -6,8 +6,8 @@ var path = require('path');
 module.exports = {
     module: {
         loaders: [
-            // Use react-hot for HMR and then awesome-typescript-loader to transpile TS (pass path to tsconfig because it is not in root (cwd) path)
-            { test: /\.ts(x?)$/, loaders: [`awesome-typescript-loader?tsconfig=${path.join(__dirname, 'tsconfig.json')}`] },
+            // Use react-hot for HMR and then ts-loader to transpile TS (pass path to tsconfig because it is not in root (cwd) path)
+            { test: /\.ts(x?)$/, loaders: ['ts-loader'] },
             { test: /\.styl$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!stylus-loader') },
             { test: /\.css/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader') }
         ]

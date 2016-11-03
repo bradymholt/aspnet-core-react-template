@@ -5,7 +5,7 @@
         "module": "commonjs",
         "target": "es5",
         "jsx": "react",
-        "types": ["react", "react-dom", "react-router", "node"]
+        "types": ["react", "react-dom", "react-router", "node", "history"]
     },
     "files": [
         "./boot.tsx"

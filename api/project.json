@@ -20,7 +20,7 @@
         "Microsoft.AspNetCore.SpaServices": "1.0.0-beta-000013",
         "Microsoft.AspNetCore.Authentication.JwtBearer": "1.0.0",
         "AspNet.Security.OAuth.Validation": "1.0.0-alpha2-final",
-        "OpenIddict": "1.0.0-alpha2-0441"
+        "OpenIddict": "1.0.0-alpha2-0441",
         "Microsoft.EntityFrameworkCore": "1.0.0",
         "Microsoft.EntityFrameworkCore.Design": "1.0.0-preview2-final",
         "Npgsql.EntityFrameworkCore.PostgreSQL": "1.0.1",

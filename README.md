@@ -37,7 +37,7 @@ This app is a template application using ASP.NET Core for a REST/JSON API server
 When first cloning the repo or adding new dependencies, run this command.  This will:
 
 - Install Node dependencies from package.json
-- Install .NET Core dependencies from api/project.json and api.test/project.json (dotnet restore)
+- Install .NET Core dependencies from api/api.csproj and api.test/api.test.csproj (dotnet restore)
 
 ### `npm start`
 

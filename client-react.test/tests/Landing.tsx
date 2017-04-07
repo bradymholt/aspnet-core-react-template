@@ -2,7 +2,7 @@ import { expect } from "chai";
 import { mount } from 'enzyme'
 import * as React from "react";
 import * as ReactDOM from "react-dom"
-import ReactTestUtils = require("react-addons-test-utils");
+import * as ReactTestUtilsfrom from "react-addons-test-utils";
 
 import { Landing } from '../../client-react/components/Landing';
 

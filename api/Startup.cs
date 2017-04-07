@@ -34,9 +34,11 @@ namespace vipper
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Configure Entity Framework with Postgres
-            services.AddEntityFrameworkNpgsql()
-                .AddDbContext<DefaultDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("defaultConnection")));
+            services.AddEntityFrameworkNpgsql().AddDbContext<DefaultDbContext>(options => {
+
+                options.UseNpgsql(Configuration.GetConnectionString("defaultConnection"));
+                options.UseOpenIddict();
+            });
 
             // Configure Entity Framework Initializer for seeding
             services.AddTransient<IDefaultDbContextInitializer, DefaultDbContextInitializer>();
@@ -47,14 +49,33 @@ namespace vipper
                 .AddDefaultTokenProviders();
 
             // Configure OpenIddict for JSON Web Token (JWT) generation (Ref: http://capesean.co.za/blog/asp-net-5-jwt-tokens/)
-            services.AddOpenIddict<ApplicationUser, IdentityRole, DefaultDbContext>()
-                .DisableHttpsRequirement()
-                .EnableTokenEndpoint("/api/auth/login")
-                .AllowPasswordFlow()
-                .AllowRefreshTokenFlow()
-                .UseJsonWebTokens()
-                .AddEphemeralSigningKey()
-                .SetAccessTokenLifetime(TimeSpan.FromDays(1));
+            // Register the OpenIddict services.
+            // Note: use the generic overload if you need
+            // to replace the default OpenIddict entities.
+            services.AddOpenIddict(options =>
+            {
+                // Register the Entity Framework stores.
+                options.AddEntityFrameworkCoreStores<DefaultDbContext>();
+
+                // Register the ASP.NET Core MVC binder used by OpenIddict.
+                // Note: if you don't call this method, you won't be able to
+                // bind OpenIdConnectRequest or OpenIdConnectResponse parameters.
+                options.AddMvcBinders();
+
+                // Enable the token endpoint (required to use the password flow).
+                options.EnableTokenEndpoint("/api/auth/login");
+
+                // Allow client applications to use the grant_type=password flow.
+                options.AllowPasswordFlow();
+
+                // During development, you can disable the HTTPS requirement.
+                options.DisableHttpsRequirement();
+
+                options.AllowRefreshTokenFlow();
+                options.UseJsonWebTokens();
+                options.AddEphemeralSigningKey();
+                options.SetAccessTokenLifetime(TimeSpan.FromDays(1));
+            });
 
             // Add framework services
             services.AddMvc();
@@ -91,7 +112,8 @@ namespace vipper
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            // Configure OpenIddict (in lieu of app.UseIdentity())
+            app.UseIdentity();
+            app.UseOAuthValidation();
             app.UseOpenIddict();
 
             // Use JWT Bearer Authentication (i.e. authenitcate with JWT in HTTP request header)

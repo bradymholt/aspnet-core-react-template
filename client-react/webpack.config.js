@@ -17,25 +17,33 @@ var config = {
 
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
-        extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js", ".styl"]
+        extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js", ".styl"]
     },
 
     module: {
-        loaders: [
+        rules: [
             // Use react-hot for HMR and then ts-loader to transpile TS (pass path to tsconfig because it is not in root (cwd) path)
-            { test: /\.ts(x?)$/, loaders: ['react-hot', `ts-loader`] },
+            {
+                test: /\.ts(x?)$/, loaders: [`ts-loader`]
+            },
             // We do not use ExtractTextPlugin in development mode so that HMR will work with styles
-            { test: /\.styl$/, loader: 'style-loader!css-loader?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!stylus-loader' },
-            { test: /\.css/, loader: 'style-loader!css-loader' }
+            {
+                test: /\.styl$/, loader: 'style-loader!css-loader?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!stylus-loader'
+            },
+            {
+                test: /\.css/, loader: 'style-loader!css-loader'
+            }
         ]
     },
 
     devtool: 'inline-source-map',
 
     // plugins should not be empty: https://github.com/aspnet/JavaScriptServices/tree/dev/src/Microsoft.AspNetCore.SpaServices'
-    plugins: [new HtmlWebpackPlugin({
-        template: path.join(__dirname, 'index.ejs')
-    })]
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname, 'index.ejs'), inject: true
+        })
+    ]
 };
 
 if (isProductionEnvironment) {

@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using OpenIddict;
 
 namespace vipper.Models
 {
-    public class ApplicationUser : OpenIddictUser
+    public class ApplicationUser: IdentityUser
     {
         public string GivenName { get; set; }
     }

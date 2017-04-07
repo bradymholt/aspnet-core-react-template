@@ -20,7 +20,9 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "global": "^4.3.1"
+  },
   "devDependencies": {
     "@types/chai": "^3.4.32",
     "@types/enzyme": "^2.4.33",
@@ -38,7 +40,7 @@
     "css-loader": "^0.25.0",
     "enzyme": "^2.4.1",
     "extendify": "^1.0.0",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "extract-text-webpack-plugin": "^2.1.0",
     "html-webpack-plugin": "^2.22.0",
     "jsdom": "^9.5.0",
     "mocha": "^3.0.2",
@@ -52,8 +54,8 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^2.3.1",
     "ts-loader": "^1.0.0",
-    "typescript": "^2.0.2",
-    "webpack": "^1.13.2",
+    "typescript": "^2.2.2",
+    "webpack": "^2.3.3",
     "webpack-hot-middleware": "^2.12.2"
   }
 }

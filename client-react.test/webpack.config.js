@@ -2,11 +2,10 @@ var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin")
 
-var config = {
+module.exports = {
     entry: {
         tests: [path.join(__dirname, './index.js')]
     },
-    cwd: './dist',
     output: {
         path: path.join(__dirname, './build/'),
         filename: '[name].js',
@@ -18,15 +17,15 @@ var config = {
 
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
-        extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js", ".styl"]
+        extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js", ".styl"]
     },
 
     module: {
         loaders: [
             // Use react-hot for HMR and then ts-loader to transpile TS (pass path to tsconfig because it is not in root (cwd) path)
             { test: /\.ts(x?)$/, loaders: ['ts-loader'] },
-            { test: /\.styl$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=2&localIdentName=[local]___[hash:base64:5]!stylus-loader') },
-            { test: /\.css/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader') }
+            { test: /\.styl$/, loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader?modules&importLoaders=2&localIdentName=[local]___[hash:base64:5]!stylus-loader' }) },
+            { test: /\.css/, loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' }) }
         ]
     },
 
@@ -44,5 +43,3 @@ var config = {
         new ExtractTextPlugin("[name].css")
     ]
 };
-
-module.exports = config;

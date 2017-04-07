@@ -32,16 +32,16 @@ namespace vipper.Models
         public async Task Seed()
         {
             // Add Mvc.Client to the known applications.
-            if (_context.Applications.Any())
+            if (_context.ApplicationUsers.Any())
             {
-                foreach (var application in _context.Applications)
+                foreach (var application in _context.ApplicationUsers)
                     _context.Remove(application);
                 _context.SaveChanges();
             }
 
-            if (_context.Users.Any())
+            if (_context.Contacts.Any())
             {
-                foreach (var u in _context.Users)
+                foreach (var u in _context.Contacts)
                     _context.Remove(u);
                 _context.SaveChanges();
             }

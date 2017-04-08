@@ -1,12 +1,11 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { Router, Route, Link, browserHistory } from "react-router";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Landing } from "./components/Landing";
 
 ReactDOM.render(
-    <Router history={browserHistory}>
-        <Route path="/" component={Landing}>
-        </Route>
+    <Router>
+        <Route path="/" component={Landing}/>
     </Router>,
     document.getElementById("app")
 );

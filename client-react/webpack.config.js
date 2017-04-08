@@ -7,7 +7,7 @@ var merge = require('extendify')({ isDeep: true, arrays: 'replace' });
 
 var config = {
     entry: {
-        main: [path.join(__dirname, 'boot.tsx')]
+        main: ['react-hot-loader/patch', path.join(__dirname, 'boot.tsx')]
     },
     output: {
         path: path.join(__dirname, '../api/', 'wwwroot'),
@@ -24,7 +24,7 @@ var config = {
         rules: [
             // Use react-hot for HMR and then ts-loader to transpile TS (pass path to tsconfig because it is not in root (cwd) path)
             {
-                test: /\.ts(x?)$/, loaders: [`ts-loader`]
+                test: /\.ts(x?)$/, loaders: ['ts-loader']
             },
             // We do not use ExtractTextPlugin in development mode so that HMR will work with styles
             {
@@ -42,7 +42,8 @@ var config = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'index.ejs'), inject: true
-        })
+        }),
+        //new webpack.NamedModulesPlugin()
     ]
 };
 

@@ -1,10 +1,8 @@
 import * as React from "react";
 let style = require('../styles/Landing.styl');
 
-export interface HelloProps { compiler: string, framework: string; }
-
-export class Landing extends React.Component<HelloProps, {}> {
+export class Landing extends React.Component<any,any> {
     render() {
-        return <h1 className={ style.bigWhite }> Hello World!</h1>;
+        return <h1 className={ style.bigWhite }> Hello! World!</h1>;
     }
 }

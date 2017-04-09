@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using vipper.Models;
+using System.IdentityModel.Tokens.Jwt;
+using AspNet.Security.OpenIdConnect.Primitives;
 
 namespace vipper
 {
@@ -34,7 +36,8 @@ namespace vipper
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddEntityFrameworkNpgsql().AddDbContext<DefaultDbContext>(options => {
+            services.AddEntityFrameworkNpgsql().AddDbContext<DefaultDbContext>(options =>
+            {
 
                 options.UseNpgsql(Configuration.GetConnectionString("defaultConnection"));
                 options.UseOpenIddict();
@@ -47,6 +50,16 @@ namespace vipper
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<DefaultDbContext>()
                 .AddDefaultTokenProviders();
+
+            // Configure Identity to use the same JWT claims as OpenIddict instead
+            // of the legacy WS-Federation claims it uses by default (ClaimTypes),
+            // which saves you from doing the mapping in your authorization controller.
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.ClaimsIdentity.UserNameClaimType = OpenIdConnectConstants.Claims.Name;
+                options.ClaimsIdentity.UserIdClaimType = OpenIdConnectConstants.Claims.Subject;
+                options.ClaimsIdentity.RoleClaimType = OpenIdConnectConstants.Claims.Role;
+            });
 
             // Configure OpenIddict for JSON Web Token (JWT) generation (Ref: http://capesean.co.za/blog/asp-net-5-jwt-tokens/)
             // Register the OpenIddict services.
@@ -112,9 +125,13 @@ namespace vipper
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            app.UseIdentity();
+            // Register the validation middleware, that is used to decrypt
+            // the access tokens and populate the HttpContext.User property.
             app.UseOAuthValidation();
-            app.UseOpenIddict();
+
+
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+            JwtSecurityTokenHandler.DefaultOutboundClaimTypeMap.Clear();
 
             // Use JWT Bearer Authentication (i.e. authenitcate with JWT in HTTP request header)
             app.UseJwtBearerAuthentication(new JwtBearerOptions
@@ -122,9 +139,11 @@ namespace vipper
                 AutomaticAuthenticate = true,
                 AutomaticChallenge = true,
                 RequireHttpsMetadata = false,
-                Audience = Configuration["url"],
+                Audience = "resource-server",
                 Authority = Configuration["url"]
             });
+
+            app.UseOpenIddict();
 
             app.UseMvc();
         }

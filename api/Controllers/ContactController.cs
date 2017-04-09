@@ -1,20 +1,18 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using vipper.Models;
 
 namespace vipper.Controllers
 {
-   // [Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     public class ContactsController : Controller
     {
         DefaultDbContext _context;
 
-        public ContactsController(DefaultDbContext context){
+        public ContactsController(DefaultDbContext context)
+        {
             _context = context;
         }
 

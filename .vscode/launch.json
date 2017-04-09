@@ -6,7 +6,7 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceRoot}/api/bin/Debug/netcoreapp1.0/api.dll",
+      "program": "${workspaceRoot}/api/bin/Debug/netcoreapp1.1/api.dll",
       "args": [],
       "env": {
         "ASPNETCORE_ENVIRONMENT": "Development",

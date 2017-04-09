@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using AspNet.Security.OpenIdConnect.Extensions;
 using AspNet.Security.OpenIdConnect.Primitives;
 using AspNet.Security.OpenIdConnect.Server;
@@ -42,6 +41,15 @@ namespace vipper.Controllers
         [Produces("application/json")]
         public async Task<IActionResult> Login(OpenIdConnectRequest request)
         {
+            /*
+              Example:
+
+              POST /api/auth/login
+              Content-Type: application/x-www-form-urlencoded
+
+              grant_type=password&username=user%40test.com&password=P2ssw0rd!&resource=http%3A%2F%2Flocalhost%3A5000
+            */
+
             if (request.IsPasswordGrantType())
             {
                 var user = await _userManager.FindByNameAsync(request.Username);
@@ -65,7 +73,7 @@ namespace vipper.Controllers
                 }
 
                 // Create a new authentication ticket.
-                var ticket = await CreateTicketAsync(request, user);
+                var ticket = await CreateTicket(request, user);
 
                 _logger.LogInformation(1, "User logged in.");
 
@@ -80,34 +88,27 @@ namespace vipper.Controllers
             });
         }
 
-        private async Task<AuthenticationTicket> CreateTicketAsync(
-           OpenIdConnectRequest request, ApplicationUser user,
-           AuthenticationProperties properties = null)
+        private async Task<AuthenticationTicket> CreateTicket(OpenIdConnectRequest request, ApplicationUser user)
         {
             // Create a new ClaimsPrincipal containing the claims that
             // will be used to create an id_token, a token or a code.
             var principal = await _signInManager.CreateUserPrincipalAsync(user);
 
             // Create a new authentication ticket holding the user identity.
-            var ticket = new AuthenticationTicket(principal, properties,
+            var ticket = new AuthenticationTicket(principal,
+                new AuthenticationProperties(),
                 OpenIdConnectServerDefaults.AuthenticationScheme);
 
-            if (!request.IsAuthorizationCodeGrantType() && !request.IsRefreshTokenGrantType())
+            // Set the list of scopes granted to the client application.
+            ticket.SetScopes(new[]
             {
-                // Set the list of scopes granted to the client application.
-                // Note: the offline_access scope must be granted
-                // to allow OpenIddict to return a refresh token.
-                ticket.SetScopes(new[]
-                {
-                    OpenIdConnectConstants.Scopes.OpenId,
-                    OpenIdConnectConstants.Scopes.Email,
-                    OpenIdConnectConstants.Scopes.Profile,
-                    OpenIdConnectConstants.Scopes.OfflineAccess,
-                    OpenIddictConstants.Scopes.Roles
-                }.Intersect(request.GetScopes()));
-            }
+                OpenIdConnectConstants.Scopes.OpenId,
+                OpenIdConnectConstants.Scopes.Email,
+                OpenIdConnectConstants.Scopes.Profile,
+                OpenIddictConstants.Scopes.Roles
+            }.Intersect(request.GetScopes()));
 
-            ticket.SetResources("resource_server");
+            ticket.SetResources("resource-server");
 
             // Note: by default, claims are NOT automatically included in the access and identity tokens.
             // To allow OpenIddict to serialize them, you must attach them a destination, that specifies
@@ -135,7 +136,7 @@ namespace vipper.Controllers
                     destinations.Add(OpenIdConnectConstants.Destinations.IdentityToken);
                 }
 
-                claim.SetDestinations(destinations);
+                claim.SetDestinations(OpenIdConnectConstants.Destinations.AccessToken);
             }
 
             return ticket;

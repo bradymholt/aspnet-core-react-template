@@ -1,13 +1,12 @@
 {
-    "compilerOptions": {
-        "sourceMap": true,
-        "noImplicitAny": true,
-        "module": "es2015",
-        "target": "es5",
-        "jsx": "react",
-        "types": ["react", "react-dom", "react-router", "node"]
-    },
-    "files": [
-        "./boot.tsx"
-    ]
+  "compilerOptions": {
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "es2015",
+    "target": "es5",
+    "jsx": "react"
+  },
+  "files": [
+    "./boot.tsx"
+  ]
 }

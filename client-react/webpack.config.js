@@ -43,7 +43,7 @@ var config = {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'index.ejs'), inject: true
         }),
-        //new webpack.NamedModulesPlugin()
+        new webpack.NamedModulesPlugin()
     ]
 };
 

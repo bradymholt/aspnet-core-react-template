@@ -27,7 +27,6 @@
   "devDependencies": {
     "@types/chai": "^3.4.32",
     "@types/enzyme": "^2.4.33",
-    "@types/history": "^4.5.0",
     "@types/jsdom": "^2.0.29",
     "@types/mocha": "^2.2.31",
     "@types/react": "^15.0.21",
@@ -50,6 +49,7 @@
     "react-addons-test-utils": "^15.5.0",
     "react-dom": "^15.5.2",
     "react-hot-loader": "next",
+    "react-router": "^4.0.0",
     "react-router-dom": "^4.0.0",
     "source-map-loader": "^0.1.5",
     "style-loader": "^0.13.1",

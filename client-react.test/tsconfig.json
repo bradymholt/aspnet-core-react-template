@@ -6,18 +6,9 @@
     "target": "es5",
     "jsx": "react",
     "outDir": "./build",
-    "skipLibCheck": true,
-    "types": [
-      "jsdom",
-      "mocha",
-      "chai",
-      "react",
-      "react-dom",
-      "enzyme",
-      "react-addons-test-utils"
-    ]
+    "skipLibCheck": true
   },
   "include": [
-    "./*.tsx"
+    "./boot.tsx"
   ]
 }

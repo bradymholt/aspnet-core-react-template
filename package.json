@@ -1,12 +1,12 @@
 {
-  "name": "aspnetCoreReactTemplate",
+  "name": "aspnet.core.react.template",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "postinstall": "dotnet restore ./api && dotnet restore ./api.test",
     "build": "dotnet build ./api",
-    "test:api": "dotnet test ./api.test/api.test.csproj",
+    "test:api": "cd ./api.test && dotnet xunit",
     "pretest:react": "webpack --config ./client-react.test/webpack.config.js",
     "test:react": "mocha ./client-react.test/build/tests.js",
     "test": "npm run test:api && npm run test:react",

@@ -1,4 +1,4 @@
-namespace vipper.Models
+namespace aspnetCoreReactTemplate.Models
 {
     public class Contact
     {

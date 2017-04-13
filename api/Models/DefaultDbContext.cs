@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace vipper.Models
+namespace aspnetCoreReactTemplate.Models
 {
     public class DefaultDbContext : IdentityDbContext<ApplicationUser>
     {

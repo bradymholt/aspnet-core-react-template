@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using vipper.Models;
+using aspnetCoreReactTemplate.Models;
 
 namespace api.Migrations
 {
@@ -201,7 +201,7 @@ namespace api.Migrations
                     b.ToTable("OpenIddictTokens");
                 });
 
-            modelBuilder.Entity("vipper.Models.ApplicationUser", b =>
+            modelBuilder.Entity("aspnetCoreReactTemplate.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -255,7 +255,7 @@ namespace api.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("vipper.Models.Contact", b =>
+            modelBuilder.Entity("aspnetCoreReactTemplate.Models.Contact", b =>
                 {
                     b.Property<int>("ContactId")
                         .ValueGeneratedOnAdd();
@@ -281,7 +281,7 @@ namespace api.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("vipper.Models.ApplicationUser")
+                    b.HasOne("aspnetCoreReactTemplate.Models.ApplicationUser")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -289,7 +289,7 @@ namespace api.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("vipper.Models.ApplicationUser")
+                    b.HasOne("aspnetCoreReactTemplate.Models.ApplicationUser")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -302,7 +302,7 @@ namespace api.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("vipper.Models.ApplicationUser")
+                    b.HasOne("aspnetCoreReactTemplate.Models.ApplicationUser")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

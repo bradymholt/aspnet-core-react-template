@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-namespace vipper.Models
+namespace aspnetCoreReactTemplate.Models
 {
     public class ApplicationUser: IdentityUser
     {

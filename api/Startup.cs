@@ -7,11 +7,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
-using vipper.Models;
+using aspnetCoreReactTemplate.Models;
 using System.IdentityModel.Tokens.Jwt;
 using AspNet.Security.OpenIdConnect.Primitives;
 
-namespace vipper
+namespace aspnetCoreReactTemplate
 {
     public class Startup
     {
@@ -121,6 +121,13 @@ namespace vipper
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
+
+            // If not requesting /api*, rewrite to / so SPA app will be returned
+            app.UseSpaFallback(new SpaFallbackOptions()
+            {
+                ApiPathPrefix = "/api",
+                RewritePath = "/"
+            });
 
             app.UseDefaultFiles();
             app.UseStaticFiles();

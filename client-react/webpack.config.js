@@ -7,43 +7,46 @@ var merge = require('extendify')({ isDeep: true, arrays: 'replace' });
 
 var config = {
     entry: {
-        main: ['react-hot-loader/patch', path.join(__dirname, 'boot.tsx')]
+        main: path.join(__dirname, 'boot.tsx')
     },
     output: {
         path: path.join(__dirname, '../api/', 'wwwroot'),
         filename: '[name].js',
         publicPath: '/'
     },
-
     resolve: {
-        // Add '.ts' and '.tsx' as resolvable extensions.
-        extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js", ".styl"]
+        extensions: ['.ts', '.tsx', '.js', '.styl', '.css']
     },
-
     module: {
         rules: [
-            // Use react-hot for HMR and then ts-loader to transpile TS (pass path to tsconfig because it is not in root (cwd) path)
             {
-                test: /\.ts(x?)$/, loaders: ['ts-loader']
+                test: /\.styl$/,
+                use: [{
+                    loader: 'style-loader'
+                }, {
+                    loader: 'css-loader',
+                    options: {
+                        modules: true,
+                        importLoaders: 2,
+                        sourceMap: false,
+                        localIdentName: "[local]___[hash:base64:5]"
+                    }
+                }, {
+                    loader: 'stylus-loader'
+                }]
             },
-            // We do not use ExtractTextPlugin in development mode so that HMR will work with styles
-            {
-                test: /\.styl$/, loader: 'style-loader!css-loader?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!stylus-loader'
-            },
-            {
-                test: /\.css/, loader: 'style-loader!css-loader'
-            }
+            { test: /\.ts(x?)$/, loaders: ['ts-loader'] },
+            { test: /\.css/, loader: 'style-loader!css-loader' },
+            { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
         ]
     },
-
     devtool: 'inline-source-map',
-
-    // plugins should not be empty: https://github.com/aspnet/JavaScriptServices/tree/dev/src/Microsoft.AspNetCore.SpaServices'
-    plugins: [
+    plugins: [ // plugins should not be empty: https://github.com/aspnet/JavaScriptServices/tree/dev/src/Microsoft.AspNetCore.SpaServices'[
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'index.ejs'), inject: true
-        }),
-        new webpack.NamedModulesPlugin()
+        })
+        // new webpack.NamedModulesPlugin()
+        // We do not use ExtractTextPlugin in development mode so that HMR will work with styles
     ]
 };
 

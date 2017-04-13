@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-    <title>aspnet-core-react-template</title>
-  </head>
-  <body>
-    <div id='app'></div>
+<html lang="en">
 
-    <%if (htmlWebpackPlugin.options.useCdn) { %>
-      <script src="https://unpkg.com/react@15.3.1/dist/react.min.js"></script>
-      <script src="https://unpkg.com/react-dom@15.3.1/dist/react-dom.min.js"></script>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>aspnet-core-react-template</title>
+</head>
+
+<body>
+  <div class="container" id='app'></div>
+
+  <%if (htmlWebpackPlugin.options.useCdn) { %>
+    <script src="https://unpkg.com/react@15.3.1/dist/react.min.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.1/dist/react-dom.min.js"></script>
     <% } %>
 
-    <!-- Scripts will be injected here -->
-  </body>
+      <!-- Scripts will be injected here -->
+</body>
+
 </html>

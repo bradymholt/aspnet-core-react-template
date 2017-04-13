@@ -3,8 +3,10 @@
 # dotnet core
 bin/
 obj/
-api/wwwroot/**
 project.lock.json
+
+api/wwwroot/**
+!api/wwwroot/scratch.html
 
 # node
 node_modules/

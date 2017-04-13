@@ -21,7 +21,7 @@ production
 
 # Global variables
 [all:vars]
-app_name=vipper                           # Name of the application
+app_name=aspnetCoreReactTemplate                           # Name of the application
 # The local deploy build asset source location (source files for deploy)
 source_directory=../../../../appName/bin/Release/netcoreapp1.0/publish/
 # The remote folder to deploy to

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
-namespace vipper
+namespace aspnetCoreReactTemplate
 {
     public class Program
     {

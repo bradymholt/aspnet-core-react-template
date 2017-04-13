@@ -13,9 +13,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using OpenIddict.Core;
-using vipper.Models;
+using aspnetCoreReactTemplate.Models;
 
-namespace vipper.Controllers
+namespace aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers
 {
     public class AuthController : Controller
     {
@@ -41,8 +41,7 @@ namespace vipper.Controllers
         [Produces("application/json")]
         public async Task<IActionResult> Login(OpenIdConnectRequest request)
         {
-            /*
-              Example:
+            /* Example:
 
               POST /api/auth/login
               Content-Type: application/x-www-form-urlencoded

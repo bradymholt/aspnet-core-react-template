@@ -1,3 +1,7 @@
+body{
+  padding-top: 5rem;
+}
+
 .form-signin {
   margin: 0 auto;
   width:500px;
@@ -29,4 +33,10 @@
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+ .starter-template { padding: 3rem 1.5rem; text-align: center; }
+
+.btn.search {
+  margin-right: 10px;
 }

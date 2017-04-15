@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 
-export default class Auth {
+export default class authentication {
     static STORAGE_KEY: string = "token";
 
     static login(username: string, password: string): Promise<boolean> {

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link, Redirect } from 'react-router-dom';
-import Auth from "../services/auth";
+import auth from "../services/authentication";
 
 export class Login extends React.Component<any, any> {
     refs: {
@@ -14,7 +14,7 @@ export class Login extends React.Component<any, any> {
 
     handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        Auth.login(this.refs.username.value, this.refs.password.value).then(isLoggedIn => {
+        auth.login(this.refs.username.value, this.refs.password.value).then(isLoggedIn => {
             if (isLoggedIn) {
                 this.setState({ redirectToReferrer: true })
             } else {

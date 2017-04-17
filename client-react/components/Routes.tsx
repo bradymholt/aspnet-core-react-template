@@ -1,27 +1,31 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
+import { Login, Register, ConfirmEmail } from './Auth';
 import { Landing } from './Landing';
-import { Login } from './Login';
-import { Home } from './Home';
 import { Header } from './Header';
 import auth from '../services/authentication';
 
 export default class Routes extends React.Component<any, any> {
     render() {
         return <div>
-            <Route exact path='/' component={Landing} />
-            <Route path='/login' component={Login} />
-            <PrivateRoute path="*" component={Header} />
-            <PrivateRoute path='/home' component={Home} />
+            <Route exact path='/' component={Login} />
+            <Route path='/register' component={Register} />
+            <Route path='/confirm' component={ConfirmEmail} />
+            <DefaultLayout path='/landing' component={Landing} />
         </div>
     }
 }
 
-const PrivateRoute = ({ component: Component, ...rest }: { component: any, path: string }) => (
+const DefaultLayout = ({ component: Component, ...rest }: { component: any, path: string }) => (
     <Route {...rest} render={props => (
         auth.isLoggedIn() ? (
-            <Component {...props} />
+            <div>
+                <Header></Header>
+                <div className="container">
+                    <Component {...props} />
+                </div>
+            </div>
         ) : (
                 <Redirect to={{
                     pathname: '/login',
@@ -29,4 +33,4 @@ const PrivateRoute = ({ component: Component, ...rest }: { component: any, path:
                 }} />
             )
     )} />
-)
+);

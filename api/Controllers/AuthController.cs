@@ -14,6 +14,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using OpenIddict.Core;
 using aspnetCoreReactTemplate.Models;
+using aspnetCoreReactTemplate.Services;
+using aspnetCoreReactTemplate.ViewModels;
 
 namespace aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers
 {
@@ -21,17 +23,20 @@ namespace aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IOptions<IdentityOptions> _identityOptions;
+        private readonly IEmailSender _emailSender;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger _logger;
 
         public AuthController(
             UserManager<ApplicationUser> userManager,
             IOptions<IdentityOptions> identityOptions,
+            IEmailSender emailSender,
             SignInManager<ApplicationUser> signInManager,
             ILoggerFactory loggerFactory)
         {
             _userManager = userManager;
             _identityOptions = identityOptions;
+            _emailSender = emailSender;
             _signInManager = signInManager;
             _logger = loggerFactory.CreateLogger<AuthController>();
         }
@@ -41,14 +46,6 @@ namespace aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers
         [Produces("application/json")]
         public async Task<IActionResult> Login(OpenIdConnectRequest request)
         {
-            /* Example:
-
-              POST /api/auth/login
-              Content-Type: application/x-www-form-urlencoded
-
-              grant_type=password&username=user%40test.com&password=P2ssw0rd!&resource=http%3A%2F%2Flocalhost%3A5000
-            */
-
             if (request.IsPasswordGrantType())
             {
                 var user = await _userManager.FindByNameAsync(request.Username);
@@ -57,7 +54,7 @@ namespace aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers
                     return BadRequest(new OpenIdConnectResponse
                     {
                         Error = OpenIdConnectConstants.Errors.InvalidGrant,
-                        ErrorDescription = "The username/password couple is invalid."
+                        ErrorDescription = "The username or password is invalid."
                     });
                 }
 
@@ -67,7 +64,17 @@ namespace aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers
                     return BadRequest(new OpenIdConnectResponse
                     {
                         Error = OpenIdConnectConstants.Errors.InvalidGrant,
-                        ErrorDescription = "The username/password couple is invalid."
+                        ErrorDescription = "The username/password password is invalid."
+                    });
+                }
+
+                // Ensure the email is confirmed.
+                if (!await _userManager.IsEmailConfirmedAsync(user))
+                {
+                    return BadRequest(new OpenIdConnectResponse
+                    {
+                        Error = "email_not_confirmed",
+                        ErrorDescription = "You must have a confirmed email to log in."
                     });
                 }
 
@@ -85,6 +92,48 @@ namespace aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers
                 Error = OpenIdConnectConstants.Errors.UnsupportedGrantType,
                 ErrorDescription = "The specified grant type is not supported."
             });
+        }
+
+        [AllowAnonymous]
+        [HttpPost("~/api/auth/register")]
+        public async Task<IActionResult> Register([FromBody] UserRegistration model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = new ApplicationUser { UserName = model.email, Email = model.password };
+            var result = await _userManager.CreateAsync(user, model.password);
+            if (result.Succeeded)
+            {
+                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
+                // Send an email with this link
+                var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                var callbackUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/confirm/?token={code}";
+                await _emailSender.SendEmailAsync(model.email, "Confirm your account",
+                   "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                await _signInManager.SignInAsync(user, isPersistent: false);
+                _logger.LogInformation(3, "User created a new account with password.");
+            }
+
+            return CreatedAtRoute("Confirm", new { id = user.Id });
+        }
+
+        [AllowAnonymous]
+        [HttpPost("~/api/auth/confirm", Name = "Confirm")]
+        public async Task<IActionResult> Confirm([FromBody] ConfirmEmail model)
+        {
+            var user = await _userManager.FindByIdAsync(model.user_id);
+            var confirmResult = await _userManager.ConfirmEmailAsync(user, model.token);
+            if (confirmResult.Succeeded)
+            {
+                return Ok();
+            }
+            else
+            {
+                return new BadRequestResult();
+            }
         }
 
         private async Task<AuthenticationTicket> CreateTicket(OpenIdConnectRequest request, ApplicationUser user)

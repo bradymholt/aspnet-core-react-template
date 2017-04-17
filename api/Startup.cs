@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using aspnetCoreReactTemplate.Models;
 using System.IdentityModel.Tokens.Jwt;
 using AspNet.Security.OpenIdConnect.Primitives;
+using aspnetCoreReactTemplate.Services;
 
 namespace aspnetCoreReactTemplate
 {
@@ -38,7 +39,6 @@ namespace aspnetCoreReactTemplate
         {
             services.AddEntityFrameworkNpgsql().AddDbContext<DefaultDbContext>(options =>
             {
-
                 options.UseNpgsql(Configuration.GetConnectionString("defaultConnection"));
                 options.UseOpenIddict();
             });
@@ -59,6 +59,7 @@ namespace aspnetCoreReactTemplate
                 options.ClaimsIdentity.UserNameClaimType = OpenIdConnectConstants.Claims.Name;
                 options.ClaimsIdentity.UserIdClaimType = OpenIdConnectConstants.Claims.Subject;
                 options.ClaimsIdentity.RoleClaimType = OpenIdConnectConstants.Claims.Role;
+                options.SignIn.RequireConfirmedEmail = true;
             });
 
             // Configure OpenIddict for JSON Web Token (JWT) generation (Ref: http://capesean.co.za/blog/asp-net-5-jwt-tokens/)
@@ -89,6 +90,10 @@ namespace aspnetCoreReactTemplate
                 options.AddEphemeralSigningKey();
                 options.SetAccessTokenLifetime(TimeSpan.FromDays(1));
             });
+
+            services.AddTransient<IEmailSender, EmailSender>();
+
+            services.Configure<EmailSenderOptions>(Configuration);
 
             // Add framework services
             services.AddMvc();
@@ -151,6 +156,7 @@ namespace aspnetCoreReactTemplate
             });
 
             app.UseOpenIddict();
+            app.UseIdentity();
 
             app.UseMvc();
         }

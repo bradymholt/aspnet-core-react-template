@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link, Redirect } from 'react-router-dom';
-import auth from '../services/authentication'
+import authService from '../services/authentication'
 
 export class Header extends React.Component<any, any> {
     state = {
@@ -8,7 +8,7 @@ export class Header extends React.Component<any, any> {
     }
 
     logout() {
-        auth.logout();
+        authService.logout();
         this.setState({ redirectToLogin: true });
     }
 

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Link, Redirect } from 'react-router-dom';
-import auth from "../services/authentication";
+import authService from "../services/authentication";
+let authStyle = require('../styles/auth.styl');
 
 export class Login extends React.Component<any, any> {
     refs: {
@@ -17,7 +18,7 @@ export class Login extends React.Component<any, any> {
         event.preventDefault();
 
         this.setState({ error_description: null });
-        auth.login(this.refs.username.value, this.refs.password.value).then(response => {
+        authService.login(this.refs.username.value, this.refs.password.value).then(response => {
             if (!response.error) {
                 this.setState({ redirectToReferrer: true })
             } else {
@@ -34,9 +35,9 @@ export class Login extends React.Component<any, any> {
             );
         }
 
-        return <div className="auth">
-            <form className="form-auth" onSubmit={(e) => this.handleSubmit(e)}>
-                <h2 className="form-auth-heading">Please sign in</h2>
+        return <div className={authStyle.auth}>
+            <form className={authStyle.formAuth} onSubmit={(e) => this.handleSubmit(e)}>
+                <h2 className={authStyle.formAuthHeading}>Please sign in</h2>
                 {this.state.error_description &&
                     <div className="alert alert-danger" role="alert">
                         {this.state.error_description}
@@ -48,7 +49,7 @@ export class Login extends React.Component<any, any> {
                 <input type="password" id="inputPassword" ref="password" defaultValue="P2ssw0rd!" className="form-control" placeholder="Password" required />
                 <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
             </form>
-            <div className="auth-etc">
+            <div className={authStyle.authEtc}>
                 <Link to="/register">Register</Link>
             </div>
         </div>;
@@ -68,7 +69,7 @@ export class Register extends React.Component<any, any> {
 
     handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        auth.register(this.refs.email.value, this.refs.password.value).then(response => {
+        authService.register(this.refs.email.value, this.refs.password.value).then(response => {
             if (!response.error) {
                 this.setState({ redirectToConfirm: true })
             } else {
@@ -94,9 +95,9 @@ export class Register extends React.Component<any, any> {
             );
         }
 
-        return <div className="auth">
-            <form className="form-auth" onSubmit={(e) => this.handleSubmit(e)}>
-                <h2 className="form-auth-heading">Please register for access</h2>
+        return <div className={authStyle.auth}>
+            <form className={authStyle.formAuth} onSubmit={(e) => this.handleSubmit(e)}>
+                <h2 className={authStyle.formAuthHeading}>Please register for access</h2>
                 <div className={this._formGroupClass(this.state.errors.email)}>
                     <label htmlFor="inputEmail">Email address</label>
                     <input type="email" id="inputEmail" ref="email" defaultValue="user@test.com" className="form-control" placeholder="Email address" required />
@@ -124,7 +125,7 @@ export class ConfirmEmail extends React.Component<any, any> {
 
     handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        auth.confirm(this.refs.token.value).then(isSuccessful => {
+        authService.confirm(this.refs.token.value).then(isSuccessful => {
             if (isSuccessful) {
                 this.setState({ redirectToLogin: true })
             } else {
@@ -142,9 +143,9 @@ export class ConfirmEmail extends React.Component<any, any> {
             );
         }
 
-        return <div className="auth">
-            <form className="form-auth" onSubmit={(e) => this.handleSubmit(e)}>
-                <h2 className="form-auth-heading">Please confirm registration</h2>
+        return <div className={authStyle.auth}>
+            <form className={authStyle.formAuth} onSubmit={(e) => this.handleSubmit(e)}>
+                <h2 className={authStyle.formAuthHeading}>Please confirm registration</h2>
                 <label htmlFor="inputToken" className="sr-only">Token</label>
                 <input id="inputToken" ref="token" className="form-control" placeholder="Token" required />
                 <button className="btn btn-lg btn-primary btn-block" type="submit">Confirm</button>

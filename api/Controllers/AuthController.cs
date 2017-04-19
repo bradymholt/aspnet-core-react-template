@@ -103,8 +103,8 @@ namespace aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers
                 if (!user.EmailConfirmed)
                 {
                     // Send email confirmation email
-                    var emailConfirmationCode = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var emailConfirmUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/confirm/?token={emailConfirmationCode}";
+                    var confirmToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var emailConfirmUrl = Url.RouteUrl("ConfirmEmail", new { uid = user.Id, token = confirmToken }, HttpContext.Request.Scheme);
                     await _emailSender.SendEmailAsync(model.username, "Please confirm your account",
     $"Please confirm your account by clicking this <a href=\"{emailConfirmUrl}\">link</a>."
                     );
@@ -126,18 +126,18 @@ namespace aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("~/api/auth/confirm", Name = "Confirm")]
-        public async Task<IActionResult> Confirm([FromBody] ConfirmEmail model)
+        [HttpGet("~/api/auth/confirm", Name = "ConfirmEmail")]
+        public async Task<IActionResult> Confirm(string uid, string token)
         {
-            var user = await _userManager.FindByIdAsync(model.user_id);
-            var confirmResult = await _userManager.ConfirmEmailAsync(user, model.token);
+            var user = await _userManager.FindByIdAsync(uid);
+            var confirmResult = await _userManager.ConfirmEmailAsync(user, token);
             if (confirmResult.Succeeded)
             {
-                return Ok();
+                return Redirect("/?confirmed=1");
             }
             else
             {
-                return new BadRequestResult();
+                return Redirect("/error/email-confirm");
             }
         }
 

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Route, Redirect, Switch } from 'react-router-dom';
-import { Login, Register, ConfirmEmail } from './Auth';
+import { Login, Register } from './Auth';
+import { ErrorPage } from './Error';
 import { Landing } from './Landing';
 import { Header } from './Header';
 import auth from '../services/authentication';
@@ -11,8 +12,8 @@ export default class Routes extends React.Component<any, any> {
         return <div>
             <Route exact path='/' component={Login} />
             <Route path='/register' component={Register} />
-            <Route path='/confirm' component={ConfirmEmail} />
             <DefaultLayout path='/landing' component={Landing} />
+            <Route path='/error/:code?' component={ErrorPage} />
         </div>
     }
 }

@@ -1,9 +1,9 @@
 import * as React from "react";
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, RouteComponentProps } from 'react-router-dom';
 import authService from "../services/authentication";
 let authStyle = require('../styles/auth.styl');
 
-export class Login extends React.Component<any, any> {
+export class Login extends React.Component<RouteComponentProps<any>, any> {
     refs: {
         username: HTMLInputElement;
         password: HTMLInputElement;
@@ -34,9 +34,17 @@ export class Login extends React.Component<any, any> {
             );
         }
 
+        const search = this.props.location.search;
+        const params = new URLSearchParams(search);
+
         return <div className={authStyle.auth}>
             <form className={authStyle.formAuth} onSubmit={(e) => this.handleSubmit(e)}>
                 <h2 className={authStyle.formAuthHeading}>Please sign in</h2>
+                {params.get('confirmed') &&
+                    <div className="alert alert-success" role="alert">
+                        Your email address has been successfully confirmed.
+                    </div>
+                }
                 {this.state.error &&
                     <div className="alert alert-danger" role="alert">
                         {this.state.error}
@@ -69,7 +77,7 @@ export class Register extends React.Component<any, any> {
     handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        this.setState({ errors: { } });
+        this.setState({ errors: {} });
         authService.register(this.refs.email.value, this.refs.password.value).then(response => {
             if (!response.error) {
                 this.setState({ registerComplete: true })
@@ -89,14 +97,14 @@ export class Register extends React.Component<any, any> {
 
     render() {
         if (this.state.registerComplete) {
-            return <RegisterComplete />
+            return <RegisterComplete email={this.refs.email.value} />
         } else {
             return <div className={authStyle.auth}>
                 <form className={authStyle.formAuth} onSubmit={(e) => this.handleSubmit(e)}>
                     <h2 className={authStyle.formAuthHeading}>Please register for access</h2>
                     {this.state.errors.all &&
                         <div className="alert alert-danger" role="alert">
-                        {this.state.errors.all}
+                            {this.state.errors.all}
                         </div>
                     }
                     <div className={this._formGroupClass(this.state.errors.username)}>
@@ -116,51 +124,20 @@ export class Register extends React.Component<any, any> {
     }
 }
 
-export class RegisterComplete extends React.Component<any, any> {
-    render() {
-        return <div className={authStyle.auth}>
-            Thank you for registering!
-            <Link to="/">Login</Link>
-        </div>;
-    }
+interface RegisterCompleteProps {
+    email: string;
 }
 
-export class ConfirmEmail extends React.Component<any, any> {
-    refs: {
-        token: HTMLInputElement;
-    }
-
-    state = {
-        redirectToLogin: false
-    }
-
-    handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-        event.preventDefault();
-        authService.confirm(this.refs.token.value).then(isSuccessful => {
-            if (isSuccessful) {
-                this.setState({ redirectToLogin: true })
-            } else {
-
-            }
-        });
-    }
-
+export class RegisterComplete extends React.Component<RegisterCompleteProps, any> {
     render() {
-        const { redirectToLogin } = this.state;
-
-        if (redirectToLogin) {
-            return (
-                <Redirect to="/login" />
-            );
-        }
-
         return <div className={authStyle.auth}>
-            <form className={authStyle.formAuth} onSubmit={(e) => this.handleSubmit(e)}>
-                <h2 className={authStyle.formAuthHeading}>Please confirm registration</h2>
-                <label htmlFor="inputToken" className="sr-only">Token</label>
-                <input id="inputToken" ref="token" className="form-control" placeholder="Token" required />
-                <button className="btn btn-lg btn-primary btn-block" type="submit">Confirm</button>
-            </form>
+            <div className="alert alert-success" role="alert">
+                <strong>Success!</strong>  Your account has been created.
+            </div>
+            <p>
+                A confirmation email has been sent to {this.props.email}. You will need to follow the provided link to confirm your email address before signing in.
+            </p>
+            <Link className="btn btn-lg btn-primary btn-block" role="button" to="/">Sign in</Link>
         </div>;
     }
 }

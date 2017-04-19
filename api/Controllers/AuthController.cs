@@ -46,78 +46,83 @@ namespace aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers
         [Produces("application/json")]
         public async Task<IActionResult> Login(OpenIdConnectRequest request)
         {
-            if (request.IsPasswordGrantType())
+            if (!request.IsPasswordGrantType())
             {
-                var user = await _userManager.FindByNameAsync(request.Username);
-                if (user == null)
+                return BadRequest(new
                 {
-                    return BadRequest(new OpenIdConnectResponse
-                    {
-                        Error = OpenIdConnectConstants.Errors.InvalidGrant,
-                        ErrorDescription = "The username or password is invalid."
-                    });
-                }
-
-                // Ensure the password is valid.
-                if (!await _userManager.CheckPasswordAsync(user, request.Password))
-                {
-                    return BadRequest(new OpenIdConnectResponse
-                    {
-                        Error = OpenIdConnectConstants.Errors.InvalidGrant,
-                        ErrorDescription = "The username/password password is invalid."
-                    });
-                }
-
-                // Ensure the email is confirmed.
-                if (!await _userManager.IsEmailConfirmedAsync(user))
-                {
-                    return BadRequest(new OpenIdConnectResponse
-                    {
-                        Error = "email_not_confirmed",
-                        ErrorDescription = "You must have a confirmed email to log in."
-                    });
-                }
-
-                // Create a new authentication ticket.
-                var ticket = await CreateTicket(request, user);
-
-                _logger.LogInformation(1, "User logged in.");
-
-                // Returning a SignInResult will ask OpenIddict to issue the appropriate access/identity tokens.
-                return SignIn(ticket.Principal, ticket.Properties, ticket.AuthenticationScheme);
+                    ErrorId = OpenIdConnectConstants.Errors.UnsupportedGrantType,
+                    ErrorDescription = "The specified grant type is not supported."
+                });
             }
 
-            return BadRequest(new OpenIdConnectResponse
+            // Ensure the username and password is valid.
+            var user = await _userManager.FindByNameAsync(request.Username);
+            if (user == null || !await _userManager.CheckPasswordAsync(user, request.Password))
             {
-                Error = OpenIdConnectConstants.Errors.UnsupportedGrantType,
-                ErrorDescription = "The specified grant type is not supported."
-            });
+                return BadRequest(new
+                {
+                    ErrorId = OpenIdConnectConstants.Errors.InvalidGrant,
+                    ErrorDescription = "The username or password is invalid."
+                });
+            }
+
+            // Ensure the email is confirmed.
+            if (!await _userManager.IsEmailConfirmedAsync(user))
+            {
+                return BadRequest(new
+                {
+                    ErrorId = "email_not_confirmed",
+                    ErrorDescription = "You must have a confirmed email to log in."
+                });
+            }
+
+            // Create a new authentication ticket.
+            var ticket = await CreateTicket(user);
+
+            _logger.LogInformation($"User logged in (id: {user.Id})");
+
+            // Returning a SignInResult will ask OpenIddict to issue the appropriate access/identity tokens.
+            return SignIn(ticket.Principal, ticket.Properties, ticket.AuthenticationScheme);
         }
 
         [AllowAnonymous]
         [HttpPost("~/api/auth/register")]
-        public async Task<IActionResult> Register([FromBody] UserRegistration model)
+        public async Task<IActionResult> Register(NewUser model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser { UserName = model.email, Email = model.password };
+            var user = new ApplicationUser { UserName = model.username, Email = model.username };
             var result = await _userManager.CreateAsync(user, model.password);
             if (result.Succeeded)
             {
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
-                // Send an email with this link
-                var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                var callbackUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/confirm/?token={code}";
-                await _emailSender.SendEmailAsync(model.email, "Confirm your account",
-                   "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
-                await _signInManager.SignInAsync(user, isPersistent: false);
-                _logger.LogInformation(3, "User created a new account with password.");
-            }
+                _logger.LogInformation($"New user registered (id: {user.Id})");
 
-            return CreatedAtRoute("Confirm", new { id = user.Id });
+                if (!user.EmailConfirmed)
+                {
+                    // Send email confirmation email
+                    var emailConfirmationCode = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var emailConfirmUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/confirm/?token={emailConfirmationCode}";
+                    await _emailSender.SendEmailAsync(model.username, "Please confirm your account",
+    $"Please confirm your account by clicking this <a href=\"{emailConfirmUrl}\">link</a>."
+                    );
+
+                    _logger.LogInformation($"Sent email confirmation email (id: {user.Id})");
+                }
+
+                // Create a new authentication ticket.
+                var ticket = await CreateTicket(user);
+
+                _logger.LogInformation($"User logged in (id: {user.Id})");
+
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(new { all = result.Errors.Select(x => x.Description) });
+            }
         }
 
         [AllowAnonymous]
@@ -136,7 +141,7 @@ namespace aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers
             }
         }
 
-        private async Task<AuthenticationTicket> CreateTicket(OpenIdConnectRequest request, ApplicationUser user)
+        private async Task<AuthenticationTicket> CreateTicket(ApplicationUser user)
         {
             // Create a new ClaimsPrincipal containing the claims that
             // will be used to create an id_token, a token or a code.
@@ -154,7 +159,7 @@ namespace aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers
                 OpenIdConnectConstants.Scopes.Email,
                 OpenIdConnectConstants.Scopes.Profile,
                 OpenIddictConstants.Scopes.Roles
-            }.Intersect(request.GetScopes()));
+            });
 
             ticket.SetResources("resource-server");
 

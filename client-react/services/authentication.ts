@@ -5,6 +5,7 @@ export default class authentication {
 
     static request(url: string, contentType: string, body: string) {
         let isBadRequest = false;
+        let isJsonResponse = false
 
         return fetch(url, {
             method: 'POST',
@@ -12,19 +13,30 @@ export default class authentication {
             body: body
         }).then((response) => {
             isBadRequest = (response.status == 400);
-            return response.json();
-        }).then((json:any) => {
+
+            let contentType = response.headers.get("content-type");
+            if (contentType && contentType.indexOf("application/json") !== -1) {
+                isJsonResponse = true;
+                return response.json();
+            } else {
+                return response.text();
+            }
+        }).then((responseContent: any) => {
+            let response = responseContent;
             if (isBadRequest) {
-                json = { error: json }
+                if (isJsonResponse && !responseContent.error) {
+                    response = { error: responseContent }
+                }
             }
 
-            return json;
+            return response;
         });
     }
 
-    static login(email: string, password: string): Promise<any> {
-        return authentication.request('/api/auth/login', 'application/x-www-form-urlencoded',
-            `username=${email}&password=${password}&grant_type=password`
+    static loginOrRegister(email: string, password: string, isRegister: boolean = false): Promise<any> {
+        return authentication.request(`/api/auth/${isRegister ? 'register' : 'login'}`, 'application/x-www-form-urlencoded',
+            `username=${email}&password=${password}${!isRegister ? '&grant_type=password' : ''}`
+
         ).then((response: any) => {
             if (!response.error) {
                 localStorage.setItem(this.STORAGE_KEY, response.access_token);
@@ -33,10 +45,12 @@ export default class authentication {
         });
     }
 
+    static login(email: string, password: string): Promise<any> {
+        return this.loginOrRegister(email, password, false);
+    }
+
     static register(email: string, password: string): Promise<any> {
-        return authentication.request('/api/auth/register', 'application/json',
-            JSON.stringify({ email: email, password: password })
-        );
+        return this.loginOrRegister(email, password, true);
     }
 
     static confirm(token: string): Promise<boolean> {

@@ -2,11 +2,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace aspnetCoreReactTemplate.ViewModels
 {
-    public class UserRegistration
+    public class NewUser
     {
         [Required]
         [EmailAddress]
-        public string email { get; set; }
+        public string username { get; set; }
 
         [Required]
         [MinLength(8)]

@@ -8,7 +8,7 @@ namespace Tests
         public void Test1()
         {
             var contact = new aspnetCoreReactTemplate.Models.Contact();
-            Assert.True(string.IsNullOrEmpty(contact.Email));
+            Assert.True(string.IsNullOrEmpty(contact.email));
         }
     }
 }

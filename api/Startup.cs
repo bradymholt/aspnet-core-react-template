@@ -156,7 +156,6 @@ namespace aspnetCoreReactTemplate
 
             app.UseOpenIddict();
             app.UseIdentity();
-
             app.UseMvc();
         }
     }

@@ -11,36 +11,35 @@ export class Login extends React.Component<any, any> {
 
     state = {
         redirectToReferrer: false,
-        error_description: null as string
+        error: null as string[]
     }
 
     handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        this.setState({ error_description: null });
+        this.setState({ errors: null });
         authService.login(this.refs.username.value, this.refs.password.value).then(response => {
             if (!response.error) {
                 this.setState({ redirectToReferrer: true })
             } else {
-                this.setState({ error_description: response.error_description });
+                this.setState({ error: response.error.errorDescription });
             }
         });
     }
 
     render() {
-        const { redirectFrom } = this.props.location.state || { redirectFrom: { pathname: '/' } }
         if (this.state.redirectToReferrer) {
             return (
-                <Redirect to="/landing" from={redirectFrom} />
+                <Redirect to="/landing" />
             );
         }
 
         return <div className={authStyle.auth}>
             <form className={authStyle.formAuth} onSubmit={(e) => this.handleSubmit(e)}>
                 <h2 className={authStyle.formAuthHeading}>Please sign in</h2>
-                {this.state.error_description &&
+                {this.state.error &&
                     <div className="alert alert-danger" role="alert">
-                        {this.state.error_description}
+                        {this.state.error}
                     </div>
                 }
                 <label htmlFor="inputEmail" className="form-control-label sr-only">Email address</label>
@@ -63,15 +62,17 @@ export class Register extends React.Component<any, any> {
     }
 
     state = {
-        redirectToConfirm: false,
+        registerComplete: false,
         errors: {} as { [key: string]: string }
     }
 
     handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
+
+        this.setState({ errors: { } });
         authService.register(this.refs.email.value, this.refs.password.value).then(response => {
             if (!response.error) {
-                this.setState({ redirectToConfirm: true })
+                this.setState({ registerComplete: true })
             } else {
                 this.setState({ errors: response.error });
             }
@@ -87,29 +88,39 @@ export class Register extends React.Component<any, any> {
     }
 
     render() {
-        const { redirectToConfirm } = this.state;
+        if (this.state.registerComplete) {
+            return <RegisterComplete />
+        } else {
+            return <div className={authStyle.auth}>
+                <form className={authStyle.formAuth} onSubmit={(e) => this.handleSubmit(e)}>
+                    <h2 className={authStyle.formAuthHeading}>Please register for access</h2>
+                    {this.state.errors.all &&
+                        <div className="alert alert-danger" role="alert">
+                        {this.state.errors.all}
+                        </div>
+                    }
+                    <div className={this._formGroupClass(this.state.errors.username)}>
+                        <label htmlFor="inputEmail">Email address</label>
+                        <input type="email" id="inputEmail" ref="email" defaultValue="user@test.com" className="form-control" placeholder="Email address" required />
+                        <div className="form-control-feedback">{this.state.errors.username}</div>
+                    </div>
+                    <div className={this._formGroupClass(this.state.errors.password)}>
+                        <label htmlFor="inputPassword">Password</label>
+                        <input type="password" id="inputPassword" ref="password" defaultValue="P2ssw0rd!" className="form-control" placeholder="Password" required />
+                        <div className="form-control-feedback">{this.state.errors.password}</div>
+                    </div>
+                    <button className="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+                </form>
+            </div>;
+        };
+    }
+}
 
-        if (redirectToConfirm) {
-            return (
-                <Redirect to="/confirm" />
-            );
-        }
-
+export class RegisterComplete extends React.Component<any, any> {
+    render() {
         return <div className={authStyle.auth}>
-            <form className={authStyle.formAuth} onSubmit={(e) => this.handleSubmit(e)}>
-                <h2 className={authStyle.formAuthHeading}>Please register for access</h2>
-                <div className={this._formGroupClass(this.state.errors.email)}>
-                    <label htmlFor="inputEmail">Email address</label>
-                    <input type="email" id="inputEmail" ref="email" defaultValue="user@test.com" className="form-control" placeholder="Email address" required />
-                    <div className="form-control-feedback">{this.state.errors.email}</div>
-                </div>
-                <div className={this._formGroupClass(this.state.errors.password)}>
-                    <label htmlFor="inputPassword">Password</label>
-                    <input type="password" id="inputPassword" ref="password" defaultValue="P2ssw0rd!" className="form-control" placeholder="Password" required />
-                    <div className="form-control-feedback">{this.state.errors.password}</div>
-                </div>
-                <button className="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-            </form>
+            Thank you for registering!
+            <Link to="/">Login</Link>
         </div>;
     }
 }

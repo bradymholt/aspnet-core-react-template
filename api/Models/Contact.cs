@@ -2,11 +2,9 @@ namespace aspnetCoreReactTemplate.Models
 {
     public class Contact
     {
-        public int ContactId { get; set; }
-        public string Name { get; set; }
-
-        public string Phone { get; set; }
-
-        public string Email { get; set; }
+        public int contactId { get; set; }
+        public string name { get; set; }
+        public string phone { get; set; }
+        public string email { get; set; }
     }
 }

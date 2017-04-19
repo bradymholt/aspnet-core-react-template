@@ -17,7 +17,7 @@ namespace aspnetCoreReactTemplate.Services
         public Task SendEmailAsync(string toEmail, string subject, string message)
         {
             var mimeMessage = new MimeMessage();
-            mimeMessage.From.Add(new MailboxAddress(this.Options.smtp.fromName, this.Options.smtp.fromEmail));
+            mimeMessage.From.Add(new MailboxAddress(this.Options.emailFromName, this.Options.emailFromAddress));
             mimeMessage.To.Add(new MailboxAddress(toEmail));
             mimeMessage.Subject = subject;
 
@@ -31,14 +31,17 @@ namespace aspnetCoreReactTemplate.Services
                 // For demo-purposes, accept all SSL certificates (in case the server supports STARTTLS)
                 client.ServerCertificateValidationCallback = (s, c, h, e) => true;
 
-                client.Connect(this.Options.smtp.host, this.Options.smtp.port, false);
+                client.Connect(this.Options.host, this.Options.port, false);
 
                 // Note: since we don't have an OAuth2 token, disable
                 // the XOAUTH2 authentication mechanism.
                 client.AuthenticationMechanisms.Remove("XOAUTH2");
 
                 // Note: only needed if the SMTP server requires authentication
-                client.Authenticate(this.Options.smtp.username, this.Options.smtp.password);
+                if (!string.IsNullOrEmpty(this.Options.username))
+                {
+                    client.Authenticate(this.Options.username, this.Options.password);
+                }
 
                 client.Send(mimeMessage);
                 client.Disconnect(true);

@@ -92,8 +92,7 @@ namespace aspnetCoreReactTemplate
             });
 
             services.AddTransient<IEmailSender, EmailSender>();
-
-            services.Configure<EmailSenderOptions>(Configuration);
+            services.Configure<EmailSenderOptions>(Configuration.GetSection("email"));
 
             // Add framework services
             services.AddMvc();

@@ -16,6 +16,7 @@ This app is a template application using ASP.NET Core for a REST/JSON API server
 - Testing
   - xUnit for .NET Core
   - Enzyme for React
+  - MailCatcher for development email delivery
 - DevOps
   - Ansible playbook for provisioning (Nginx reverse proxy, SSL via Let's Encrypt, PostgresSQL backups to S3)
   - Ansible playbook for deployment
@@ -43,7 +44,7 @@ When first cloning the repo or adding new dependencies, run this command.  This 
 
 To start the app for development, run this command.  This will:
 
-- Run `docker-compose up` to ensure the Postgres Docker image is up and running
+- Run `docker-compose up` to ensure the PostgreSQL and MailCatcher Docker images are up and running
 - Run dotnet watch run which will build the app (if changed), watch for changes and start the web server on http://localhost:5000
 - Run Webpack dev middleware with HMR via [ASP.NET JavaScriptServices](https://github.com/aspnet/JavaScriptServices)
 
@@ -76,6 +77,11 @@ This script will:
   - Copies the build assets to the remote host(s)
   - Updates the `appsettings.release.json` file with PostgresSQL credentials specified in ops/hosts file and the app URL (needed for JWT tokens)
   - Restarts the app so that changes will be picked up
+
+## Email Delivery
+
+This template includes a [MailCatcher](https://mailcatcher.me/) Docker image so that when email is sent during development (i.e. new user registration), it can be viewed
+in the MailCacher web interface at [http://localhost:1080/](http://localhost:1080/).
 
 ## Credit
 

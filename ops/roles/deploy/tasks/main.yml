@@ -2,10 +2,28 @@
   synchronize: src={{source_directory}} dest={{ deploy_directory }} delete=yes rsync_opts=--exclude=.git/
   notify: Reload supervisor app config
 
-- name: Configure connection string
+- name: Configure PostgresSQL connection string
   lineinfile: dest="{{ deploy_directory }}/appsettings.release.json"
     regexp="defaultConnection\":"
     line="\"defaultConnection\"{{':'}} \"Host=127.0.0.1;Username={{database_username}};Password={{database_password}};Database={{database_name}}\""
+    state="present"
+
+- name: Configure email.smtpConfig
+  lineinfile: dest="{{ deploy_directory }}/appsettings.release.json"
+    regexp="smtpConfig\":"
+    line="\"smtpConfig\"{{':'}} \"{{email_smtp_config}}\""
+    state="present"
+
+- name: Configure email.emailFromName
+  lineinfile: dest="{{ deploy_directory }}/appsettings.release.json"
+    regexp="emailFromName\":"
+    line="\"emailFromName\"{{':'}} \"{{email_from_name}}\""
+    state="present"
+
+- name: Configure email.emailFromAddress
+  lineinfile: dest="{{ deploy_directory }}/appsettings.release.json"
+    regexp="emailFromAddress\":"
+    line="\"emailFromAddress\"{{':'}} \"{{email_from_address}}\""
     state="present"
 
 - name: Configure app url

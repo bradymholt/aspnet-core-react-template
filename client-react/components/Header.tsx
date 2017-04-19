@@ -51,7 +51,7 @@ export class Header extends React.Component<any, any> {
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
                     <input className="form-control mr-sm-2" type="text" placeholder="Search" />
-                    <button className="btn btn-outline-success my-2 my-sm-0 search" type="submit">Search</button>
+                    <button className="btn btn-outline-success my-2 my-sm-0 search" type="submit">Search</button>&nbsp;
                     <button className="btn btn-outline-warning my-2 my-sm-0" type="button" onClick={() => this.logout()}>Logout</button>
                 </form>
             </div>

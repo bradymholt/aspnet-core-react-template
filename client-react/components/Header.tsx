@@ -4,18 +4,16 @@ import authService from '../services/authentication'
 
 export class Header extends React.Component<any, any> {
     state = {
-        redirectToLogin: false
+        redirectToSignIn: false
     }
 
-    logout() {
-        authService.logout();
-        this.setState({ redirectToLogin: true });
+    signOut() {
+        authService.signOut();
+        this.setState({ redirectToSignIn: true });
     }
 
     render() {
-        const { redirectToLogin } = this.state;
-
-        if (redirectToLogin) {
+        if (this.state.redirectToSignIn) {
             return (
                 <Redirect to="/" />
             );
@@ -52,7 +50,7 @@ export class Header extends React.Component<any, any> {
                 <form className="form-inline my-2 my-lg-0">
                     <input className="form-control mr-sm-2" type="text" placeholder="Search" />
                     <button className="btn btn-outline-success my-2 my-sm-0 search" type="submit">Search</button>&nbsp;
-                    <button className="btn btn-outline-warning my-2 my-sm-0" type="button" onClick={() => this.logout()}>Logout</button>
+                    <button className="btn btn-outline-warning my-2 my-sm-0" type="button" onClick={() => this.signOut()}>Sign out</button>
                 </form>
             </div>
         </nav>;

@@ -3,7 +3,7 @@ import { Link, Redirect, RouteComponentProps } from 'react-router-dom';
 import authService from "../services/authentication";
 let authStyle = require('../styles/auth.styl');
 
-export class Login extends React.Component<RouteComponentProps<any>, any> {
+export class SignIn extends React.Component<RouteComponentProps<any>, any> {
     refs: {
         username: HTMLInputElement;
         password: HTMLInputElement;
@@ -18,7 +18,7 @@ export class Login extends React.Component<RouteComponentProps<any>, any> {
         event.preventDefault();
 
         this.setState({ errors: null });
-        authService.login(this.refs.username.value, this.refs.password.value).then(response => {
+        authService.signIn(this.refs.username.value, this.refs.password.value).then(response => {
             if (!response.error) {
                 this.setState({ redirectToReferrer: true })
             } else {
@@ -30,7 +30,7 @@ export class Login extends React.Component<RouteComponentProps<any>, any> {
     render() {
         if (this.state.redirectToReferrer) {
             return (
-                <Redirect to="/landing" />
+                <Redirect to="/" />
             );
         }
 
@@ -137,7 +137,7 @@ export class RegisterComplete extends React.Component<RegisterCompleteProps, any
             <p>
                 A confirmation email has been sent to {this.props.email}. You will need to follow the provided link to confirm your email address before signing in.
             </p>
-            <Link className="btn btn-lg btn-primary btn-block" role="button" to="/">Sign in</Link>
+            <Link className="btn btn-lg btn-primary btn-block" role="button" to="/sign-in">Sign in</Link>
         </div>;
     }
 }

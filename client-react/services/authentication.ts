@@ -33,7 +33,7 @@ export default class authentication {
         });
     }
 
-    static loginOrRegister(email: string, password: string, isRegister: boolean = false): Promise<any> {
+    static signInOrRegister(email: string, password: string, isRegister: boolean = false): Promise<any> {
         return authentication.request(`/api/auth/${isRegister ? 'register' : 'login'}`, 'application/x-www-form-urlencoded',
             `username=${email}&password=${password}${!isRegister ? '&grant_type=password' : ''}`
 
@@ -45,12 +45,12 @@ export default class authentication {
         });
     }
 
-    static login(email: string, password: string): Promise<any> {
-        return this.loginOrRegister(email, password, false);
+    static signIn(email: string, password: string): Promise<any> {
+        return this.signInOrRegister(email, password, false);
     }
 
     static register(email: string, password: string): Promise<any> {
-        return this.loginOrRegister(email, password, true);
+        return this.signInOrRegister(email, password, true);
     }
 
     static confirm(token: string): Promise<boolean> {
@@ -65,7 +65,7 @@ export default class authentication {
         });
     }
 
-    static isLoggedIn(): boolean {
+    static isSignedInIn(): boolean {
         return !!localStorage.getItem(this.STORAGE_KEY);
     }
 
@@ -73,7 +73,7 @@ export default class authentication {
         return localStorage.getItem(this.STORAGE_KEY);
     }
 
-    static logout(): void {
+    static signOut(): void {
         localStorage.removeItem(this.STORAGE_KEY);
     }
 }

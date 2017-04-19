@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Route, Redirect, Switch } from 'react-router-dom';
-import { Login, Register } from './Auth';
+import { SignIn, Register } from './Auth';
 import { ErrorPage } from './Error';
 import { Landing } from './Landing';
 import { Header } from './Header';
@@ -10,17 +10,17 @@ import auth from '../services/authentication';
 export default class Routes extends React.Component<any, any> {
     render() {
         return <div>
-            <Route exact path='/' component={Login} />
+            <DefaultLayout exact path='/' component={Landing} />
+            <Route path='/sign-in' component={SignIn} />
             <Route path='/register' component={Register} />
-            <DefaultLayout path='/landing' component={Landing} />
             <Route path='/error/:code?' component={ErrorPage} />
         </div>
     }
 }
 
-const DefaultLayout = ({ component: Component, ...rest }: { component: any, path: string }) => (
+const DefaultLayout = ({ component: Component, ...rest }: { component: any, path: string, exact?: boolean }) => (
     <Route {...rest} render={props => (
-        auth.isLoggedIn() ? (
+        auth.isSignedInIn() ? (
             <div>
                 <Header></Header>
                 <div className="container">
@@ -29,7 +29,7 @@ const DefaultLayout = ({ component: Component, ...rest }: { component: any, path
             </div>
         ) : (
                 <Redirect to={{
-                    pathname: '/',
+                    pathname: '/sign-in',
                     state: { from: props.location }
                 }} />
             )

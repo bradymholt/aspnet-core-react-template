@@ -28,7 +28,7 @@ const DefaultLayout = ({ component: Component, ...rest }: { component: any, path
             </div>
         ) : (
                 <Redirect to={{
-                    pathname: '/login',
+                    pathname: '/',
                     state: { from: props.location }
                 }} />
             )

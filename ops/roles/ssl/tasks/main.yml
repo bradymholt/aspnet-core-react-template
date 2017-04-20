@@ -32,7 +32,7 @@
 - name: Configure Nginx to serve the Challenge directory
   blockinfile:
     dest: "{{ nginx_conf_file }}"
-    insertafter: "server_name"
+    insertafter: "#ssl_config_marker"
     marker: "# {mark} ANSIBLE MANAGED BLOCK (CHALLENGE DIR CONFIG)"
     block: |
       location ^~ {{ challenge_relative_dir }} {
@@ -53,12 +53,31 @@
 - name: Configure SSL in Nginx
   blockinfile:
     dest: "{{ nginx_conf_file }}"
-    insertafter: "listen 80"
+    insertafter: "#ssl_config_marker"
     marker: "# {mark} ANSIBLE MANAGED BLOCK (SSL CONFIG)"
     block: |
       listen 443 ssl;
       ssl_certificate {{dehydrated_install_dir}}/certs/{{ webserver_name }}/fullchain.pem;
       ssl_certificate_key {{dehydrated_install_dir}}/certs/{{ webserver_name }}/privkey.pem;
+  notify: Reload nginx
+
+- name: Remove default listen port (will be replaced with another server block)
+  lineinfile:
+    dest: "{{ nginx_conf_file }}"
+    state: absent
+    regexp: '#default_listen_marker'
+
+- name: Configure forced SSL redirect in Nginx
+  blockinfile:
+    dest: "{{ nginx_conf_file }}"
+    insertafter: "#ssl_forced_config_marker"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK (FORCE SSL CONFIG)"
+    block: |
+      server {
+        listen  80;
+        server_name {{ webserver_name }};
+        rewrite     ^   https://$server_name$request_uri? permanent;
+      }
   notify: Reload nginx
 
 - name: Add LE cronjob

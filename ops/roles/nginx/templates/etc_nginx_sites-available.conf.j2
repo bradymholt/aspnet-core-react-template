@@ -1,6 +1,7 @@
 server {
-  listen 80;
-  server_name {{ webserver_name }};
+  listen 80; #default_listen_marker
+
+  #ssl_config_marker
 
   gzip_proxied any;
   gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
@@ -30,3 +31,5 @@ server {
         proxy_cache_bypass $http_upgrade;
   }
 }
+
+#ssl_forced_config_marker

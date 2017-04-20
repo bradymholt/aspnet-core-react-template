@@ -8,4 +8,5 @@ s3_bucket_name: "s3://app.{{ app_name }}"
 s3_db_backup_location: "{{ s3_bucket_name }}/db_backups"
 use_ssl: false
 letsencrypt_use_live_ca: false
+webserver_user: www-data
 

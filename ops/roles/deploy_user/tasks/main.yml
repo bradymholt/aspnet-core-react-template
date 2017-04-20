@@ -17,4 +17,4 @@
     state=present"
 
 - name: Creates deploy directory for app
-  file: path={{ deploy_directory }} state=directory owner={{deploy_user}} group=www-data mode=0775
+  file: path={{ deploy_directory }} state=directory owner={{deploy_user}} group={{webserver_user}} mode=0775

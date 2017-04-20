@@ -1,13 +1,13 @@
 # Source: https://gist.github.com/raphaelm/10226edb0e46f7ce844e
 ---
 - name: Ensure Challenge directory exists
-  file: path="{{ challenge_root_dir }}{{challenge_relative_dir}}" state=directory mode=0755 owner=root group=www-data recurse=yes
+  file: path="{{ challenge_root_dir }}{{challenge_relative_dir}}" state=directory mode=0755 owner=root group={{webserver_user}} recurse=yes
 
 - name: Ensure curl is installed
   apt: name=curl state=installed
 
 - name: Ensure SSL base directory exists
-  file: path={{ dehydrated_install_dir }} state=directory mode=0750 owner=root group=www-data
+  file: path={{ dehydrated_install_dir }} state=directory mode=0750 owner=root group={{webserver_user}}
 
 - name: Ensure SSL domain list exists
   command: "touch {{ dehydrated_install_dir }}/domains.txt"

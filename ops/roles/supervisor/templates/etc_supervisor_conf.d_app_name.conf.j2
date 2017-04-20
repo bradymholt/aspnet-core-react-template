@@ -6,7 +6,7 @@ autorestart=true
 stderr_logfile={{ error_file }}
 stdout_logfile={{ log_file }}
 environment=HOME=/var/www/,ASPNETCORE_ENVIRONMENT=Production
-user=www-data
+user={{webserver_user}}
 stopsignal=INT
 stopasgroup=true
 killasgroup=true

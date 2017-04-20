@@ -47,9 +47,13 @@ namespace aspnetCoreReactTemplate
             services.AddTransient<IDefaultDbContextInitializer, DefaultDbContextInitializer>();
 
             // Configure Entity Framework Identity for Auth
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<DefaultDbContext>()
-                .AddDefaultTokenProviders();
+            services.AddIdentity<ApplicationUser, IdentityRole>(o =>
+            {
+                // Do not 302 redirect when Unauthorized; just return 401 status code (ref: http://stackoverflow.com/a/38801130/626911)
+                o.Cookies.ApplicationCookie.AutomaticChallenge = false;
+            })
+            .AddEntityFrameworkStores<DefaultDbContext>()
+            .AddDefaultTokenProviders();
 
             // Configure Identity to use the same JWT claims as OpenIddict instead
             // of the legacy WS-Federation claims it uses by default (ClaimTypes),
@@ -95,7 +99,10 @@ namespace aspnetCoreReactTemplate
             services.Configure<EmailSenderOptions>(Configuration.GetSection("email"));
 
             // Add framework services
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(options =>
+               {
+                   options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+               });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

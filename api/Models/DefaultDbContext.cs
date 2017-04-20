@@ -5,10 +5,6 @@ namespace aspnetCoreReactTemplate.Models
 {
     public class DefaultDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DefaultDbContext()
-        {
-        }
-
         public DefaultDbContext(DbContextOptions<DefaultDbContext> options)
         : base(options)
         {

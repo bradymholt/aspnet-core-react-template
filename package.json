@@ -52,7 +52,7 @@
     "react-addons-test-utils": "^15.5.0",
     "react-dom": "^15.5.2",
     "react-hot-loader": "next",
-    "react-router": "^4.0.0",
+    "react-router": "^4.1.1",
     "react-router-dom": "^4.0.0",
     "source-map-loader": "^0.1.5",
     "style-loader": "^0.13.1",

@@ -5,7 +5,7 @@ import { SignIn, Register } from './Auth';
 import { ErrorPage } from './Error';
 import { Landing } from './Landing';
 import { Header } from './Header';
-import auth from '../services/authentication';
+import AuthService from '../services/Auth';
 
 export default class Routes extends React.Component<any, any> {
     render() {
@@ -20,7 +20,7 @@ export default class Routes extends React.Component<any, any> {
 
 const DefaultLayout = ({ component: Component, ...rest }: { component: any, path: string, exact?: boolean }) => (
     <Route {...rest} render={props => (
-        auth.isSignedInIn() ? (
+        AuthService.isSignedInIn() ? (
             <div>
                 <Header></Header>
                 <div className="container">

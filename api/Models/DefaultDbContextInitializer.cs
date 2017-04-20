@@ -31,47 +31,31 @@ namespace aspnetCoreReactTemplate.Models
 
         public async Task Seed()
         {
-            // Add Mvc.Client to the known applications.
-            if (_context.ApplicationUsers.Any())
+            var email = "user@test.com";
+            if (await _userManager.FindByEmailAsync(email) == null)
             {
-                foreach (var application in _context.ApplicationUsers)
-                    _context.Remove(application);
-                _context.SaveChanges();
+                ApplicationUser user = new ApplicationUser
+                {
+                    UserName = email,
+                    Email = email,
+                    EmailConfirmed = true,
+                    GivenName = "John Doe"
+                };
+
+                await _userManager.CreateAsync(user, "P2ssw0rd!");
             }
 
             if (_context.Contacts.Any())
             {
                 foreach (var u in _context.Contacts)
-                    _context.Remove(u);
-                _context.SaveChanges();
-            }
-
-            var email = "user@test.com";
-            ApplicationUser user;
-            if (await _userManager.FindByEmailAsync(email) == null)
-            {
-                // use the create rather than addorupdate so can set password
-                user = new ApplicationUser
                 {
-                    UserName = email,
-                    Email = email,
-                    EmailConfirmed = true,
-                    GivenName = "Brady"
-                };
-                await _userManager.CreateAsync(user, "P2ssw0rd!");
+                    _context.Remove(u);
+                }
             }
 
-            user = await _userManager.FindByEmailAsync(email);
-            var roleName = "testrole";
-            if (await _roleManager.FindByNameAsync(roleName) == null)
-            {
-                await _roleManager.CreateAsync(new IdentityRole() { Name = roleName });
-            }
-
-            if (!await _userManager.IsInRoleAsync(user, roleName))
-            {
-                await _userManager.AddToRoleAsync(user, roleName);
-            }
+            _context.Contacts.Add(new Contact() { name = "Adam Finkley", phone = "555-555-5555", email = "adam@somewhere.com" });
+            _context.Contacts.Add(new Contact() { name = "Steven Biles", phone = "555-555-5555", email = "sbiles@somewhere.com" });
+            _context.SaveChanges();
         }
     }
 

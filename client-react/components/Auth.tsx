@@ -1,7 +1,9 @@
 import * as React from "react";
 import { Link, Redirect, RouteComponentProps } from 'react-router-dom';
-import authService from "../services/authentication";
+import AuthService from '../services/Auth';
 let authStyle = require('../styles/auth.styl');
+
+let authService = new AuthService();
 
 export class SignIn extends React.Component<RouteComponentProps<any>, any> {
     refs: {
@@ -43,6 +45,11 @@ export class SignIn extends React.Component<RouteComponentProps<any>, any> {
                 {params.get('confirmed') &&
                     <div className="alert alert-success" role="alert">
                         Your email address has been successfully confirmed.
+                    </div>
+                }
+                {params.get('expired') &&
+                    <div className="alert alert-info" role="alert">
+                        <strong>Sesion Expired</strong> You need to sign in again.
                     </div>
                 }
                 {this.state.error &&

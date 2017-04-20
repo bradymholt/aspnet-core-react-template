@@ -1,6 +1,9 @@
 import * as React from "react";
 import { Link, Redirect } from 'react-router-dom';
-import authService from '../services/authentication'
+import AuthService from '../services/Auth';
+import AuthStore from '../stores/Auth';
+
+let authService = new AuthService();
 
 export class Header extends React.Component<any, any> {
     state = {

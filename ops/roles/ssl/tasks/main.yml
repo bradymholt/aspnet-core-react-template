@@ -45,7 +45,7 @@
   when: challenge_directory_config.changed
 
 - name: Execute dehydrated shell script
-  shell: "./{{dehydrated_script_name}} -c"
+  shell: "./{{dehydrated_script_name}} --register --accept-terms && ./{{dehydrated_script_name}} -c"
   args:
     chdir: "{{ dehydrated_install_dir }}"
   notify: Reload nginx

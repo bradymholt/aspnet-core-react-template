@@ -1,0 +1,11 @@
+---
+database_name: "{{ app_name }}"
+database_username: "{{ app_name }}"
+deploy_directory: "/home/{{ deploy_user }}/apps/{{ app_name }}"
+email_from_name: "{{ app_name }}"
+postgresql_backup_to_s3: false
+s3_bucket_name: "s3://app.{{ app_name }}"
+s3_db_backup_location: "{{ s3_bucket_name }}/db_backups"
+use_ssl: false
+letsencrypt_use_live_ca: false
+

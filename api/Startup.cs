@@ -16,14 +16,20 @@ namespace aspnetCoreReactTemplate
 {
     public class Startup
     {
+        public IHostingEnvironment CurrentEnvironment { get; protected set; }
+        public IConfigurationRoot Configuration { get; }
+
         public Startup(IHostingEnvironment env)
         {
+            this.CurrentEnvironment = env;
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables();
 
-            if (!env.IsDevelopment())
+
+            if (!this.CurrentEnvironment.IsDevelopment())
             {
                 // If not development, merge in release config
                 builder.AddJsonFile($"appsettings.release.json", optional: true);
@@ -31,8 +37,6 @@ namespace aspnetCoreReactTemplate
 
             Configuration = builder.Build();
         }
-
-        public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -108,7 +112,13 @@ namespace aspnetCoreReactTemplate
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IDefaultDbContextInitializer databaseInitializer)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("logging"));
+            loggerFactory.AddFile(Configuration.GetSection("logging"));
+
+            if (this.CurrentEnvironment.IsDevelopment())
+            {
+                loggerFactory.AddConsole(Configuration.GetSection("logging"));
+            }
+
             loggerFactory.AddDebug();
 
             // Apply any pending migrations

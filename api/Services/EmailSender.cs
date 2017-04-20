@@ -14,17 +14,18 @@ namespace aspnetCoreReactTemplate.Services
 
         public EmailSenderOptions Options { get; }
 
-        public Task SendEmailAsync(string toEmail, string subject, string message)
+        public Task SendEmailAsync(string toEmail, string subject, string htmlMessage, string textMessage = null)
         {
             var mimeMessage = new MimeMessage();
             mimeMessage.From.Add(new MailboxAddress(this.Options.emailFromName, this.Options.emailFromAddress));
             mimeMessage.To.Add(new MailboxAddress(toEmail));
             mimeMessage.Subject = subject;
 
-            mimeMessage.Body = new TextPart("plain")
-            {
-                Text = message
-            };
+            var bodyBuilder = new BodyBuilder();
+            bodyBuilder.HtmlBody = htmlMessage;
+            bodyBuilder.TextBody = textMessage ?? htmlMessage;
+
+            mimeMessage.Body = bodyBuilder.ToMessageBody();
 
             using (var client = new SmtpClient())
             {

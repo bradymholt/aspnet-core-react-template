@@ -116,12 +116,12 @@ export class Register extends React.Component<any, any> {
                     }
                     <div className={this._formGroupClass(this.state.errors.username)}>
                         <label htmlFor="inputEmail">Email address</label>
-                        <input type="email" id="inputEmail" ref="email" defaultValue="user@test.com" className="form-control" placeholder="Email address" required />
+                        <input type="email" id="inputEmail" ref="email" className="form-control" placeholder="Email address" required />
                         <div className="form-control-feedback">{this.state.errors.username}</div>
                     </div>
                     <div className={this._formGroupClass(this.state.errors.password)}>
                         <label htmlFor="inputPassword">Password</label>
-                        <input type="password" id="inputPassword" ref="password" defaultValue="P2ssw0rd!" className="form-control" placeholder="Password" required />
+                        <input type="password" id="inputPassword" ref="password" className="form-control" placeholder="Password" required />
                         <div className="form-control-feedback">{this.state.errors.password}</div>
                     </div>
                     <button className="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>

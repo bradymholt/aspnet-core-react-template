@@ -4,7 +4,7 @@
 
 - name: Set apt-get feed for Ubuntu Xenial
   lineinfile: dest=/etc/apt/sources.list.d/dotnetdev.list line="deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ xenial main"
-  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "16" 
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "16"
 
 - name: Set apt-get feed for Ubuntu Trusty
   lineinfile: dest=/etc/apt/sources.list.d/dotnetdev.list line="deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ trusty main"
@@ -14,4 +14,4 @@
   apt_key: keyserver=apt-mo.trafficmanager.net id=417A0893
 
 - name: Install dotnet core SDK
-  apt: name=dotnet-dev-1.0.0-preview2-003131 state=present update_cache=yes
+  apt: name={{ dotnetcore_package_name }} state=present update_cache=yes

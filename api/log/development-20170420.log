@@ -1,0 +1,1196 @@
+2017-04-20T11:35:30.8306170-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:35:30.8800930-05:00  [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory'); (6438bdd5)
+2017-04-20T11:35:30.8820010-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:35:30.8946950-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:35:30.8966570-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory'); (6438bdd5)
+2017-04-20T11:35:30.8967560-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:35:30.9031950-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:35:30.9049280-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId"; (6438bdd5)
+2017-04-20T11:35:30.9054630-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:35:31.3218430-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:35:31.5298490-05:00  [INF] Executed DbCommand (77ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT "u"."Id", "u"."AccessFailedCount", "u"."ConcurrencyStamp", "u"."Email", "u"."EmailConfirmed", "u"."GivenName", "u"."LockoutEnabled", "u"."LockoutEnd", "u"."NormalizedEmail", "u"."NormalizedUserName", "u"."PasswordHash", "u"."PhoneNumber", "u"."PhoneNumberConfirmed", "u"."SecurityStamp", "u"."TwoFactorEnabled", "u"."UserName"
+FROM "AspNetUsers" AS "u"
+WHERE "u"."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 1 (6438bdd5)
+2017-04-20T11:35:31.5958230-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:35:31.6509440-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:35:31.6571590-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM "Contacts" AS "c")
+    THEN TRUE::bool ELSE FALSE::bool
+END (6438bdd5)
+2017-04-20T11:35:31.6583500-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:35:31.6775930-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:35:31.6789170-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "c"."contactId", "c"."email", "c"."name", "c"."phone"
+FROM "Contacts" AS "c" (6438bdd5)
+2017-04-20T11:35:31.7076610-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:35:31.7669820-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:35:31.7728150-05:00  [DBG] Beginning transaction with isolation level 'Unspecified'. (3b5ca34b)
+2017-04-20T11:35:31.8349080-05:00  [INF] Executed DbCommand (4ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?', @p4='?', @p5='?', @p6='?', @p7='?'], CommandType='Text', CommandTimeout='30']
+DELETE FROM "Contacts"
+WHERE "contactId" = @p0;
+DELETE FROM "Contacts"
+WHERE "contactId" = @p1;
+INSERT INTO "Contacts" ("email", "name", "phone")
+VALUES (@p2, @p3, @p4)
+RETURNING "contactId";
+INSERT INTO "Contacts" ("email", "name", "phone")
+VALUES (@p5, @p6, @p7)
+RETURNING "contactId"; (6438bdd5)
+2017-04-20T11:35:31.8603320-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:35:33.0652850-05:00  [INF] ts-loader: Using typescript@2.2.2 and /Users/bholt/dev/aspnet-core-react-template/client-react/tsconfig.json (114b565e)
+2017-04-20T11:35:33.0802850-05:00  [DBG] Hosting starting (32b26330)
+2017-04-20T11:35:33.1537040-05:00  [DBG] Hosting started (e6def423)
+2017-04-20T11:35:37.9044370-05:00  [INF] webpack built d5ef16186ce4d979a8ac in 5087ms (83001040)
+2017-04-20T11:35:43.1417480-05:00  [DBG] Connection id ""0HL481D4TQDAN"" started. (1426b994)
+2017-04-20T11:35:43.2379250-05:00 0HL481D4URNUT [INF] Request starting HTTP/1.1 GET http://localhost:5000/__webpack_hmr   (e5be5b71)
+2017-04-20T11:36:11.8277120-05:00  [DBG] Connection id ""0HL481D4TQDAQ"" started. (1426b994)
+2017-04-20T11:36:11.8277120-05:00  [DBG] Connection id ""0HL481D4TQDAP"" started. (1426b994)
+2017-04-20T11:36:11.8277120-05:00  [DBG] Connection id ""0HL481D4TQDAO"" started. (1426b994)
+2017-04-20T11:36:11.8279810-05:00  [DBG] Connection id ""0HL481D4TQDAR"" started. (1426b994)
+2017-04-20T11:36:11.8280120-05:00  [DBG] Connection id ""0HL481D4TQDAS"" started. (1426b994)
+2017-04-20T11:36:11.9435780-05:00 0HL481D4URNUU [INF] Request starting HTTP/1.1 GET http://localhost:5000/sign-in/?expired=1   (e5be5b71)
+2017-04-20T11:36:11.9719460-05:00 0HL481D4URNUU [INF] Handling request: /sign-in/ (6455a65b)
+2017-04-20T11:36:11.9724410-05:00 0HL481D4URNUU [INF] Rewriting path: /sign-in/ > / (170f1f87)
+2017-04-20T11:36:12.0015370-05:00 0HL481D4URNUU [INF] Sending file. Request path: '"/index.html"'. Physical path: '"/Users/bholt/dev/aspnet-core-react-template/api/wwwroot/index.html"' (27b0a520)
+2017-04-20T11:36:12.0271890-05:00 0HL481D4URNUU [INF] Finished handling request. (d2c25297)
+2017-04-20T11:36:12.0277690-05:00  [DBG] Connection id ""0HL481D4TQDAN"" received FIN. (acf58720)
+2017-04-20T11:36:12.0336340-05:00 0HL481D4URNUU [DBG] Connection id ""0HL481D4TQDAP"" completed keep alive response. (9784cde9)
+2017-04-20T11:36:12.0426020-05:00 0HL481D4URNUU [INF] Request finished in 91.3023ms 200 text/html (15c52c40)
+2017-04-20T11:36:12.0500360-05:00 0HL481D4URNUV [INF] Request starting HTTP/1.1 GET http://localhost:5000/main.js   (e5be5b71)
+2017-04-20T11:36:12.1321120-05:00 0HL481D4URNUV [DBG] Connection id ""0HL481D4TQDAP"" completed keep alive response. (9784cde9)
+2017-04-20T11:36:12.1322260-05:00 0HL481D4URNUV [INF] Request finished in 82.2472ms 200 application/javascript; charset=UTF-8 (15c52c40)
+2017-04-20T11:36:12.2905320-05:00 0HL481D4URNV0 [INF] Request starting HTTP/1.1 GET http://localhost:5000/__webpack_hmr   (e5be5b71)
+2017-04-20T11:36:12.3184020-05:00  [INF] Connection id ""0HL481D4TQDAN"" communication error. (7fa6c29c)
+Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvException: Error -32 EPIPE broken pipe
+2017-04-20T11:36:12.3195980-05:00  [DBG] Connection id ""0HL481D4TQDAN"" disconnecting. (b29b9868)
+2017-04-20T11:36:12.3227210-05:00  [DBG] Connection id ""0HL481D4TQDAN"" stopped. (056149f8)
+2017-04-20T11:36:14.4920170-05:00  [DBG] Connection id ""0HL481D4TQDAT"" started. (1426b994)
+2017-04-20T11:36:14.5987070-05:00 0HL481D4URNV1 [INF] Request starting HTTP/1.1 GET http://localhost:5000/sign-in/?expired=1   (e5be5b71)
+2017-04-20T11:36:14.6008020-05:00 0HL481D4URNV1 [INF] Handling request: /sign-in/ (6455a65b)
+2017-04-20T11:36:14.6009470-05:00 0HL481D4URNV1 [INF] Rewriting path: /sign-in/ > / (170f1f87)
+2017-04-20T11:36:14.6015570-05:00 0HL481D4URNV1 [INF] The file "/index.html" was not modified (f1f8d725)
+2017-04-20T11:36:14.6052500-05:00 0HL481D4URNV1 [DBG] Handled. Status code: 304 File: "/index.html" (58f8d392)
+2017-04-20T11:36:14.6059120-05:00 0HL481D4URNV1 [INF] Finished handling request. (d2c25297)
+2017-04-20T11:36:14.6082100-05:00 0HL481D4URNV1 [DBG] Connection id ""0HL481D4TQDAQ"" completed keep alive response. (9784cde9)
+2017-04-20T11:36:14.6083090-05:00 0HL481D4URNV1 [INF] Request finished in 9.6036ms 304 text/html (15c52c40)
+2017-04-20T11:36:14.6105660-05:00  [DBG] Connection id ""0HL481D4TQDAP"" received FIN. (acf58720)
+2017-04-20T11:36:14.6150570-05:00 0HL481D4URNV2 [INF] Request starting HTTP/1.1 GET http://localhost:5000/main.js   (e5be5b71)
+2017-04-20T11:36:14.6490190-05:00 0HL481D4URNV2 [DBG] Connection id ""0HL481D4TQDAQ"" completed keep alive response. (9784cde9)
+2017-04-20T11:36:14.6491170-05:00 0HL481D4URNV2 [INF] Request finished in 34.0525ms 200 application/javascript; charset=UTF-8 (15c52c40)
+2017-04-20T11:36:14.7931650-05:00 0HL481D4URNV3 [INF] Request starting HTTP/1.1 GET http://localhost:5000/__webpack_hmr   (e5be5b71)
+2017-04-20T11:36:14.8183730-05:00  [INF] Connection id ""0HL481D4TQDAP"" communication error. (7fa6c29c)
+Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvException: Error -32 EPIPE broken pipe
+2017-04-20T11:36:14.8184200-05:00  [DBG] Connection id ""0HL481D4TQDAP"" disconnecting. (b29b9868)
+2017-04-20T11:36:14.8185990-05:00  [DBG] Connection id ""0HL481D4TQDAP"" stopped. (056149f8)
+2017-04-20T11:36:31.0322080-05:00  [INF] Received SIGINT. Waiting for .NET process to exit... (39e2bf0e)
+2017-04-20T11:36:31.0363300-05:00  [DBG] Hosting shutdown (49005419)
+2017-04-20T11:36:42.5679710-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:36:42.6172200-05:00  [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory'); (6438bdd5)
+2017-04-20T11:36:42.6190720-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:36:42.6324510-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:36:42.6352190-05:00  [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory'); (6438bdd5)
+2017-04-20T11:36:42.6353160-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:36:42.6419620-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:36:42.6434930-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId"; (6438bdd5)
+2017-04-20T11:36:42.6440570-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:36:43.0661490-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:36:43.2727970-05:00  [INF] Executed DbCommand (72ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT "u"."Id", "u"."AccessFailedCount", "u"."ConcurrencyStamp", "u"."Email", "u"."EmailConfirmed", "u"."GivenName", "u"."LockoutEnabled", "u"."LockoutEnd", "u"."NormalizedEmail", "u"."NormalizedUserName", "u"."PasswordHash", "u"."PhoneNumber", "u"."PhoneNumberConfirmed", "u"."SecurityStamp", "u"."TwoFactorEnabled", "u"."UserName"
+FROM "AspNetUsers" AS "u"
+WHERE "u"."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 1 (6438bdd5)
+2017-04-20T11:36:43.3405580-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:36:43.3952030-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:36:43.4003370-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM "Contacts" AS "c")
+    THEN TRUE::bool ELSE FALSE::bool
+END (6438bdd5)
+2017-04-20T11:36:43.4014950-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:36:43.4214390-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:36:43.4230960-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "c"."contactId", "c"."email", "c"."name", "c"."phone"
+FROM "Contacts" AS "c" (6438bdd5)
+2017-04-20T11:36:43.4509720-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:36:43.5138800-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:36:43.5196070-05:00  [DBG] Beginning transaction with isolation level 'Unspecified'. (3b5ca34b)
+2017-04-20T11:36:43.5970100-05:00  [INF] Executed DbCommand (6ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?', @p4='?', @p5='?', @p6='?', @p7='?'], CommandType='Text', CommandTimeout='30']
+DELETE FROM "Contacts"
+WHERE "contactId" = @p0;
+DELETE FROM "Contacts"
+WHERE "contactId" = @p1;
+INSERT INTO "Contacts" ("email", "name", "phone")
+VALUES (@p2, @p3, @p4)
+RETURNING "contactId";
+INSERT INTO "Contacts" ("email", "name", "phone")
+VALUES (@p5, @p6, @p7)
+RETURNING "contactId"; (6438bdd5)
+2017-04-20T11:36:43.6252790-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:36:44.8000390-05:00  [INF] ts-loader: Using typescript@2.2.2 and /Users/bholt/dev/aspnet-core-react-template/client-react/tsconfig.json (114b565e)
+2017-04-20T11:36:44.8266520-05:00  [DBG] Hosting starting (32b26330)
+2017-04-20T11:36:44.9005150-05:00  [DBG] Hosting started (e6def423)
+2017-04-20T11:36:46.9926100-05:00  [DBG] Connection id ""0HL481DNUOBGO"" started. (1426b994)
+2017-04-20T11:36:46.9926270-05:00  [DBG] Connection id ""0HL481DNUOBGL"" started. (1426b994)
+2017-04-20T11:36:46.9926370-05:00  [DBG] Connection id ""0HL481DNUOBGN"" started. (1426b994)
+2017-04-20T11:36:46.9926430-05:00  [DBG] Connection id ""0HL481DNUOBGM"" started. (1426b994)
+2017-04-20T11:36:46.9982000-05:00  [DBG] Connection id ""0HL481DNUOBGQ"" started. (1426b994)
+2017-04-20T11:36:46.9982010-05:00  [DBG] Connection id ""0HL481DNUOBGP"" started. (1426b994)
+2017-04-20T11:36:47.1680840-05:00 0HL481DO0HIUT [INF] Request starting HTTP/1.1 GET http://localhost:5000/sign-in/?expired=1   (e5be5b71)
+2017-04-20T11:36:49.6840130-05:00  [INF] webpack built d5ef16186ce4d979a8ac in 5127ms (d4c9e226)
+2017-04-20T11:36:49.8292910-05:00 0HL481DO0HIUT [INF] Handling request: /sign-in/ (6455a65b)
+2017-04-20T11:36:49.8316730-05:00 0HL481DO0HIUT [INF] Rewriting path: /sign-in/ > / (170f1f87)
+2017-04-20T11:36:49.8673890-05:00 0HL481DO0HIUT [INF] Sending file. Request path: '"/index.html"'. Physical path: '"/Users/bholt/dev/aspnet-core-react-template/api/wwwroot/index.html"' (27b0a520)
+2017-04-20T11:36:49.9422540-05:00 0HL481DO0HIUT [INF] Finished handling request. (d2c25297)
+2017-04-20T11:36:49.9487830-05:00 0HL481DO0HIUT [DBG] Connection id ""0HL481DNUOBGO"" completed keep alive response. (9784cde9)
+2017-04-20T11:36:49.9574050-05:00 0HL481DO0HIUT [INF] Request finished in 2803.0445ms 200 text/html (15c52c40)
+2017-04-20T11:36:49.9652020-05:00 0HL481DO0HIUU [INF] Request starting HTTP/1.1 GET http://localhost:5000/main.js   (e5be5b71)
+2017-04-20T11:36:50.0631710-05:00 0HL481DO0HIUU [DBG] Connection id ""0HL481DNUOBGO"" completed keep alive response. (9784cde9)
+2017-04-20T11:36:50.0633730-05:00 0HL481DO0HIUU [INF] Request finished in 98.145ms 200 application/javascript; charset=UTF-8 (15c52c40)
+2017-04-20T11:36:50.2230400-05:00 0HL481DO0HIUV [INF] Request starting HTTP/1.1 GET http://localhost:5000/__webpack_hmr   (e5be5b71)
+2017-04-20T11:37:43.9188350-05:00  [DBG] Connection id ""0HL481DNUOBGL"" received FIN. (acf58720)
+2017-04-20T11:37:43.9188350-05:00  [DBG] Connection id ""0HL481DNUOBGP"" received FIN. (acf58720)
+2017-04-20T11:37:43.9188350-05:00  [DBG] Connection id ""0HL481DNUOBGM"" received FIN. (acf58720)
+2017-04-20T11:37:43.9189140-05:00  [DBG] Connection id ""0HL481DNUOBGN"" received FIN. (acf58720)
+2017-04-20T11:37:43.9190380-05:00  [DBG] Connection id ""0HL481DNUOBGQ"" received FIN. (acf58720)
+2017-04-20T11:37:43.9191040-05:00  [DBG] Connection id ""0HL481DNUOBGR"" started. (1426b994)
+2017-04-20T11:37:43.9193680-05:00  [DBG] Connection id ""0HL481DNUOBGS"" started. (1426b994)
+2017-04-20T11:37:43.9195950-05:00  [DBG] Connection id ""0HL481DNUOBGP"" disconnecting. (b29b9868)
+2017-04-20T11:37:43.9196100-05:00  [DBG] Connection id ""0HL481DNUOBGL"" disconnecting. (b29b9868)
+2017-04-20T11:37:43.9196140-05:00  [DBG] Connection id ""0HL481DNUOBGT"" started. (1426b994)
+2017-04-20T11:37:43.9196310-05:00  [DBG] Connection id ""0HL481DNUOBGQ"" disconnecting. (b29b9868)
+2017-04-20T11:37:43.9196490-05:00  [DBG] Connection id ""0HL481DNUOBGU"" started. (1426b994)
+2017-04-20T11:37:43.9196590-05:00  [DBG] Connection id ""0HL481DNUOBGM"" disconnecting. (b29b9868)
+2017-04-20T11:37:43.9196950-05:00  [DBG] Connection id ""0HL481DNUOBGN"" disconnecting. (b29b9868)
+2017-04-20T11:37:43.9231050-05:00  [DBG] Connection id ""0HL481DNUOBGQ"" sending FIN. (ffb251f5)
+2017-04-20T11:37:43.9230940-05:00  [DBG] Connection id ""0HL481DNUOBGN"" sending FIN. (ffb251f5)
+2017-04-20T11:37:43.9230990-05:00  [DBG] Connection id ""0HL481DNUOBGP"" sending FIN. (ffb251f5)
+2017-04-20T11:37:43.9231120-05:00  [DBG] Connection id ""0HL481DNUOBGL"" sending FIN. (ffb251f5)
+2017-04-20T11:37:43.9246720-05:00  [DBG] Connection id ""0HL481DNUOBGM"" sending FIN. (ffb251f5)
+2017-04-20T11:37:43.9286220-05:00  [DBG] Connection id ""0HL481DNUOBGP"" sent FIN with status "0". (69d90ca7)
+2017-04-20T11:37:43.9286400-05:00  [DBG] Connection id ""0HL481DNUOBGN"" sent FIN with status "0". (69d90ca7)
+2017-04-20T11:37:43.9286180-05:00  [DBG] Connection id ""0HL481DNUOBGL"" sent FIN with status "0". (69d90ca7)
+2017-04-20T11:37:43.9286460-05:00  [DBG] Connection id ""0HL481DNUOBGQ"" sent FIN with status "0". (69d90ca7)
+2017-04-20T11:37:43.9320710-05:00  [DBG] Connection id ""0HL481DNUOBGN"" stopped. (056149f8)
+2017-04-20T11:37:43.9320770-05:00  [DBG] Connection id ""0HL481DNUOBGL"" stopped. (056149f8)
+2017-04-20T11:37:43.9320710-05:00  [DBG] Connection id ""0HL481DNUOBGQ"" stopped. (056149f8)
+2017-04-20T11:37:43.9320710-05:00  [DBG] Connection id ""0HL481DNUOBGP"" stopped. (056149f8)
+2017-04-20T11:37:43.9322520-05:00  [DBG] Connection id ""0HL481DNUOBGM"" sent FIN with status "0". (69d90ca7)
+2017-04-20T11:37:43.9324070-05:00  [DBG] Connection id ""0HL481DNUOBGM"" stopped. (056149f8)
+2017-04-20T11:37:44.0243850-05:00 0HL481DO0HIV0 [INF] Request starting HTTP/1.1 GET http://localhost:5000/sign-in/?expired=1   (e5be5b71)
+2017-04-20T11:37:44.0274720-05:00 0HL481DO0HIV0 [INF] Handling request: /sign-in/ (6455a65b)
+2017-04-20T11:37:44.0276610-05:00 0HL481DO0HIV0 [INF] Rewriting path: /sign-in/ > / (170f1f87)
+2017-04-20T11:37:44.0291950-05:00 0HL481DO0HIV0 [INF] The file "/index.html" was not modified (f1f8d725)
+2017-04-20T11:37:44.0335380-05:00 0HL481DO0HIV0 [DBG] Handled. Status code: 304 File: "/index.html" (58f8d392)
+2017-04-20T11:37:44.0340220-05:00 0HL481DO0HIV0 [INF] Finished handling request. (d2c25297)
+2017-04-20T11:37:44.0364350-05:00 0HL481DO0HIV0 [DBG] Connection id ""0HL481DNUOBGR"" completed keep alive response. (9784cde9)
+2017-04-20T11:37:44.0365290-05:00 0HL481DO0HIV0 [INF] Request finished in 12.181ms 304 text/html (15c52c40)
+2017-04-20T11:37:44.0387160-05:00  [DBG] Connection id ""0HL481DNUOBGO"" received FIN. (acf58720)
+2017-04-20T11:37:44.0447030-05:00 0HL481DO0HIV1 [INF] Request starting HTTP/1.1 GET http://localhost:5000/main.js   (e5be5b71)
+2017-04-20T11:37:44.1497720-05:00 0HL481DO0HIV1 [DBG] Connection id ""0HL481DNUOBGR"" completed keep alive response. (9784cde9)
+2017-04-20T11:37:44.1499180-05:00 0HL481DO0HIV1 [INF] Request finished in 105.2445ms 200 application/javascript; charset=UTF-8 (15c52c40)
+2017-04-20T11:37:44.3064100-05:00 0HL481DO0HIV2 [INF] Request starting HTTP/1.1 GET http://localhost:5000/__webpack_hmr   (e5be5b71)
+2017-04-20T11:37:44.3697020-05:00  [INF] Connection id ""0HL481DNUOBGO"" communication error. (7fa6c29c)
+Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvException: Error -32 EPIPE broken pipe
+2017-04-20T11:37:44.3706480-05:00  [DBG] Connection id ""0HL481DNUOBGO"" disconnecting. (b29b9868)
+2017-04-20T11:37:44.3707470-05:00  [DBG] Connection id ""0HL481DNUOBGO"" stopped. (056149f8)
+2017-04-20T11:37:44.7403160-05:00 0HL481DO0HIV3 [INF] Request starting HTTP/1.1 GET http://localhost:5000/sign-in/?expired=1   (e5be5b71)
+2017-04-20T11:37:44.7441180-05:00 0HL481DO0HIV3 [INF] Handling request: /sign-in/ (6455a65b)
+2017-04-20T11:37:44.7443270-05:00 0HL481DO0HIV3 [INF] Rewriting path: /sign-in/ > / (170f1f87)
+2017-04-20T11:37:44.7445570-05:00 0HL481DO0HIV3 [INF] The file "/index.html" was not modified (f1f8d725)
+2017-04-20T11:37:44.7447200-05:00 0HL481DO0HIV3 [DBG] Handled. Status code: 304 File: "/index.html" (58f8d392)
+2017-04-20T11:37:44.7447680-05:00 0HL481DO0HIV3 [INF] Finished handling request. (d2c25297)
+2017-04-20T11:37:44.7449150-05:00 0HL481DO0HIV3 [DBG] Connection id ""0HL481DNUOBGS"" completed keep alive response. (9784cde9)
+2017-04-20T11:37:44.7449890-05:00 0HL481DO0HIV3 [INF] Request finished in 4.8109ms 304 text/html (15c52c40)
+2017-04-20T11:37:44.7472770-05:00  [DBG] Connection id ""0HL481DNUOBGR"" received FIN. (acf58720)
+2017-04-20T11:37:44.7519900-05:00 0HL481DO0HIV4 [INF] Request starting HTTP/1.1 GET http://localhost:5000/main.js   (e5be5b71)
+2017-04-20T11:37:44.7881250-05:00 0HL481DO0HIV4 [DBG] Connection id ""0HL481DNUOBGS"" completed keep alive response. (9784cde9)
+2017-04-20T11:37:44.7882510-05:00 0HL481DO0HIV4 [INF] Request finished in 36.2429ms 200 application/javascript; charset=UTF-8 (15c52c40)
+2017-04-20T11:37:44.9357150-05:00 0HL481DO0HIV5 [INF] Request starting HTTP/1.1 GET http://localhost:5000/__webpack_hmr   (e5be5b71)
+2017-04-20T11:37:45.0186840-05:00  [INF] Connection id ""0HL481DNUOBGR"" communication error. (7fa6c29c)
+Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvException: Error -32 EPIPE broken pipe
+2017-04-20T11:37:45.0187000-05:00  [DBG] Connection id ""0HL481DNUOBGR"" disconnecting. (b29b9868)
+2017-04-20T11:37:45.0188670-05:00  [DBG] Connection id ""0HL481DNUOBGR"" stopped. (056149f8)
+2017-04-20T11:37:47.8385420-05:00  [DBG] Connection id ""0HL481DNUOBGV"" started. (1426b994)
+2017-04-20T11:37:47.8391390-05:00 0HL481DO0HIV6 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/auth/register application/x-www-form-urlencoded 41 (e5be5b71)
+2017-04-20T11:37:47.8441730-05:00 0HL481DO0HIV6 [INF] Handling request: /api/auth/register (2c1017b8)
+2017-04-20T11:37:47.8450270-05:00 0HL481DO0HIV6 [DBG] "POST" requests are not supported (1c759b4c)
+2017-04-20T11:37:47.8782690-05:00 0HL481DO0HIV6 [INF] "Bearer" was not authenticated. Failure message: "Authentication failed because the access token was invalid." (48071232)
+2017-04-20T11:37:47.9079750-05:00  [DBG] Connection id ""0HL481DNUOBH0"" started. (1426b994)
+2017-04-20T11:37:47.9081840-05:00 0HL481DO0HIV7 [INF] Request starting HTTP/1.1 GET http://localhost:5000/.well-known/openid-configuration   (e5be5b71)
+2017-04-20T11:37:47.9112280-05:00 0HL481DO0HIV7 [INF] Handling request: /.well-known/openid-configuration (28f0d040)
+2017-04-20T11:37:47.9124590-05:00 0HL481DO0HIV7 [DBG] The request path "/.well-known/openid-configuration" does not match a supported file type (4910e68e)
+2017-04-20T11:37:47.9129630-05:00 0HL481DO0HIV7 [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-04-20T11:37:47.9604730-05:00 0HL481DO0HIV7 [INF] The discovery request was successfully extracted from the HTTP request: "{}" (8eb39e75)
+2017-04-20T11:37:47.9609200-05:00 0HL481DO0HIV7 [INF] The discovery request was successfully validated. (5773bc23)
+2017-04-20T11:37:47.9968510-05:00 0HL481DO0HIV7 [INF] The discovery response was successfully returned: "{
+  \"issuer\": \"http://localhost:5000/\",
+  \"token_endpoint\": \"http://localhost:5000/api/auth/login\",
+  \"jwks_uri\": \"http://localhost:5000/.well-known/jwks\",
+  \"grant_types_supported\": [
+    \"refresh_token\",
+    \"password\"
+  ],
+  \"scopes_supported\": [
+    \"openid\",
+    \"profile\",
+    \"email\",
+    \"phone\",
+    \"roles\",
+    \"offline_access\"
+  ],
+  \"id_token_signing_alg_values_supported\": [
+    \"RS256\"
+  ],
+  \"subject_types_supported\": [
+    \"public\"
+  ],
+  \"token_endpoint_auth_methods_supported\": [
+    \"client_secret_basic\",
+    \"client_secret_post\"
+  ]
+}" (ee57d974)
+2017-04-20T11:37:48.0282260-05:00 0HL481DO0HIV7 [INF] Finished handling request. (d2c25297)
+2017-04-20T11:37:48.0298620-05:00 0HL481DO0HIV7 [DBG] Connection id ""0HL481DNUOBH0"" completed keep alive response. (9784cde9)
+2017-04-20T11:37:48.0299690-05:00 0HL481DO0HIV7 [INF] Request finished in 121.8068ms 200 application/json;charset=UTF-8 (15c52c40)
+2017-04-20T11:37:48.0480060-05:00 0HL481DO0HIV8 [INF] Request starting HTTP/1.1 GET http://localhost:5000/.well-known/jwks   (e5be5b71)
+2017-04-20T11:37:48.0506240-05:00 0HL481DO0HIV8 [INF] Handling request: /.well-known/jwks (3092411e)
+2017-04-20T11:37:48.0509020-05:00 0HL481DO0HIV8 [DBG] The request path "/.well-known/jwks" does not match a supported file type (4910e68e)
+2017-04-20T11:37:48.0509530-05:00 0HL481DO0HIV8 [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-04-20T11:37:48.0668590-05:00 0HL481DO0HIV8 [INF] The discovery request was successfully extracted from the HTTP request: "{}" (8eb39e75)
+2017-04-20T11:37:48.0733790-05:00 0HL481DO0HIV8 [INF] The discovery response was successfully returned: "{
+  \"keys\": [
+    {
+      \"kid\": \"ZINIJNEZDR5SICRGXFCAQ2N2M0GJHODRC_YSGCBP\",
+      \"use\": \"sig\",
+      \"kty\": \"RSA\",
+      \"alg\": \"RS256\",
+      \"e\": \"AQAB\",
+      \"n\": \"ziNiJnezDr5SIcRGXFcaQ2n2M0gjhODRc_YSgcbPrt1X3JZ7VSIo1RvPH1P1v37GV5nvF-B4QTTV2I8ZOyPa8OIY9j0qPl5DMEDO8iavf2pMdBjxA5JI_fO1EO-eZRojPtHFrE-dbnt8AOWNgqx3okN5Js-odWL3pg3TybsENv_lxFk3K4v7zlF7-J7gdlqDKTjgoRfU2OzxgOvEAIGQ66hy8alXn8IjJJ1sPBsw77r6ij7jOs1TB6YjE1ZMzRs-jUm4cR8Q2q7vzPHEgelM61sjW9Gac0NTLgS6UNCnNTBYebum1Q-HVhdCJCZ8VDq6R7iWlm-8NeoGT78EC4pLbQ\"
+    }
+  ]
+}" (ee57d974)
+2017-04-20T11:37:48.0735570-05:00 0HL481DO0HIV8 [INF] Finished handling request. (d2c25297)
+2017-04-20T11:37:48.0736820-05:00 0HL481DO0HIV8 [DBG] Connection id ""0HL481DNUOBH0"" completed keep alive response. (9784cde9)
+2017-04-20T11:37:48.0737980-05:00 0HL481DO0HIV8 [INF] Request finished in 25.7882ms 200 application/json;charset=UTF-8 (15c52c40)
+2017-04-20T11:37:48.0922480-05:00 0HL481DO0HIV6 [INF] "Bearer" was not authenticated. Failure message: "No SecurityTokenValidator available for token: null" (48071232)
+2017-04-20T11:37:48.3252880-05:00 0HL481DO0HIV6 [DBG] Request successfully matched the route with name 'null' and template '"api/auth/register"'. (555ac2ba)
+2017-04-20T11:37:48.3736270-05:00 0HL481DO0HIV6 [DBG] Executing action "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" (3f3ef15a)
+2017-04-20T11:37:48.6162920-05:00 0HL481DO0HIV6 [INF] Executing action method "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" with arguments (["aspnetCoreReactTemplate.ViewModels.NewUser"]) - ModelState is Valid (ba7f4ac2)
+2017-04-20T11:37:48.7035500-05:00 0HL481DO0HIV6 [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:37:48.7151230-05:00 0HL481DO0HIV6 [INF] Executed DbCommand (10ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT "u"."Id", "u"."AccessFailedCount", "u"."ConcurrencyStamp", "u"."Email", "u"."EmailConfirmed", "u"."GivenName", "u"."LockoutEnabled", "u"."LockoutEnd", "u"."NormalizedEmail", "u"."NormalizedUserName", "u"."PasswordHash", "u"."PhoneNumber", "u"."PhoneNumberConfirmed", "u"."SecurityStamp", "u"."TwoFactorEnabled", "u"."UserName"
+FROM "AspNetUsers" AS "u"
+WHERE "u"."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1 (6438bdd5)
+2017-04-20T11:37:48.7158920-05:00 0HL481DO0HIV6 [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:37:48.7245730-05:00 0HL481DO0HIV6 [WRN] User "9bf02c6f-6f89-4282-8ac3-4489462861ad" validation failed: "DuplicateUserName". (5dc28e15)
+2017-04-20T11:37:48.7274430-05:00 0HL481DO0HIV6 [DBG] Executed action method "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)", returned result "Microsoft.AspNetCore.Mvc.BadRequestObjectResult". (f72615e0)
+2017-04-20T11:37:48.7497940-05:00 0HL481DO0HIV6 [DBG] No information found on request to perform content negotiation. (6aec0ec5)
+2017-04-20T11:37:48.7547650-05:00 0HL481DO0HIV6 [DBG] Selected output formatter '"Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter"' and content type '"application/json"' to write the response. (fcc32779)
+2017-04-20T11:37:48.7550900-05:00 0HL481DO0HIV6 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-04-20T11:37:48.7902840-05:00 0HL481DO0HIV6 [INF] Executed action "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" in 412.9491ms (afa2e885)
+2017-04-20T11:37:48.7915380-05:00 0HL481DO0HIV6 [INF] Finished handling request. (d2c25297)
+2017-04-20T11:37:48.7952490-05:00 0HL481DO0HIV6 [DBG] Connection id ""0HL481DNUOBGV"" completed keep alive response. (9784cde9)
+2017-04-20T11:37:48.7953670-05:00 0HL481DO0HIV6 [INF] Request finished in 956.6813ms 400 application/json; charset=utf-8 (15c52c40)
+2017-04-20T11:37:58.3918390-05:00  [DBG] Connection id ""0HL481DNUOBGU"" received FIN. (acf58720)
+2017-04-20T11:37:58.3918390-05:00  [DBG] Connection id ""0HL481DNUOBGT"" received FIN. (acf58720)
+2017-04-20T11:37:58.3919610-05:00  [DBG] Connection id ""0HL481DNUOBGT"" disconnecting. (b29b9868)
+2017-04-20T11:37:58.3919600-05:00  [DBG] Connection id ""0HL481DNUOBGU"" disconnecting. (b29b9868)
+2017-04-20T11:37:58.3920110-05:00  [DBG] Connection id ""0HL481DNUOBGT"" sending FIN. (ffb251f5)
+2017-04-20T11:37:58.3920570-05:00  [DBG] Connection id ""0HL481DNUOBGU"" sending FIN. (ffb251f5)
+2017-04-20T11:37:58.3921150-05:00  [DBG] Connection id ""0HL481DNUOBGU"" sent FIN with status "0". (69d90ca7)
+2017-04-20T11:37:58.3921360-05:00  [DBG] Connection id ""0HL481DNUOBGT"" sent FIN with status "0". (69d90ca7)
+2017-04-20T11:37:58.3921880-05:00  [DBG] Connection id ""0HL481DNUOBGU"" stopped. (056149f8)
+2017-04-20T11:37:58.3921880-05:00  [DBG] Connection id ""0HL481DNUOBGT"" stopped. (056149f8)
+2017-04-20T11:39:08.8648310-05:00  [DBG] Connection id ""0HL481DNUOBH2"" started. (1426b994)
+2017-04-20T11:39:08.8648300-05:00  [DBG] Connection id ""0HL481DNUOBH1"" started. (1426b994)
+2017-04-20T11:39:08.9771260-05:00 0HL481DO0HIV9 [INF] Request starting HTTP/1.1 GET http://localhost:5000/register   (e5be5b71)
+2017-04-20T11:39:08.9797620-05:00 0HL481DO0HIV9 [INF] Handling request: /register (d15267fc)
+2017-04-20T11:39:08.9798190-05:00 0HL481DO0HIV9 [INF] Rewriting path: /register > / (b5db4a63)
+2017-04-20T11:39:08.9799910-05:00 0HL481DO0HIV9 [INF] Sending file. Request path: '"/index.html"'. Physical path: '"/Users/bholt/dev/aspnet-core-react-template/api/wwwroot/index.html"' (27b0a520)
+2017-04-20T11:39:08.9802130-05:00 0HL481DO0HIV9 [INF] Finished handling request. (d2c25297)
+2017-04-20T11:39:08.9802920-05:00 0HL481DO0HIV9 [DBG] Connection id ""0HL481DNUOBH1"" completed keep alive response. (9784cde9)
+2017-04-20T11:39:08.9803620-05:00 0HL481DO0HIV9 [INF] Request finished in 3.2755ms 200 text/html (15c52c40)
+2017-04-20T11:39:08.9822110-05:00  [DBG] Connection id ""0HL481DNUOBGS"" received FIN. (acf58720)
+2017-04-20T11:39:08.9871980-05:00 0HL481DO0HIVA [INF] Request starting HTTP/1.1 GET http://localhost:5000/main.js   (e5be5b71)
+2017-04-20T11:39:09.0885690-05:00 0HL481DO0HIVA [DBG] Connection id ""0HL481DNUOBH1"" completed keep alive response. (9784cde9)
+2017-04-20T11:39:09.0887120-05:00 0HL481DO0HIVA [INF] Request finished in 101.5631ms 200 application/javascript; charset=UTF-8 (15c52c40)
+2017-04-20T11:39:09.2537060-05:00 0HL481DO0HIVB [INF] Request starting HTTP/1.1 GET http://localhost:5000/__webpack_hmr   (e5be5b71)
+2017-04-20T11:39:09.8290340-05:00 0HL481DO0HIVC [INF] Request starting HTTP/1.1 GET http://localhost:5000/register   (e5be5b71)
+2017-04-20T11:39:09.8308800-05:00 0HL481DO0HIVC [INF] Handling request: /register (d15267fc)
+2017-04-20T11:39:09.8309960-05:00 0HL481DO0HIVC [INF] Rewriting path: /register > / (b5db4a63)
+2017-04-20T11:39:09.8311750-05:00 0HL481DO0HIVC [INF] The file "/index.html" was not modified (f1f8d725)
+2017-04-20T11:39:09.8312350-05:00 0HL481DO0HIVC [DBG] Handled. Status code: 304 File: "/index.html" (58f8d392)
+2017-04-20T11:39:09.8312670-05:00 0HL481DO0HIVC [INF] Finished handling request. (d2c25297)
+2017-04-20T11:39:09.8313890-05:00 0HL481DO0HIVC [DBG] Connection id ""0HL481DNUOBH2"" completed keep alive response. (9784cde9)
+2017-04-20T11:39:09.8314930-05:00 0HL481DO0HIVC [INF] Request finished in 2.4718ms 304 text/html (15c52c40)
+2017-04-20T11:39:09.8334490-05:00  [DBG] Connection id ""0HL481DNUOBH1"" received FIN. (acf58720)
+2017-04-20T11:39:09.8381890-05:00 0HL481DO0HIVD [INF] Request starting HTTP/1.1 GET http://localhost:5000/main.js   (e5be5b71)
+2017-04-20T11:39:09.8744170-05:00 0HL481DO0HIVD [DBG] Connection id ""0HL481DNUOBH2"" completed keep alive response. (9784cde9)
+2017-04-20T11:39:09.8745270-05:00 0HL481DO0HIVD [INF] Request finished in 36.3432ms 200 application/javascript; charset=UTF-8 (15c52c40)
+2017-04-20T11:39:10.0234160-05:00 0HL481DO0HIVE [INF] Request starting HTTP/1.1 GET http://localhost:5000/__webpack_hmr   (e5be5b71)
+2017-04-20T11:39:10.0562140-05:00  [INF] Connection id ""0HL481DNUOBGS"" communication error. (7fa6c29c)
+Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvException: Error -32 EPIPE broken pipe
+2017-04-20T11:39:10.0562050-05:00  [DBG] Connection id ""0HL481DNUOBGS"" disconnecting. (b29b9868)
+2017-04-20T11:39:10.0563640-05:00  [DBG] Connection id ""0HL481DNUOBGS"" stopped. (056149f8)
+2017-04-20T11:39:10.0587750-05:00  [INF] Connection id ""0HL481DNUOBH1"" communication error. (7fa6c29c)
+Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvException: Error -32 EPIPE broken pipe
+2017-04-20T11:39:10.0587850-05:00  [DBG] Connection id ""0HL481DNUOBH1"" disconnecting. (b29b9868)
+2017-04-20T11:39:10.0589970-05:00  [DBG] Connection id ""0HL481DNUOBH1"" stopped. (056149f8)
+2017-04-20T11:39:14.1101400-05:00 0HL481DO0HIVF [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/auth/register application/x-www-form-urlencoded 41 (e5be5b71)
+2017-04-20T11:39:14.1120980-05:00 0HL481DO0HIVF [INF] Handling request: /api/auth/register (2c1017b8)
+2017-04-20T11:39:14.1121790-05:00 0HL481DO0HIVF [DBG] "POST" requests are not supported (1c759b4c)
+2017-04-20T11:39:14.1124730-05:00 0HL481DO0HIVF [INF] "Bearer" was not authenticated. Failure message: "Authentication failed because the access token was invalid." (48071232)
+2017-04-20T11:39:14.1125950-05:00 0HL481DO0HIVF [INF] "Bearer" was not authenticated. Failure message: "No SecurityTokenValidator available for token: null" (48071232)
+2017-04-20T11:39:14.1127600-05:00 0HL481DO0HIVF [DBG] Request successfully matched the route with name 'null' and template '"api/auth/register"'. (555ac2ba)
+2017-04-20T11:39:14.1140020-05:00 0HL481DO0HIVF [DBG] Executing action "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" (3f3ef15a)
+2017-04-20T11:39:14.1156750-05:00 0HL481DO0HIVF [INF] Executing action method "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" with arguments (["aspnetCoreReactTemplate.ViewModels.NewUser"]) - ModelState is Valid (ba7f4ac2)
+2017-04-20T11:39:14.1415600-05:00 0HL481DO0HIVF [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:39:14.1455590-05:00 0HL481DO0HIVF [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT "u"."Id", "u"."AccessFailedCount", "u"."ConcurrencyStamp", "u"."Email", "u"."EmailConfirmed", "u"."GivenName", "u"."LockoutEnabled", "u"."LockoutEnd", "u"."NormalizedEmail", "u"."NormalizedUserName", "u"."PasswordHash", "u"."PhoneNumber", "u"."PhoneNumberConfirmed", "u"."SecurityStamp", "u"."TwoFactorEnabled", "u"."UserName"
+FROM "AspNetUsers" AS "u"
+WHERE "u"."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1 (6438bdd5)
+2017-04-20T11:39:14.1458010-05:00 0HL481DO0HIVF [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:39:14.1460050-05:00 0HL481DO0HIVF [WRN] User "2f93a607-6b5b-4b6b-899b-f459f4322d02" validation failed: "DuplicateUserName". (5dc28e15)
+2017-04-20T11:39:14.1461340-05:00 0HL481DO0HIVF [DBG] Executed action method "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)", returned result "Microsoft.AspNetCore.Mvc.BadRequestObjectResult". (f72615e0)
+2017-04-20T11:39:14.1463360-05:00 0HL481DO0HIVF [DBG] No information found on request to perform content negotiation. (6aec0ec5)
+2017-04-20T11:39:14.1464230-05:00 0HL481DO0HIVF [DBG] Selected output formatter '"Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter"' and content type '"application/json"' to write the response. (fcc32779)
+2017-04-20T11:39:14.1464610-05:00 0HL481DO0HIVF [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-04-20T11:39:14.1467060-05:00 0HL481DO0HIVF [INF] Executed action "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" in 32.6371ms (afa2e885)
+2017-04-20T11:39:14.1468290-05:00 0HL481DO0HIVF [INF] Finished handling request. (d2c25297)
+2017-04-20T11:39:14.1470340-05:00 0HL481DO0HIVF [DBG] Connection id ""0HL481DNUOBGV"" completed keep alive response. (9784cde9)
+2017-04-20T11:39:14.1471100-05:00 0HL481DO0HIVF [INF] Request finished in 37.0278ms 400 application/json; charset=utf-8 (15c52c40)
+2017-04-20T11:39:48.9834480-05:00  [DBG] Connection id ""0HL481DNUOBH0"" disconnecting. (b29b9868)
+2017-04-20T11:39:48.9835820-05:00  [DBG] Connection id ""0HL481DNUOBH0"" sending FIN. (ffb251f5)
+2017-04-20T11:39:48.9836800-05:00  [DBG] Connection id ""0HL481DNUOBH0"" sent FIN with status "0". (69d90ca7)
+2017-04-20T11:39:48.9838000-05:00  [DBG] Connection id ""0HL481DNUOBH0"" stopped. (056149f8)
+2017-04-20T11:39:58.9621780-05:00 0HL481DO0HIVG [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/auth/register application/x-www-form-urlencoded 41 (e5be5b71)
+2017-04-20T11:39:58.9649200-05:00 0HL481DO0HIVG [INF] Handling request: /api/auth/register (2c1017b8)
+2017-04-20T11:39:58.9650300-05:00 0HL481DO0HIVG [DBG] "POST" requests are not supported (1c759b4c)
+2017-04-20T11:39:58.9652620-05:00 0HL481DO0HIVG [INF] "Bearer" was not authenticated. Failure message: "Authentication failed because the access token was invalid." (48071232)
+2017-04-20T11:39:58.9653330-05:00 0HL481DO0HIVG [INF] "Bearer" was not authenticated. Failure message: "No SecurityTokenValidator available for token: null" (48071232)
+2017-04-20T11:39:58.9655650-05:00 0HL481DO0HIVG [DBG] Request successfully matched the route with name 'null' and template '"api/auth/register"'. (555ac2ba)
+2017-04-20T11:39:58.9656550-05:00 0HL481DO0HIVG [DBG] Executing action "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" (3f3ef15a)
+2017-04-20T11:39:58.9659790-05:00 0HL481DO0HIVG [INF] Executing action method "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" with arguments (["aspnetCoreReactTemplate.ViewModels.NewUser"]) - ModelState is Valid (ba7f4ac2)
+2017-04-20T11:39:58.9859840-05:00 0HL481DO0HIVG [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:39:58.9877550-05:00 0HL481DO0HIVG [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT "u"."Id", "u"."AccessFailedCount", "u"."ConcurrencyStamp", "u"."Email", "u"."EmailConfirmed", "u"."GivenName", "u"."LockoutEnabled", "u"."LockoutEnd", "u"."NormalizedEmail", "u"."NormalizedUserName", "u"."PasswordHash", "u"."PhoneNumber", "u"."PhoneNumberConfirmed", "u"."SecurityStamp", "u"."TwoFactorEnabled", "u"."UserName"
+FROM "AspNetUsers" AS "u"
+WHERE "u"."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1 (6438bdd5)
+2017-04-20T11:39:58.9879100-05:00 0HL481DO0HIVG [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:39:58.9880440-05:00 0HL481DO0HIVG [WRN] User "86431f92-3002-4f53-bb99-3becedaaddbe" validation failed: "DuplicateUserName". (5dc28e15)
+2017-04-20T11:39:58.9881080-05:00 0HL481DO0HIVG [DBG] Executed action method "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)", returned result "Microsoft.AspNetCore.Mvc.BadRequestObjectResult". (f72615e0)
+2017-04-20T11:39:58.9881740-05:00 0HL481DO0HIVG [DBG] No information found on request to perform content negotiation. (6aec0ec5)
+2017-04-20T11:39:58.9882110-05:00 0HL481DO0HIVG [DBG] Selected output formatter '"Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter"' and content type '"application/json"' to write the response. (fcc32779)
+2017-04-20T11:39:58.9882440-05:00 0HL481DO0HIVG [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-04-20T11:39:58.9883520-05:00 0HL481DO0HIVG [INF] Executed action "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" in 22.6438ms (afa2e885)
+2017-04-20T11:39:58.9884410-05:00 0HL481DO0HIVG [INF] Finished handling request. (d2c25297)
+2017-04-20T11:39:58.9884990-05:00 0HL481DO0HIVG [DBG] Connection id ""0HL481DNUOBGV"" completed keep alive response. (9784cde9)
+2017-04-20T11:39:58.9885460-05:00 0HL481DO0HIVG [INF] Request finished in 26.4137ms 400 application/json; charset=utf-8 (15c52c40)
+2017-04-20T11:40:02.4118890-05:00 0HL481DO0HIVH [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/auth/register application/x-www-form-urlencoded 41 (e5be5b71)
+2017-04-20T11:40:02.4152190-05:00 0HL481DO0HIVH [INF] Handling request: /api/auth/register (2c1017b8)
+2017-04-20T11:40:02.4153030-05:00 0HL481DO0HIVH [DBG] "POST" requests are not supported (1c759b4c)
+2017-04-20T11:40:02.4155360-05:00 0HL481DO0HIVH [INF] "Bearer" was not authenticated. Failure message: "Authentication failed because the access token was invalid." (48071232)
+2017-04-20T11:40:02.4156250-05:00 0HL481DO0HIVH [INF] "Bearer" was not authenticated. Failure message: "No SecurityTokenValidator available for token: null" (48071232)
+2017-04-20T11:40:02.4157540-05:00 0HL481DO0HIVH [DBG] Request successfully matched the route with name 'null' and template '"api/auth/register"'. (555ac2ba)
+2017-04-20T11:40:02.4158230-05:00 0HL481DO0HIVH [DBG] Executing action "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" (3f3ef15a)
+2017-04-20T11:40:02.4161110-05:00 0HL481DO0HIVH [INF] Executing action method "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" with arguments (["aspnetCoreReactTemplate.ViewModels.NewUser"]) - ModelState is Valid (ba7f4ac2)
+2017-04-20T11:40:02.4384170-05:00 0HL481DO0HIVH [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:40:02.4402280-05:00 0HL481DO0HIVH [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT "u"."Id", "u"."AccessFailedCount", "u"."ConcurrencyStamp", "u"."Email", "u"."EmailConfirmed", "u"."GivenName", "u"."LockoutEnabled", "u"."LockoutEnd", "u"."NormalizedEmail", "u"."NormalizedUserName", "u"."PasswordHash", "u"."PhoneNumber", "u"."PhoneNumberConfirmed", "u"."SecurityStamp", "u"."TwoFactorEnabled", "u"."UserName"
+FROM "AspNetUsers" AS "u"
+WHERE "u"."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1 (6438bdd5)
+2017-04-20T11:40:02.4405080-05:00 0HL481DO0HIVH [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:40:02.4407150-05:00 0HL481DO0HIVH [WRN] User "8a5d0dff-4e0d-47dc-99c6-dfb6f331b36e" validation failed: "DuplicateUserName". (5dc28e15)
+2017-04-20T11:40:02.4407910-05:00 0HL481DO0HIVH [DBG] Executed action method "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)", returned result "Microsoft.AspNetCore.Mvc.BadRequestObjectResult". (f72615e0)
+2017-04-20T11:40:02.4408430-05:00 0HL481DO0HIVH [DBG] No information found on request to perform content negotiation. (6aec0ec5)
+2017-04-20T11:40:02.4408950-05:00 0HL481DO0HIVH [DBG] Selected output formatter '"Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter"' and content type '"application/json"' to write the response. (fcc32779)
+2017-04-20T11:40:02.4409290-05:00 0HL481DO0HIVH [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-04-20T11:40:02.4410590-05:00 0HL481DO0HIVH [INF] Executed action "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" in 25.1783ms (afa2e885)
+2017-04-20T11:40:02.4411560-05:00 0HL481DO0HIVH [INF] Finished handling request. (d2c25297)
+2017-04-20T11:40:02.4412390-05:00 0HL481DO0HIVH [DBG] Connection id ""0HL481DNUOBGV"" completed keep alive response. (9784cde9)
+2017-04-20T11:40:02.4413110-05:00 0HL481DO0HIVH [INF] Request finished in 29.4581ms 400 application/json; charset=utf-8 (15c52c40)
+2017-04-20T11:40:06.6871600-05:00  [DBG] Connection id ""0HL481DNUOBH3"" started. (1426b994)
+2017-04-20T11:40:06.6873480-05:00 0HL481DO0HIVI [INF] Request starting HTTP/1.1 GET http://localhost:5000/register   (e5be5b71)
+2017-04-20T11:40:06.6896230-05:00 0HL481DO0HIVI [INF] Handling request: /register (d15267fc)
+2017-04-20T11:40:06.6896800-05:00 0HL481DO0HIVI [INF] Rewriting path: /register > / (b5db4a63)
+2017-04-20T11:40:06.6899040-05:00 0HL481DO0HIVI [INF] The file "/index.html" was not modified (f1f8d725)
+2017-04-20T11:40:06.6899730-05:00 0HL481DO0HIVI [DBG] Handled. Status code: 304 File: "/index.html" (58f8d392)
+2017-04-20T11:40:06.6900170-05:00 0HL481DO0HIVI [INF] Finished handling request. (d2c25297)
+2017-04-20T11:40:06.6900850-05:00 0HL481DO0HIVI [DBG] Connection id ""0HL481DNUOBH3"" completed keep alive response. (9784cde9)
+2017-04-20T11:40:06.6901910-05:00 0HL481DO0HIVI [INF] Request finished in 2.828ms 304 text/html (15c52c40)
+2017-04-20T11:40:06.6920350-05:00  [DBG] Connection id ""0HL481DNUOBH2"" received FIN. (acf58720)
+2017-04-20T11:40:06.6982060-05:00 0HL481DO0HIVJ [INF] Request starting HTTP/1.1 GET http://localhost:5000/main.js   (e5be5b71)
+2017-04-20T11:40:06.7981140-05:00 0HL481DO0HIVJ [DBG] Connection id ""0HL481DNUOBH3"" completed keep alive response. (9784cde9)
+2017-04-20T11:40:06.7982550-05:00 0HL481DO0HIVJ [INF] Request finished in 100.0866ms 200 application/javascript; charset=UTF-8 (15c52c40)
+2017-04-20T11:40:06.9514120-05:00 0HL481DO0HIVK [INF] Request starting HTTP/1.1 GET http://localhost:5000/__webpack_hmr   (e5be5b71)
+2017-04-20T11:40:07.7135560-05:00  [DBG] Connection id ""0HL481DNUOBH4"" started. (1426b994)
+2017-04-20T11:40:07.7137430-05:00 0HL481DO0HIVL [INF] Request starting HTTP/1.1 GET http://localhost:5000/register   (e5be5b71)
+2017-04-20T11:40:07.7165340-05:00 0HL481DO0HIVL [INF] Handling request: /register (d15267fc)
+2017-04-20T11:40:07.7166070-05:00 0HL481DO0HIVL [INF] Rewriting path: /register > / (b5db4a63)
+2017-04-20T11:40:07.7168370-05:00 0HL481DO0HIVL [INF] The file "/index.html" was not modified (f1f8d725)
+2017-04-20T11:40:07.7169050-05:00 0HL481DO0HIVL [DBG] Handled. Status code: 304 File: "/index.html" (58f8d392)
+2017-04-20T11:40:07.7169620-05:00 0HL481DO0HIVL [INF] Finished handling request. (d2c25297)
+2017-04-20T11:40:07.7170540-05:00 0HL481DO0HIVL [DBG] Connection id ""0HL481DNUOBH4"" completed keep alive response. (9784cde9)
+2017-04-20T11:40:07.7171230-05:00 0HL481DO0HIVL [INF] Request finished in 3.3808ms 304 text/html (15c52c40)
+2017-04-20T11:40:07.7190570-05:00  [DBG] Connection id ""0HL481DNUOBH3"" received FIN. (acf58720)
+2017-04-20T11:40:07.7245360-05:00 0HL481DO0HIVM [INF] Request starting HTTP/1.1 GET http://localhost:5000/main.js   (e5be5b71)
+2017-04-20T11:40:07.7679270-05:00 0HL481DO0HIVM [DBG] Connection id ""0HL481DNUOBH4"" completed keep alive response. (9784cde9)
+2017-04-20T11:40:07.7680490-05:00 0HL481DO0HIVM [INF] Request finished in 43.5382ms 200 application/javascript; charset=UTF-8 (15c52c40)
+2017-04-20T11:40:07.9121720-05:00 0HL481DO0HIVN [INF] Request starting HTTP/1.1 GET http://localhost:5000/__webpack_hmr   (e5be5b71)
+2017-04-20T11:40:07.9323120-05:00  [INF] Connection id ""0HL481DNUOBH2"" communication error. (7fa6c29c)
+Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvException: Error -32 EPIPE broken pipe
+2017-04-20T11:40:07.9323120-05:00  [DBG] Connection id ""0HL481DNUOBH2"" disconnecting. (b29b9868)
+2017-04-20T11:40:07.9325000-05:00  [INF] Connection id ""0HL481DNUOBH2"" communication error. (7fa6c29c)
+Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvException: Error -32 EPIPE broken pipe
+2017-04-20T11:40:07.9327500-05:00  [INF] Connection id ""0HL481DNUOBH3"" communication error. (7fa6c29c)
+Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvException: Error -32 EPIPE broken pipe
+2017-04-20T11:40:07.9328240-05:00  [DBG] Connection id ""0HL481DNUOBH3"" disconnecting. (b29b9868)
+2017-04-20T11:40:07.9329040-05:00  [DBG] Connection id ""0HL481DNUOBH2"" stopped. (056149f8)
+2017-04-20T11:40:07.9329500-05:00  [DBG] Connection id ""0HL481DNUOBH3"" stopped. (056149f8)
+2017-04-20T11:40:12.8112560-05:00 0HL481DO0HIVO [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/auth/register application/x-www-form-urlencoded 41 (e5be5b71)
+2017-04-20T11:40:12.8130870-05:00 0HL481DO0HIVO [INF] Handling request: /api/auth/register (2c1017b8)
+2017-04-20T11:40:12.8132280-05:00 0HL481DO0HIVO [DBG] "POST" requests are not supported (1c759b4c)
+2017-04-20T11:40:12.8134190-05:00 0HL481DO0HIVO [INF] "Bearer" was not authenticated. Failure message: "Authentication failed because the access token was invalid." (48071232)
+2017-04-20T11:40:12.8135180-05:00 0HL481DO0HIVO [INF] "Bearer" was not authenticated. Failure message: "No SecurityTokenValidator available for token: null" (48071232)
+2017-04-20T11:40:12.8136160-05:00 0HL481DO0HIVO [DBG] Request successfully matched the route with name 'null' and template '"api/auth/register"'. (555ac2ba)
+2017-04-20T11:40:12.8136940-05:00 0HL481DO0HIVO [DBG] Executing action "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" (3f3ef15a)
+2017-04-20T11:40:12.8139390-05:00 0HL481DO0HIVO [INF] Executing action method "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" with arguments (["aspnetCoreReactTemplate.ViewModels.NewUser"]) - ModelState is Valid (ba7f4ac2)
+2017-04-20T11:40:12.8347490-05:00 0HL481DO0HIVO [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:40:12.8363430-05:00 0HL481DO0HIVO [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT "u"."Id", "u"."AccessFailedCount", "u"."ConcurrencyStamp", "u"."Email", "u"."EmailConfirmed", "u"."GivenName", "u"."LockoutEnabled", "u"."LockoutEnd", "u"."NormalizedEmail", "u"."NormalizedUserName", "u"."PasswordHash", "u"."PhoneNumber", "u"."PhoneNumberConfirmed", "u"."SecurityStamp", "u"."TwoFactorEnabled", "u"."UserName"
+FROM "AspNetUsers" AS "u"
+WHERE "u"."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1 (6438bdd5)
+2017-04-20T11:40:12.8365570-05:00 0HL481DO0HIVO [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:40:12.8367310-05:00 0HL481DO0HIVO [WRN] User "ccb83522-ab79-4c44-9b0b-5ff35929e0a2" validation failed: "DuplicateUserName". (5dc28e15)
+2017-04-20T11:40:12.8368240-05:00 0HL481DO0HIVO [DBG] Executed action method "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)", returned result "Microsoft.AspNetCore.Mvc.BadRequestObjectResult". (f72615e0)
+2017-04-20T11:40:12.8368970-05:00 0HL481DO0HIVO [DBG] No information found on request to perform content negotiation. (6aec0ec5)
+2017-04-20T11:40:12.8369660-05:00 0HL481DO0HIVO [DBG] Selected output formatter '"Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter"' and content type '"application/json"' to write the response. (fcc32779)
+2017-04-20T11:40:12.8370050-05:00 0HL481DO0HIVO [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-04-20T11:40:12.8371390-05:00 0HL481DO0HIVO [INF] Executed action "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" in 23.4046ms (afa2e885)
+2017-04-20T11:40:12.8373040-05:00 0HL481DO0HIVO [INF] Finished handling request. (d2c25297)
+2017-04-20T11:40:12.8373970-05:00 0HL481DO0HIVO [DBG] Connection id ""0HL481DNUOBGV"" completed keep alive response. (9784cde9)
+2017-04-20T11:40:12.8374680-05:00 0HL481DO0HIVO [INF] Request finished in 26.2417ms 400 application/json; charset=utf-8 (15c52c40)
+2017-04-20T11:40:18.4429330-05:00 0HL481DO0HIVP [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/auth/register application/x-www-form-urlencoded 43 (e5be5b71)
+2017-04-20T11:40:18.4456770-05:00 0HL481DO0HIVP [INF] Handling request: /api/auth/register (2c1017b8)
+2017-04-20T11:40:18.4458000-05:00 0HL481DO0HIVP [DBG] "POST" requests are not supported (1c759b4c)
+2017-04-20T11:40:18.4460320-05:00 0HL481DO0HIVP [INF] "Bearer" was not authenticated. Failure message: "Authentication failed because the access token was invalid." (48071232)
+2017-04-20T11:40:18.4461620-05:00 0HL481DO0HIVP [INF] "Bearer" was not authenticated. Failure message: "No SecurityTokenValidator available for token: null" (48071232)
+2017-04-20T11:40:18.4463040-05:00 0HL481DO0HIVP [DBG] Request successfully matched the route with name 'null' and template '"api/auth/register"'. (555ac2ba)
+2017-04-20T11:40:18.4463950-05:00 0HL481DO0HIVP [DBG] Executing action "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" (3f3ef15a)
+2017-04-20T11:40:18.4468380-05:00 0HL481DO0HIVP [INF] Executing action method "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" with arguments (["aspnetCoreReactTemplate.ViewModels.NewUser"]) - ModelState is Valid (ba7f4ac2)
+2017-04-20T11:40:18.4673860-05:00 0HL481DO0HIVP [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:40:18.4687650-05:00 0HL481DO0HIVP [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT "u"."Id", "u"."AccessFailedCount", "u"."ConcurrencyStamp", "u"."Email", "u"."EmailConfirmed", "u"."GivenName", "u"."LockoutEnabled", "u"."LockoutEnd", "u"."NormalizedEmail", "u"."NormalizedUserName", "u"."PasswordHash", "u"."PhoneNumber", "u"."PhoneNumberConfirmed", "u"."SecurityStamp", "u"."TwoFactorEnabled", "u"."UserName"
+FROM "AspNetUsers" AS "u"
+WHERE "u"."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1 (6438bdd5)
+2017-04-20T11:40:18.4688690-05:00 0HL481DO0HIVP [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:40:18.5011340-05:00 0HL481DO0HIVP [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:40:18.5012750-05:00 0HL481DO0HIVP [DBG] Beginning transaction with isolation level 'Unspecified'. (3b5ca34b)
+2017-04-20T11:40:18.5092810-05:00 0HL481DO0HIVP [INF] Executed DbCommand (2ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?', @p4='?', @p5='?', @p6='?', @p7='?', @p8='?', @p9='?', @p10='?', @p11='?', @p12='?', @p13='?', @p14='?', @p15='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO "AspNetUsers" ("Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "GivenName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15); (6438bdd5)
+2017-04-20T11:40:18.5199150-05:00 0HL481DO0HIVP [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:40:18.5220720-05:00 0HL481DO0HIVP [INF] New user registered (id: 28e718f7-6d7a-4eb5-9d7d-3983acd1cfeb) (ee102ef0)
+2017-04-20T11:40:18.5488350-05:00 0HL481DO0HIVP [DBG] Reading data from file '"/Users/bholt/.aspnet/DataProtection-Keys/key-2115e1cc-6a7a-4f94-a5af-79045dd7268a.xml"'. (5ce001c4)
+2017-04-20T11:40:18.5536860-05:00 0HL481DO0HIVP [DBG] Reading data from file '"/Users/bholt/.aspnet/DataProtection-Keys/key-65a1dbdc-ff60-43d0-ad97-4b44b66d8604.xml"'. (5ce001c4)
+2017-04-20T11:40:18.5614190-05:00 0HL481DO0HIVP [DBG] Found key {2115e1cc-6a7a-4f94-a5af-79045dd7268a}. (f843275d)
+2017-04-20T11:40:18.5668030-05:00 0HL481DO0HIVP [DBG] Found key {65a1dbdc-ff60-43d0-ad97-4b44b66d8604}. (f843275d)
+2017-04-20T11:40:18.5819820-05:00 0HL481DO0HIVP [DBG] Considering key {2115e1cc-6a7a-4f94-a5af-79045dd7268a} with expiration date 2017-07-15 20:23:44Z as default key. (ca2e3b22)
+2017-04-20T11:40:18.5986940-05:00 0HL481DO0HIVP [DBG] Using managed symmetric algorithm '"System.Security.Cryptography.Aes"'. (0f299fe5)
+2017-04-20T11:40:18.5998270-05:00 0HL481DO0HIVP [DBG] Using managed keyed hash algorithm '"System.Security.Cryptography.HMACSHA256"'. (47d8f6fe)
+2017-04-20T11:40:18.6142350-05:00 0HL481DO0HIVP [DBG] Using key {2115e1cc-6a7a-4f94-a5af-79045dd7268a} as the default key. (4cf2d764)
+2017-04-20T11:40:19.1260690-05:00 0HL481DO0HIVP [INF] Sent email confirmation email (id: 28e718f7-6d7a-4eb5-9d7d-3983acd1cfeb) (88a75a42)
+2017-04-20T11:40:19.2434760-05:00 0HL481DO0HIVP [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:40:19.2513050-05:00 0HL481DO0HIVP [INF] Executed DbCommand (6ms) [Parameters=[@__userId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT "role"."Name"
+FROM "AspNetUserRoles" AS "userRole"
+INNER JOIN "AspNetRoles" AS "role" ON "userRole"."RoleId" = "role"."Id"
+WHERE "userRole"."UserId" = @__userId_0 (6438bdd5)
+2017-04-20T11:40:19.2522840-05:00 0HL481DO0HIVP [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:40:19.2770190-05:00 0HL481DO0HIVP [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:40:19.2791770-05:00 0HL481DO0HIVP [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT "uc"."Id", "uc"."ClaimType", "uc"."ClaimValue", "uc"."UserId"
+FROM "AspNetUserClaims" AS "uc"
+WHERE "uc"."UserId" = @__user_Id_0 (6438bdd5)
+2017-04-20T11:40:19.2794120-05:00 0HL481DO0HIVP [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:40:19.2890810-05:00 0HL481DO0HIVP [INF] User logged in (id: 28e718f7-6d7a-4eb5-9d7d-3983acd1cfeb) (bf48a8ee)
+2017-04-20T11:40:19.2893740-05:00 0HL481DO0HIVP [DBG] Executed action method "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)", returned result "Microsoft.AspNetCore.Mvc.OkResult". (f72615e0)
+2017-04-20T11:40:19.2922430-05:00 0HL481DO0HIVP [INF] Executing HttpStatusCodeResult, setting HTTP status code 200 (e28ccfae)
+2017-04-20T11:40:19.2931220-05:00 0HL481DO0HIVP [INF] Executed action "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" in 846.7138ms (afa2e885)
+2017-04-20T11:40:19.2932340-05:00 0HL481DO0HIVP [INF] Finished handling request. (d2c25297)
+2017-04-20T11:40:19.2939380-05:00 0HL481DO0HIVP [DBG] Connection id ""0HL481DNUOBGV"" completed keep alive response. (9784cde9)
+2017-04-20T11:40:19.2940030-05:00 0HL481DO0HIVP [INF] Request finished in 851.1767ms 200  (15c52c40)
+2017-04-20T11:40:19.8710400-05:00  [DBG] Connection id ""0HL481DNUOBH5"" started. (1426b994)
+2017-04-20T11:40:19.8712390-05:00 0HL481DO0HIVQ [INF] Request starting HTTP/1.1 GET http://localhost:5000/favicon.ico   (e5be5b71)
+2017-04-20T11:40:19.8732470-05:00 0HL481DO0HIVQ [INF] Handling request: /favicon.ico (b3d76b52)
+2017-04-20T11:40:19.8735140-05:00 0HL481DO0HIVQ [INF] Sending file. Request path: '"/favicon.ico"'. Physical path: '"/Users/bholt/dev/aspnet-core-react-template/api/wwwroot/favicon.ico"' (27b0a520)
+2017-04-20T11:40:19.8744590-05:00 0HL481DO0HIVQ [INF] Finished handling request. (d2c25297)
+2017-04-20T11:40:19.8745650-05:00 0HL481DO0HIVQ [DBG] Connection id ""0HL481DNUOBH5"" completed keep alive response. (9784cde9)
+2017-04-20T11:40:19.8747030-05:00 0HL481DO0HIVQ [INF] Request finished in 3.427ms 200 image/x-icon (15c52c40)
+2017-04-20T11:42:20.0860490-05:00  [DBG] Connection id ""0HL481DNUOBGV"" disconnecting. (b29b9868)
+2017-04-20T11:42:20.0862240-05:00  [DBG] Connection id ""0HL481DNUOBGV"" sending FIN. (ffb251f5)
+2017-04-20T11:42:20.0863450-05:00  [DBG] Connection id ""0HL481DNUOBGV"" sent FIN with status "0". (69d90ca7)
+2017-04-20T11:42:20.0864070-05:00  [DBG] Connection id ""0HL481DNUOBGV"" stopped. (056149f8)
+2017-04-20T11:42:21.0952590-05:00  [DBG] Connection id ""0HL481DNUOBH5"" disconnecting. (b29b9868)
+2017-04-20T11:42:21.0954820-05:00  [DBG] Connection id ""0HL481DNUOBH5"" sending FIN. (ffb251f5)
+2017-04-20T11:42:21.0956160-05:00  [DBG] Connection id ""0HL481DNUOBH5"" sent FIN with status "0". (69d90ca7)
+2017-04-20T11:42:21.0957040-05:00  [DBG] Connection id ""0HL481DNUOBH5"" stopped. (056149f8)
+2017-04-20T11:45:42.4452760-05:00  [DBG] Connection id ""0HL481DNUOBH6"" started. (1426b994)
+2017-04-20T11:45:42.4454930-05:00 0HL481DO0HIVR [INF] Request starting HTTP/1.1 GET http://localhost:5000/register   (e5be5b71)
+2017-04-20T11:45:42.4470350-05:00 0HL481DO0HIVR [INF] Handling request: /register (d15267fc)
+2017-04-20T11:45:42.4470960-05:00 0HL481DO0HIVR [INF] Rewriting path: /register > / (b5db4a63)
+2017-04-20T11:45:42.4472760-05:00 0HL481DO0HIVR [INF] The file "/index.html" was not modified (f1f8d725)
+2017-04-20T11:45:42.4473350-05:00 0HL481DO0HIVR [DBG] Handled. Status code: 304 File: "/index.html" (58f8d392)
+2017-04-20T11:45:42.4473680-05:00 0HL481DO0HIVR [INF] Finished handling request. (d2c25297)
+2017-04-20T11:45:42.4474200-05:00 0HL481DO0HIVR [DBG] Connection id ""0HL481DNUOBH6"" completed keep alive response. (9784cde9)
+2017-04-20T11:45:42.4474760-05:00 0HL481DO0HIVR [INF] Request finished in 2.0026ms 304 text/html (15c52c40)
+2017-04-20T11:45:42.4492840-05:00  [DBG] Connection id ""0HL481DNUOBH4"" received FIN. (acf58720)
+2017-04-20T11:45:42.4549310-05:00 0HL481DO0HIVS [INF] Request starting HTTP/1.1 GET http://localhost:5000/main.js   (e5be5b71)
+2017-04-20T11:45:42.5539130-05:00 0HL481DO0HIVS [DBG] Connection id ""0HL481DNUOBH6"" completed keep alive response. (9784cde9)
+2017-04-20T11:45:42.5540400-05:00 0HL481DO0HIVS [INF] Request finished in 99.113ms 200 application/javascript; charset=UTF-8 (15c52c40)
+2017-04-20T11:45:42.7079810-05:00 0HL481DO0HIVT [INF] Request starting HTTP/1.1 GET http://localhost:5000/__webpack_hmr   (e5be5b71)
+2017-04-20T11:45:42.7262130-05:00  [DBG] Connection id ""0HL481DNUOBH4"" disconnecting. (b29b9868)
+2017-04-20T11:45:42.7262060-05:00  [INF] Connection id ""0HL481DNUOBH4"" communication error. (7fa6c29c)
+Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvException: Error -32 EPIPE broken pipe
+2017-04-20T11:45:42.7265250-05:00  [DBG] Connection id ""0HL481DNUOBH4"" stopped. (056149f8)
+2017-04-20T11:45:44.0215750-05:00  [DBG] Connection id ""0HL481DNUOBH7"" started. (1426b994)
+2017-04-20T11:45:44.0217810-05:00 0HL481DO0HIVU [INF] Request starting HTTP/1.1 GET http://localhost:5000/register   (e5be5b71)
+2017-04-20T11:45:44.0246960-05:00 0HL481DO0HIVU [INF] Handling request: /register (d15267fc)
+2017-04-20T11:45:44.0247650-05:00 0HL481DO0HIVU [INF] Rewriting path: /register > / (b5db4a63)
+2017-04-20T11:45:44.0250240-05:00 0HL481DO0HIVU [INF] The file "/index.html" was not modified (f1f8d725)
+2017-04-20T11:45:44.0250900-05:00 0HL481DO0HIVU [DBG] Handled. Status code: 304 File: "/index.html" (58f8d392)
+2017-04-20T11:45:44.0251170-05:00 0HL481DO0HIVU [INF] Finished handling request. (d2c25297)
+2017-04-20T11:45:44.0252020-05:00 0HL481DO0HIVU [DBG] Connection id ""0HL481DNUOBH7"" completed keep alive response. (9784cde9)
+2017-04-20T11:45:44.0252840-05:00 0HL481DO0HIVU [INF] Request finished in 3.5368ms 304 text/html (15c52c40)
+2017-04-20T11:45:44.0272240-05:00  [DBG] Connection id ""0HL481DNUOBH6"" received FIN. (acf58720)
+2017-04-20T11:45:44.0331880-05:00 0HL481DO0HIVV [INF] Request starting HTTP/1.1 GET http://localhost:5000/main.js   (e5be5b71)
+2017-04-20T11:45:44.0766880-05:00 0HL481DO0HIVV [DBG] Connection id ""0HL481DNUOBH7"" completed keep alive response. (9784cde9)
+2017-04-20T11:45:44.0768270-05:00 0HL481DO0HIVV [INF] Request finished in 43.6235ms 200 application/javascript; charset=UTF-8 (15c52c40)
+2017-04-20T11:45:44.2229510-05:00 0HL481DO0HJ00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/__webpack_hmr   (e5be5b71)
+2017-04-20T11:45:44.2441810-05:00  [INF] Connection id ""0HL481DNUOBH6"" communication error. (7fa6c29c)
+Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvException: Error -32 EPIPE broken pipe
+2017-04-20T11:45:44.2441810-05:00  [DBG] Connection id ""0HL481DNUOBH6"" disconnecting. (b29b9868)
+2017-04-20T11:45:44.2445160-05:00  [DBG] Connection id ""0HL481DNUOBH6"" stopped. (056149f8)
+2017-04-20T11:45:47.6464490-05:00  [DBG] Connection id ""0HL481DNUOBH8"" started. (1426b994)
+2017-04-20T11:45:47.6466580-05:00 0HL481DO0HJ01 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/auth/register application/x-www-form-urlencoded 41 (e5be5b71)
+2017-04-20T11:45:47.6479610-05:00 0HL481DO0HJ01 [INF] Handling request: /api/auth/register (2c1017b8)
+2017-04-20T11:45:47.6480340-05:00 0HL481DO0HJ01 [DBG] "POST" requests are not supported (1c759b4c)
+2017-04-20T11:45:47.6499000-05:00 0HL481DO0HJ01 [INF] "Bearer" was not authenticated. Failure message: "Authentication failed because the access token was invalid." (48071232)
+2017-04-20T11:45:47.6499920-05:00 0HL481DO0HJ01 [INF] "Bearer" was not authenticated. Failure message: "No SecurityTokenValidator available for token: undefined" (48071232)
+2017-04-20T11:45:47.6501160-05:00 0HL481DO0HJ01 [DBG] Request successfully matched the route with name 'null' and template '"api/auth/register"'. (555ac2ba)
+2017-04-20T11:45:47.6501750-05:00 0HL481DO0HJ01 [DBG] Executing action "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" (3f3ef15a)
+2017-04-20T11:45:47.6504120-05:00 0HL481DO0HJ01 [INF] Executing action method "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" with arguments (["aspnetCoreReactTemplate.ViewModels.NewUser"]) - ModelState is Valid (ba7f4ac2)
+2017-04-20T11:45:47.6704730-05:00 0HL481DO0HJ01 [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:45:47.6722490-05:00 0HL481DO0HJ01 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT "u"."Id", "u"."AccessFailedCount", "u"."ConcurrencyStamp", "u"."Email", "u"."EmailConfirmed", "u"."GivenName", "u"."LockoutEnabled", "u"."LockoutEnd", "u"."NormalizedEmail", "u"."NormalizedUserName", "u"."PasswordHash", "u"."PhoneNumber", "u"."PhoneNumberConfirmed", "u"."SecurityStamp", "u"."TwoFactorEnabled", "u"."UserName"
+FROM "AspNetUsers" AS "u"
+WHERE "u"."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1 (6438bdd5)
+2017-04-20T11:45:47.6724530-05:00 0HL481DO0HJ01 [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:45:47.6726710-05:00 0HL481DO0HJ01 [WRN] User "56e5f22f-fe8e-48e6-948b-df981b56a516" validation failed: "DuplicateUserName". (5dc28e15)
+2017-04-20T11:45:47.6727610-05:00 0HL481DO0HJ01 [DBG] Executed action method "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)", returned result "Microsoft.AspNetCore.Mvc.BadRequestObjectResult". (f72615e0)
+2017-04-20T11:45:47.6728260-05:00 0HL481DO0HJ01 [DBG] No information found on request to perform content negotiation. (6aec0ec5)
+2017-04-20T11:45:47.6728740-05:00 0HL481DO0HJ01 [DBG] Selected output formatter '"Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter"' and content type '"application/json"' to write the response. (fcc32779)
+2017-04-20T11:45:47.6729030-05:00 0HL481DO0HJ01 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-04-20T11:45:47.6730350-05:00 0HL481DO0HJ01 [INF] Executed action "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" in 22.8055ms (afa2e885)
+2017-04-20T11:45:47.6731460-05:00 0HL481DO0HJ01 [INF] Finished handling request. (d2c25297)
+2017-04-20T11:45:47.6732390-05:00 0HL481DO0HJ01 [DBG] Connection id ""0HL481DNUOBH8"" completed keep alive response. (9784cde9)
+2017-04-20T11:45:47.6733630-05:00 0HL481DO0HJ01 [INF] Request finished in 26.7243ms 400 application/json; charset=utf-8 (15c52c40)
+2017-04-20T11:46:32.0935980-05:00  [DBG] Connection id ""0HL481DNUOBH7"" received FIN. (acf58720)
+2017-04-20T11:46:44.7399420-05:00  [INF] Connection id ""0HL481DNUOBH7"" communication error. (7fa6c29c)
+Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvException: Error -32 EPIPE broken pipe
+2017-04-20T11:46:44.7399420-05:00  [DBG] Connection id ""0HL481DNUOBH7"" disconnecting. (b29b9868)
+2017-04-20T11:46:44.7401040-05:00  [DBG] Connection id ""0HL481DNUOBH7"" stopped. (056149f8)
+2017-04-20T11:47:49.3103430-05:00  [DBG] Connection id ""0HL481DNUOBH8"" disconnecting. (b29b9868)
+2017-04-20T11:47:49.3104560-05:00  [DBG] Connection id ""0HL481DNUOBH8"" sending FIN. (ffb251f5)
+2017-04-20T11:47:49.3105770-05:00  [DBG] Connection id ""0HL481DNUOBH8"" sent FIN with status "0". (69d90ca7)
+2017-04-20T11:47:49.3106450-05:00  [DBG] Connection id ""0HL481DNUOBH8"" stopped. (056149f8)
+2017-04-20T11:52:20.1843890-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:20.2332790-05:00  [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory'); (6438bdd5)
+2017-04-20T11:52:20.2351180-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:20.2481480-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:20.2500520-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory'); (6438bdd5)
+2017-04-20T11:52:20.2501960-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:20.2571800-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:20.2592600-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId"; (6438bdd5)
+2017-04-20T11:52:20.2599360-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:20.6921930-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:20.9067920-05:00  [INF] Executed DbCommand (80ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT "u"."Id", "u"."AccessFailedCount", "u"."ConcurrencyStamp", "u"."Email", "u"."EmailConfirmed", "u"."GivenName", "u"."LockoutEnabled", "u"."LockoutEnd", "u"."NormalizedEmail", "u"."NormalizedUserName", "u"."PasswordHash", "u"."PhoneNumber", "u"."PhoneNumberConfirmed", "u"."SecurityStamp", "u"."TwoFactorEnabled", "u"."UserName"
+FROM "AspNetUsers" AS "u"
+WHERE "u"."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 1 (6438bdd5)
+2017-04-20T11:52:20.9730240-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:21.0340690-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:21.0403040-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM "Contacts" AS "c")
+    THEN TRUE::bool ELSE FALSE::bool
+END (6438bdd5)
+2017-04-20T11:52:21.0413620-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:21.0642120-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:21.0653390-05:00  [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "c"."contactId", "c"."email", "c"."name", "c"."phone"
+FROM "Contacts" AS "c" (6438bdd5)
+2017-04-20T11:52:21.0931910-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:21.1567550-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:21.1638260-05:00  [DBG] Beginning transaction with isolation level 'Unspecified'. (3b5ca34b)
+2017-04-20T11:52:21.2243800-05:00  [INF] Executed DbCommand (4ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?', @p4='?', @p5='?', @p6='?', @p7='?'], CommandType='Text', CommandTimeout='30']
+DELETE FROM "Contacts"
+WHERE "contactId" = @p0;
+DELETE FROM "Contacts"
+WHERE "contactId" = @p1;
+INSERT INTO "Contacts" ("email", "name", "phone")
+VALUES (@p2, @p3, @p4)
+RETURNING "contactId";
+INSERT INTO "Contacts" ("email", "name", "phone")
+VALUES (@p5, @p6, @p7)
+RETURNING "contactId"; (6438bdd5)
+2017-04-20T11:52:21.2502520-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:22.7258160-05:00  [INF] ts-loader: Using typescript@2.2.2 and /Users/bholt/dev/aspnet-core-react-template/client-react/tsconfig.json (114b565e)
+2017-04-20T11:52:22.8394760-05:00  [DBG] Hosting starting (32b26330)
+2017-04-20T11:52:22.9107110-05:00  [DBG] Hosting started (e6def423)
+2017-04-20T11:52:27.5521150-05:00  [INF] webpack built d5ef16186ce4d979a8ac in 5111ms (1f3d84b9)
+2017-04-20T11:52:47.2953080-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:47.3580130-05:00  [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory'); (6438bdd5)
+2017-04-20T11:52:47.3602790-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:47.3782690-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:47.3805780-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory'); (6438bdd5)
+2017-04-20T11:52:47.3806700-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:47.3875940-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:47.3896410-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId"; (6438bdd5)
+2017-04-20T11:52:47.3902200-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:47.8297450-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:48.0395240-05:00  [INF] Executed DbCommand (75ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT "u"."Id", "u"."AccessFailedCount", "u"."ConcurrencyStamp", "u"."Email", "u"."EmailConfirmed", "u"."GivenName", "u"."LockoutEnabled", "u"."LockoutEnd", "u"."NormalizedEmail", "u"."NormalizedUserName", "u"."PasswordHash", "u"."PhoneNumber", "u"."PhoneNumberConfirmed", "u"."SecurityStamp", "u"."TwoFactorEnabled", "u"."UserName"
+FROM "AspNetUsers" AS "u"
+WHERE "u"."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 1 (6438bdd5)
+2017-04-20T11:52:48.1077930-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:48.1673110-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:48.1728720-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM "Contacts" AS "c")
+    THEN TRUE::bool ELSE FALSE::bool
+END (6438bdd5)
+2017-04-20T11:52:48.1738080-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:48.1944370-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:48.1957490-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "c"."contactId", "c"."email", "c"."name", "c"."phone"
+FROM "Contacts" AS "c" (6438bdd5)
+2017-04-20T11:52:48.2256620-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:48.2887970-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:48.2950040-05:00  [DBG] Beginning transaction with isolation level 'Unspecified'. (3b5ca34b)
+2017-04-20T11:52:48.3600290-05:00  [INF] Executed DbCommand (4ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?', @p4='?', @p5='?', @p6='?', @p7='?'], CommandType='Text', CommandTimeout='30']
+DELETE FROM "Contacts"
+WHERE "contactId" = @p0;
+DELETE FROM "Contacts"
+WHERE "contactId" = @p1;
+INSERT INTO "Contacts" ("email", "name", "phone")
+VALUES (@p2, @p3, @p4)
+RETURNING "contactId";
+INSERT INTO "Contacts" ("email", "name", "phone")
+VALUES (@p5, @p6, @p7)
+RETURNING "contactId"; (6438bdd5)
+2017-04-20T11:52:48.3845130-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:52:49.8241640-05:00  [INF] ts-loader: Using typescript@2.2.2 and /Users/bholt/dev/aspnet-core-react-template/client-react/tsconfig.json (114b565e)
+2017-04-20T11:52:49.9339700-05:00  [DBG] Hosting starting (32b26330)
+2017-04-20T11:52:50.0188480-05:00  [DBG] Hosting started (e6def423)
+2017-04-20T11:52:55.0134310-05:00  [INF] webpack built d5ef16186ce4d979a8ac in 5531ms (b9c85d60)
+2017-04-20T11:54:37.8666580-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:37.9142260-05:00  [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory'); (6438bdd5)
+2017-04-20T11:54:37.9161890-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:37.9289630-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:37.9304160-05:00  [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory'); (6438bdd5)
+2017-04-20T11:54:37.9304990-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:37.9374140-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:37.9396900-05:00  [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId"; (6438bdd5)
+2017-04-20T11:54:37.9402820-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:38.3839950-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:38.6121920-05:00  [INF] Executed DbCommand (77ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT "u"."Id", "u"."AccessFailedCount", "u"."ConcurrencyStamp", "u"."Email", "u"."EmailConfirmed", "u"."GivenName", "u"."LockoutEnabled", "u"."LockoutEnd", "u"."NormalizedEmail", "u"."NormalizedUserName", "u"."PasswordHash", "u"."PhoneNumber", "u"."PhoneNumberConfirmed", "u"."SecurityStamp", "u"."TwoFactorEnabled", "u"."UserName"
+FROM "AspNetUsers" AS "u"
+WHERE "u"."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 1 (6438bdd5)
+2017-04-20T11:54:38.6732720-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:38.7260900-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:38.7327780-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM "Contacts" AS "c")
+    THEN TRUE::bool ELSE FALSE::bool
+END (6438bdd5)
+2017-04-20T11:54:38.7341370-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:38.7549120-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:38.7562400-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "c"."contactId", "c"."email", "c"."name", "c"."phone"
+FROM "Contacts" AS "c" (6438bdd5)
+2017-04-20T11:54:38.7832790-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:38.8424430-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:38.8480970-05:00  [DBG] Beginning transaction with isolation level 'Unspecified'. (3b5ca34b)
+2017-04-20T11:54:38.9072120-05:00  [INF] Executed DbCommand (5ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?', @p4='?', @p5='?', @p6='?', @p7='?'], CommandType='Text', CommandTimeout='30']
+DELETE FROM "Contacts"
+WHERE "contactId" = @p0;
+DELETE FROM "Contacts"
+WHERE "contactId" = @p1;
+INSERT INTO "Contacts" ("email", "name", "phone")
+VALUES (@p2, @p3, @p4)
+RETURNING "contactId";
+INSERT INTO "Contacts" ("email", "name", "phone")
+VALUES (@p5, @p6, @p7)
+RETURNING "contactId"; (6438bdd5)
+2017-04-20T11:54:38.9331130-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:40.1053810-05:00  [INF] ts-loader: Using typescript@2.2.2 and /Users/bholt/dev/aspnet-core-react-template/client-react/tsconfig.json (114b565e)
+2017-04-20T11:54:40.2924400-05:00  [DBG] Hosting starting (32b26330)
+2017-04-20T11:54:40.3627690-05:00  [DBG] Hosting started (e6def423)
+2017-04-20T11:54:50.6248200-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:50.6718600-05:00  [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory'); (6438bdd5)
+2017-04-20T11:54:50.6737260-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:50.6870270-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:50.6895530-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory'); (6438bdd5)
+2017-04-20T11:54:50.6896620-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:50.6964780-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:50.6985020-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId"; (6438bdd5)
+2017-04-20T11:54:50.6991060-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:51.1002400-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:51.3094630-05:00  [INF] Executed DbCommand (72ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT "u"."Id", "u"."AccessFailedCount", "u"."ConcurrencyStamp", "u"."Email", "u"."EmailConfirmed", "u"."GivenName", "u"."LockoutEnabled", "u"."LockoutEnd", "u"."NormalizedEmail", "u"."NormalizedUserName", "u"."PasswordHash", "u"."PhoneNumber", "u"."PhoneNumberConfirmed", "u"."SecurityStamp", "u"."TwoFactorEnabled", "u"."UserName"
+FROM "AspNetUsers" AS "u"
+WHERE "u"."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 1 (6438bdd5)
+2017-04-20T11:54:51.3715670-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:51.4247370-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:51.4297140-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM "Contacts" AS "c")
+    THEN TRUE::bool ELSE FALSE::bool
+END (6438bdd5)
+2017-04-20T11:54:51.4310560-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:51.4494260-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:51.4508040-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "c"."contactId", "c"."email", "c"."name", "c"."phone"
+FROM "Contacts" AS "c" (6438bdd5)
+2017-04-20T11:54:51.4763700-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:51.5366480-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:51.5426550-05:00  [DBG] Beginning transaction with isolation level 'Unspecified'. (3b5ca34b)
+2017-04-20T11:54:51.6043500-05:00  [INF] Executed DbCommand (5ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?', @p4='?', @p5='?', @p6='?', @p7='?'], CommandType='Text', CommandTimeout='30']
+DELETE FROM "Contacts"
+WHERE "contactId" = @p0;
+DELETE FROM "Contacts"
+WHERE "contactId" = @p1;
+INSERT INTO "Contacts" ("email", "name", "phone")
+VALUES (@p2, @p3, @p4)
+RETURNING "contactId";
+INSERT INTO "Contacts" ("email", "name", "phone")
+VALUES (@p5, @p6, @p7)
+RETURNING "contactId"; (6438bdd5)
+2017-04-20T11:54:51.6280460-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:54:52.8274950-05:00  [INF] ts-loader: Using typescript@2.2.2 and /Users/bholt/dev/aspnet-core-react-template/client-react/tsconfig.json (114b565e)
+2017-04-20T11:54:52.8352330-05:00  [DBG] Hosting starting (32b26330)
+2017-04-20T11:54:52.9060220-05:00  [DBG] Hosting started (e6def423)
+2017-04-20T11:54:57.5428390-05:00  [INF] webpack built d5ef16186ce4d979a8ac in 4979ms (b9b435f5)
+2017-04-20T11:55:53.0172200-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:55:53.0730740-05:00  [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory'); (6438bdd5)
+2017-04-20T11:55:53.0748940-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:55:53.0888600-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:55:53.0904870-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory'); (6438bdd5)
+2017-04-20T11:55:53.0906000-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:55:53.0971490-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:55:53.0988070-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId"; (6438bdd5)
+2017-04-20T11:55:53.0993710-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:55:53.5183410-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:55:53.7221070-05:00  [INF] Executed DbCommand (70ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT "u"."Id", "u"."AccessFailedCount", "u"."ConcurrencyStamp", "u"."Email", "u"."EmailConfirmed", "u"."GivenName", "u"."LockoutEnabled", "u"."LockoutEnd", "u"."NormalizedEmail", "u"."NormalizedUserName", "u"."PasswordHash", "u"."PhoneNumber", "u"."PhoneNumberConfirmed", "u"."SecurityStamp", "u"."TwoFactorEnabled", "u"."UserName"
+FROM "AspNetUsers" AS "u"
+WHERE "u"."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 1 (6438bdd5)
+2017-04-20T11:55:53.7940560-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:55:53.8483900-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:55:53.8535630-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM "Contacts" AS "c")
+    THEN TRUE::bool ELSE FALSE::bool
+END (6438bdd5)
+2017-04-20T11:55:53.8547220-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:55:53.8735420-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:55:53.8749900-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "c"."contactId", "c"."email", "c"."name", "c"."phone"
+FROM "Contacts" AS "c" (6438bdd5)
+2017-04-20T11:55:53.9024970-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:55:53.9601450-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:55:53.9665450-05:00  [DBG] Beginning transaction with isolation level 'Unspecified'. (3b5ca34b)
+2017-04-20T11:55:54.0287680-05:00  [INF] Executed DbCommand (4ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?', @p4='?', @p5='?', @p6='?', @p7='?'], CommandType='Text', CommandTimeout='30']
+DELETE FROM "Contacts"
+WHERE "contactId" = @p0;
+DELETE FROM "Contacts"
+WHERE "contactId" = @p1;
+INSERT INTO "Contacts" ("email", "name", "phone")
+VALUES (@p2, @p3, @p4)
+RETURNING "contactId";
+INSERT INTO "Contacts" ("email", "name", "phone")
+VALUES (@p5, @p6, @p7)
+RETURNING "contactId"; (6438bdd5)
+2017-04-20T11:55:54.0585200-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T11:55:55.2623320-05:00  [DBG] Hosting starting (32b26330)
+2017-04-20T11:55:55.2623220-05:00  [INF] ts-loader: Using typescript@2.2.2 and /Users/bholt/dev/aspnet-core-react-template/client-react/tsconfig.json (114b565e)
+2017-04-20T11:55:55.3342570-05:00  [DBG] Hosting started (e6def423)
+2017-04-20T11:56:00.1801500-05:00  [INF] webpack built d5ef16186ce4d979a8ac in 5200ms (956f4986)
+2017-04-20T12:00:22.4181940-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:00:22.4677210-05:00  [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory'); (6438bdd5)
+2017-04-20T12:00:22.4696350-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:00:22.4831110-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:00:22.4846130-05:00  [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory'); (6438bdd5)
+2017-04-20T12:00:22.4847230-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:00:22.4915870-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:00:22.4937610-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId"; (6438bdd5)
+2017-04-20T12:00:22.4944190-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:00:22.9182370-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:00:23.1413910-05:00  [INF] Executed DbCommand (84ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT "u"."Id", "u"."AccessFailedCount", "u"."ConcurrencyStamp", "u"."Email", "u"."EmailConfirmed", "u"."GivenName", "u"."LockoutEnabled", "u"."LockoutEnd", "u"."NormalizedEmail", "u"."NormalizedUserName", "u"."PasswordHash", "u"."PhoneNumber", "u"."PhoneNumberConfirmed", "u"."SecurityStamp", "u"."TwoFactorEnabled", "u"."UserName"
+FROM "AspNetUsers" AS "u"
+WHERE "u"."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 1 (6438bdd5)
+2017-04-20T12:00:23.2110220-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:00:23.2746920-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:00:23.2808440-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM "Contacts" AS "c")
+    THEN TRUE::bool ELSE FALSE::bool
+END (6438bdd5)
+2017-04-20T12:00:23.2819780-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:00:23.3029210-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:00:23.3043030-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "c"."contactId", "c"."email", "c"."name", "c"."phone"
+FROM "Contacts" AS "c" (6438bdd5)
+2017-04-20T12:00:23.3355490-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:00:23.4000400-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:00:23.4061710-05:00  [DBG] Beginning transaction with isolation level 'Unspecified'. (3b5ca34b)
+2017-04-20T12:00:23.4717800-05:00  [INF] Executed DbCommand (4ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?', @p4='?', @p5='?', @p6='?', @p7='?'], CommandType='Text', CommandTimeout='30']
+DELETE FROM "Contacts"
+WHERE "contactId" = @p0;
+DELETE FROM "Contacts"
+WHERE "contactId" = @p1;
+INSERT INTO "Contacts" ("email", "name", "phone")
+VALUES (@p2, @p3, @p4)
+RETURNING "contactId";
+INSERT INTO "Contacts" ("email", "name", "phone")
+VALUES (@p5, @p6, @p7)
+RETURNING "contactId"; (6438bdd5)
+2017-04-20T12:00:23.4978960-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:00:25.0319380-05:00  [INF] ts-loader: Using typescript@2.2.2 and /Users/bholt/dev/aspnet-core-react-template/client-react/tsconfig.json (114b565e)
+2017-04-20T12:00:25.1801430-05:00  [DBG] Hosting starting (32b26330)
+2017-04-20T12:00:25.2532920-05:00  [DBG] Hosting started (e6def423)
+2017-04-20T12:00:29.8988860-05:00  [INF] webpack built d5ef16186ce4d979a8ac in 5161ms (08a05fce)
+2017-04-20T12:00:41.9349910-05:00  [INF] Received SIGINT. Waiting for .NET process to exit... (39e2bf0e)
+2017-04-20T12:00:41.9382870-05:00  [DBG] Hosting shutdown (49005419)
+2017-04-20T12:03:38.5101220-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:03:38.5572210-05:00  [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory'); (6438bdd5)
+2017-04-20T12:03:38.5590790-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:03:38.5721740-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:03:38.5734910-05:00  [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory'); (6438bdd5)
+2017-04-20T12:03:38.5735800-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:03:38.5807060-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:03:38.5824650-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId"; (6438bdd5)
+2017-04-20T12:03:38.5831840-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:03:38.9784220-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:03:39.1762800-05:00  [INF] Executed DbCommand (72ms) [Parameters=[@__normalizedEmail_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT "u"."Id", "u"."AccessFailedCount", "u"."ConcurrencyStamp", "u"."Email", "u"."EmailConfirmed", "u"."GivenName", "u"."LockoutEnabled", "u"."LockoutEnd", "u"."NormalizedEmail", "u"."NormalizedUserName", "u"."PasswordHash", "u"."PhoneNumber", "u"."PhoneNumberConfirmed", "u"."SecurityStamp", "u"."TwoFactorEnabled", "u"."UserName"
+FROM "AspNetUsers" AS "u"
+WHERE "u"."NormalizedEmail" = @__normalizedEmail_0
+LIMIT 1 (6438bdd5)
+2017-04-20T12:03:39.2326690-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:03:39.2856610-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:03:39.2914480-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM "Contacts" AS "c")
+    THEN TRUE::bool ELSE FALSE::bool
+END (6438bdd5)
+2017-04-20T12:03:39.2925420-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:03:39.3124240-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:03:39.3137460-05:00  [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "c"."contactId", "c"."email", "c"."name", "c"."phone"
+FROM "Contacts" AS "c" (6438bdd5)
+2017-04-20T12:03:39.3442980-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:03:39.4031530-05:00  [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:03:39.4095790-05:00  [DBG] Beginning transaction with isolation level 'Unspecified'. (3b5ca34b)
+2017-04-20T12:03:39.4732710-05:00  [INF] Executed DbCommand (4ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?', @p4='?', @p5='?', @p6='?', @p7='?'], CommandType='Text', CommandTimeout='30']
+DELETE FROM "Contacts"
+WHERE "contactId" = @p0;
+DELETE FROM "Contacts"
+WHERE "contactId" = @p1;
+INSERT INTO "Contacts" ("email", "name", "phone")
+VALUES (@p2, @p3, @p4)
+RETURNING "contactId";
+INSERT INTO "Contacts" ("email", "name", "phone")
+VALUES (@p5, @p6, @p7)
+RETURNING "contactId"; (6438bdd5)
+2017-04-20T12:03:39.4988230-05:00  [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:03:40.6756750-05:00  [INF] ts-loader: Using typescript@2.2.2 and /Users/bholt/dev/aspnet-core-react-template/client-react/tsconfig.json (114b565e)
+2017-04-20T12:03:40.7047630-05:00  [DBG] Hosting starting (32b26330)
+2017-04-20T12:03:40.7724530-05:00  [DBG] Hosting started (e6def423)
+2017-04-20T12:03:45.4096500-05:00  [INF] webpack built ad079844fd07da916916 in 4997ms (4aff4f6d)
+2017-04-20T12:03:47.5948830-05:00  [DBG] Connection id ""0HL481SQTVFU1"" started. (1426b994)
+2017-04-20T12:03:47.9383650-05:00 0HL481SR1D5UL [INF] Request starting HTTP/1.1 GET http://localhost:5000/   (e5be5b71)
+2017-04-20T12:03:48.0400040-05:00 0HL481SR1D5UL [DBG] Connection id ""0HL481SQTVFU1"" completed keep alive response. (9784cde9)
+2017-04-20T12:03:48.0498140-05:00 0HL481SR1D5UL [INF] Request finished in 122.973ms 200 text/html; charset=UTF-8 (15c52c40)
+2017-04-20T12:03:48.0553960-05:00 0HL481SR1D5UM [INF] Request starting HTTP/1.1 GET http://localhost:5000/main.js   (e5be5b71)
+2017-04-20T12:03:48.1681380-05:00 0HL481SR1D5UM [DBG] Connection id ""0HL481SQTVFU1"" completed keep alive response. (9784cde9)
+2017-04-20T12:03:48.1682940-05:00 0HL481SR1D5UM [INF] Request finished in 112.8857ms 200 application/javascript; charset=UTF-8 (15c52c40)
+2017-04-20T12:03:48.3202130-05:00  [DBG] Connection id ""0HL481SQTVFU2"" started. (1426b994)
+2017-04-20T12:03:48.3205310-05:00 0HL481SR1D5UN [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/contacts   (e5be5b71)
+2017-04-20T12:03:48.3448840-05:00 0HL481SR1D5UN [INF] Handling request: /api/contacts (629acf5c)
+2017-04-20T12:03:48.3568930-05:00 0HL481SR1D5UO [INF] Request starting HTTP/1.1 GET http://localhost:5000/__webpack_hmr   (e5be5b71)
+2017-04-20T12:03:48.3576260-05:00 0HL481SR1D5UN [DBG] The request path "/api/contacts" does not match a supported file type (4910e68e)
+2017-04-20T12:03:48.4058830-05:00 0HL481SR1D5UN [INF] "Bearer" was not authenticated. Failure message: "Authentication failed because the access token was invalid." (48071232)
+2017-04-20T12:03:48.4486980-05:00  [DBG] Connection id ""0HL481SQTVFU3"" started. (1426b994)
+2017-04-20T12:03:48.4489960-05:00 0HL481SR1D5UP [INF] Request starting HTTP/1.1 GET http://localhost:5000/.well-known/openid-configuration   (e5be5b71)
+2017-04-20T12:03:48.4505430-05:00 0HL481SR1D5UP [INF] Handling request: /.well-known/openid-configuration (28f0d040)
+2017-04-20T12:03:48.4529540-05:00 0HL481SR1D5UP [DBG] The request path "/.well-known/openid-configuration" does not match a supported file type (4910e68e)
+2017-04-20T12:03:48.4534470-05:00 0HL481SR1D5UP [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-04-20T12:03:48.5033370-05:00 0HL481SR1D5UP [INF] The discovery request was successfully extracted from the HTTP request: "{}" (8eb39e75)
+2017-04-20T12:03:48.5037540-05:00 0HL481SR1D5UP [INF] The discovery request was successfully validated. (5773bc23)
+2017-04-20T12:03:48.5400880-05:00 0HL481SR1D5UP [INF] The discovery response was successfully returned: "{
+  \"issuer\": \"http://localhost:5000/\",
+  \"token_endpoint\": \"http://localhost:5000/api/auth/login\",
+  \"jwks_uri\": \"http://localhost:5000/.well-known/jwks\",
+  \"grant_types_supported\": [
+    \"refresh_token\",
+    \"password\"
+  ],
+  \"scopes_supported\": [
+    \"openid\",
+    \"profile\",
+    \"email\",
+    \"phone\",
+    \"roles\",
+    \"offline_access\"
+  ],
+  \"id_token_signing_alg_values_supported\": [
+    \"RS256\"
+  ],
+  \"subject_types_supported\": [
+    \"public\"
+  ],
+  \"token_endpoint_auth_methods_supported\": [
+    \"client_secret_basic\",
+    \"client_secret_post\"
+  ]
+}" (ee57d974)
+2017-04-20T12:03:48.5825080-05:00 0HL481SR1D5UP [INF] Finished handling request. (d2c25297)
+2017-04-20T12:03:48.5844190-05:00 0HL481SR1D5UP [DBG] Connection id ""0HL481SQTVFU3"" completed keep alive response. (9784cde9)
+2017-04-20T12:03:48.5845260-05:00 0HL481SR1D5UP [INF] Request finished in 135.5407ms 200 application/json;charset=UTF-8 (15c52c40)
+2017-04-20T12:03:48.6058940-05:00 0HL481SR1D5UQ [INF] Request starting HTTP/1.1 GET http://localhost:5000/.well-known/jwks   (e5be5b71)
+2017-04-20T12:03:48.6072710-05:00 0HL481SR1D5UQ [INF] Handling request: /.well-known/jwks (3092411e)
+2017-04-20T12:03:48.6074590-05:00 0HL481SR1D5UQ [DBG] The request path "/.well-known/jwks" does not match a supported file type (4910e68e)
+2017-04-20T12:03:48.6075200-05:00 0HL481SR1D5UQ [DBG] Authentication was skipped because no bearer token was received. (9de85986)
+2017-04-20T12:03:48.6249250-05:00 0HL481SR1D5UQ [INF] The discovery request was successfully extracted from the HTTP request: "{}" (8eb39e75)
+2017-04-20T12:03:48.6325910-05:00 0HL481SR1D5UQ [INF] The discovery response was successfully returned: "{
+  \"keys\": [
+    {
+      \"kid\": \"YKN8_CMCU_FN-GLM7GYAZWQZXR8VSF63JSHNHSEG\",
+      \"use\": \"sig\",
+      \"kty\": \"RSA\",
+      \"alg\": \"RS256\",
+      \"e\": \"AQAB\",
+      \"n\": \"yKN8_cmCU_fn-glM7gYaZwQzxR8VSF63JShnHsEGs9yGW8-0RzmsK9lL0wSk1fIs9qQy9jsDL0sonpy8pGcMVFkctE8lLORL_k_0ibh8mFhFhcm4UXistOCxEbMdTXv94PG6KiIzanDYez0wbZ3eHyzRsRDoTee62tdVG3c-j_TJg5Hn1Q5lWqZaunrf5EGYzFz6r2AjHBBwWcq_rbUeaH76ngrrMni7Aclc-Ab4gEwR6F8DMnWTflGJgAvQHGDzOgHmAaaIFcJDNd-H0h3JFG8PhX2wPjw1yZQxNGs3Wjpot5KIb9fmS_YhCrSMDaqdMnGKRbIqUv0GrmL23wlQKw\"
+    }
+  ]
+}" (ee57d974)
+2017-04-20T12:03:48.6327880-05:00 0HL481SR1D5UQ [INF] Finished handling request. (d2c25297)
+2017-04-20T12:03:48.6328560-05:00 0HL481SR1D5UQ [DBG] Connection id ""0HL481SQTVFU3"" completed keep alive response. (9784cde9)
+2017-04-20T12:03:48.6329040-05:00 0HL481SR1D5UQ [INF] Request finished in 27.0548ms 200 application/json;charset=UTF-8 (15c52c40)
+2017-04-20T12:03:48.6540530-05:00 0HL481SR1D5UN [INF] "Bearer" was not authenticated. Failure message: "No SecurityTokenValidator available for token: undefined" (48071232)
+2017-04-20T12:03:48.9003550-05:00 0HL481SR1D5UN [DBG] Request successfully matched the route with name 'null' and template '"api/Contacts"'. (555ac2ba)
+2017-04-20T12:03:48.9291670-05:00 0HL481SR1D5UN [DBG] Action '"aspnetCoreReactTemplate.Controllers.ContactsController.Post (api)"' with id '"455df96b-8ffd-4dea-957a-f523a47b3b25"' did not match the constraint '"Microsoft.AspNetCore.Mvc.Internal.HttpMethodActionConstraint"' (bdbe25b0)
+2017-04-20T12:03:48.9549550-05:00 0HL481SR1D5UN [DBG] Executing action "aspnetCoreReactTemplate.Controllers.ContactsController.Get (api)" (3f3ef15a)
+2017-04-20T12:03:48.9861310-05:00 0HL481SR1D5UN [INF] Authorization failed for user: null. (a4ab1676)
+2017-04-20T12:03:48.9875910-05:00 0HL481SR1D5UN [INF] Authorization failed for the request at filter '"Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter"'. (8b6446cb)
+2017-04-20T12:03:48.9936790-05:00 0HL481SR1D5UN [INF] Executing ChallengeResult with authentication schemes ([]). (f3dca807)
+2017-04-20T12:03:49.0151770-05:00 0HL481SR1D5UN [INF] AuthenticationScheme: "Bearer" was challenged. (d45f1f38)
+2017-04-20T12:03:49.0266850-05:00 0HL481SR1D5UN [INF] AuthenticationScheme: "Bearer" was challenged. (d45f1f38)
+2017-04-20T12:03:49.0304770-05:00 0HL481SR1D5UN [INF] Executed action "aspnetCoreReactTemplate.Controllers.ContactsController.Get (api)" in 71.4524ms (afa2e885)
+2017-04-20T12:03:49.0389200-05:00 0HL481SR1D5UN [INF] Finished handling request. (d2c25297)
+2017-04-20T12:03:49.0415560-05:00 0HL481SR1D5UN [DBG] Connection id ""0HL481SQTVFU2"" completed keep alive response. (9784cde9)
+2017-04-20T12:03:49.0417320-05:00 0HL481SR1D5UN [INF] Request finished in 721.201ms 401  (15c52c40)
+2017-04-20T12:03:49.0556630-05:00  [DBG] Connection id ""0HL481SQTVFU4"" started. (1426b994)
+2017-04-20T12:03:49.0559010-05:00 0HL481SR1D5UR [INF] Request starting HTTP/1.1 GET http://localhost:5000/sign-in/?expired=1   (e5be5b71)
+2017-04-20T12:03:49.0575180-05:00 0HL481SR1D5UR [INF] Handling request: /sign-in/ (6455a65b)
+2017-04-20T12:03:49.0591650-05:00 0HL481SR1D5UR [INF] Rewriting path: /sign-in/ > / (170f1f87)
+2017-04-20T12:03:49.0780580-05:00 0HL481SR1D5UR [INF] Sending file. Request path: '"/index.html"'. Physical path: '"/Users/bholt/dev/aspnet-core-react-template/api/wwwroot/index.html"' (27b0a520)
+2017-04-20T12:03:49.0940300-05:00 0HL481SR1D5UR [INF] Finished handling request. (d2c25297)
+2017-04-20T12:03:49.0941480-05:00 0HL481SR1D5UR [DBG] Connection id ""0HL481SQTVFU4"" completed keep alive response. (9784cde9)
+2017-04-20T12:03:49.0942190-05:00 0HL481SR1D5UR [INF] Request finished in 38.3498ms 200 text/html (15c52c40)
+2017-04-20T12:03:49.0949780-05:00  [DBG] Connection id ""0HL481SQTVFU1"" received FIN. (acf58720)
+2017-04-20T12:03:49.1001780-05:00 0HL481SR1D5US [INF] Request starting HTTP/1.1 GET http://localhost:5000/main.js   (e5be5b71)
+2017-04-20T12:03:49.1362530-05:00 0HL481SR1D5US [DBG] Connection id ""0HL481SQTVFU4"" completed keep alive response. (9784cde9)
+2017-04-20T12:03:49.1363640-05:00 0HL481SR1D5US [INF] Request finished in 36.2062ms 200 application/javascript; charset=UTF-8 (15c52c40)
+2017-04-20T12:03:49.2847120-05:00 0HL481SR1D5UT [INF] Request starting HTTP/1.1 GET http://localhost:5000/__webpack_hmr   (e5be5b71)
+2017-04-20T12:03:50.4215460-05:00  [INF] Connection id ""0HL481SQTVFU1"" communication error. (7fa6c29c)
+Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvException: Error -32 EPIPE broken pipe
+2017-04-20T12:03:50.4217330-05:00  [INF] Connection id ""0HL481SQTVFU1"" communication error. (7fa6c29c)
+Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvException: Error -32 EPIPE broken pipe
+2017-04-20T12:03:50.4224660-05:00  [DBG] Connection id ""0HL481SQTVFU1"" disconnecting. (b29b9868)
+2017-04-20T12:03:50.4249090-05:00  [DBG] Connection id ""0HL481SQTVFU1"" stopped. (056149f8)
+2017-04-20T12:03:55.5028440-05:00 0HL481SR1D5UU [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/auth/register application/x-www-form-urlencoded 41 (e5be5b71)
+2017-04-20T12:03:55.5043420-05:00 0HL481SR1D5UU [INF] Handling request: /api/auth/register (2c1017b8)
+2017-04-20T12:03:55.5047010-05:00 0HL481SR1D5UU [DBG] "POST" requests are not supported (1c759b4c)
+2017-04-20T12:03:55.5105050-05:00 0HL481SR1D5UU [INF] "Bearer" was not authenticated. Failure message: "Authentication failed because the access token was invalid." (48071232)
+2017-04-20T12:03:55.5106420-05:00 0HL481SR1D5UU [INF] "Bearer" was not authenticated. Failure message: "No SecurityTokenValidator available for token: null" (48071232)
+2017-04-20T12:03:55.5108000-05:00 0HL481SR1D5UU [DBG] Request successfully matched the route with name 'null' and template '"api/auth/register"'. (555ac2ba)
+2017-04-20T12:03:55.5121460-05:00 0HL481SR1D5UU [DBG] Executing action "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" (3f3ef15a)
+2017-04-20T12:03:55.7391590-05:00 0HL481SR1D5UU [INF] Executing action method "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" with arguments (["aspnetCoreReactTemplate.ViewModels.NewUser"]) - ModelState is Invalid (ba7f4ac2)
+2017-04-20T12:03:55.7466260-05:00 0HL481SR1D5UU [DBG] Executed action method "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)", returned result "Microsoft.AspNetCore.Mvc.BadRequestObjectResult". (f72615e0)
+2017-04-20T12:03:55.7642750-05:00 0HL481SR1D5UU [DBG] No information found on request to perform content negotiation. (6aec0ec5)
+2017-04-20T12:03:55.7679960-05:00 0HL481SR1D5UU [DBG] Selected output formatter '"Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter"' and content type '"application/json"' to write the response. (fcc32779)
+2017-04-20T12:03:55.7682780-05:00 0HL481SR1D5UU [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-04-20T12:03:55.7937650-05:00 0HL481SR1D5UU [INF] Executed action "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" in 281.5072ms (afa2e885)
+2017-04-20T12:03:55.7939070-05:00 0HL481SR1D5UU [INF] Finished handling request. (d2c25297)
+2017-04-20T12:03:55.7970820-05:00 0HL481SR1D5UU [DBG] Connection id ""0HL481SQTVFU2"" completed keep alive response. (9784cde9)
+2017-04-20T12:03:55.7971850-05:00 0HL481SR1D5UU [INF] Request finished in 294.7455ms 400 application/json; charset=utf-8 (15c52c40)
+2017-04-20T12:03:58.5619700-05:00 0HL481SR1D5UV [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/auth/register application/x-www-form-urlencoded 48 (e5be5b71)
+2017-04-20T12:03:58.5634780-05:00 0HL481SR1D5UV [INF] Handling request: /api/auth/register (2c1017b8)
+2017-04-20T12:03:58.5635650-05:00 0HL481SR1D5UV [DBG] "POST" requests are not supported (1c759b4c)
+2017-04-20T12:03:58.5638350-05:00 0HL481SR1D5UV [INF] "Bearer" was not authenticated. Failure message: "Authentication failed because the access token was invalid." (48071232)
+2017-04-20T12:03:58.5639610-05:00 0HL481SR1D5UV [INF] "Bearer" was not authenticated. Failure message: "No SecurityTokenValidator available for token: null" (48071232)
+2017-04-20T12:03:58.5640900-05:00 0HL481SR1D5UV [DBG] Request successfully matched the route with name 'null' and template '"api/auth/register"'. (555ac2ba)
+2017-04-20T12:03:58.5654830-05:00 0HL481SR1D5UV [DBG] Executing action "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" (3f3ef15a)
+2017-04-20T12:03:58.5676940-05:00 0HL481SR1D5UV [INF] Executing action method "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" with arguments (["aspnetCoreReactTemplate.ViewModels.NewUser"]) - ModelState is Valid (ba7f4ac2)
+2017-04-20T12:03:58.5927620-05:00 0HL481SR1D5UV [WRN] User "105b322c-970d-47d3-82bd-adb33459da80" password validation failed: "PasswordRequiresDigit;PasswordRequiresUpper". (2f223212)
+2017-04-20T12:03:58.5940030-05:00 0HL481SR1D5UV [DBG] Executed action method "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)", returned result "Microsoft.AspNetCore.Mvc.BadRequestObjectResult". (f72615e0)
+2017-04-20T12:03:58.5942910-05:00 0HL481SR1D5UV [DBG] No information found on request to perform content negotiation. (6aec0ec5)
+2017-04-20T12:03:58.5944090-05:00 0HL481SR1D5UV [DBG] Selected output formatter '"Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter"' and content type '"application/json"' to write the response. (fcc32779)
+2017-04-20T12:03:58.5946160-05:00 0HL481SR1D5UV [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-04-20T12:03:58.5981060-05:00 0HL481SR1D5UV [INF] Executed action "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" in 32.5596ms (afa2e885)
+2017-04-20T12:03:58.5982140-05:00 0HL481SR1D5UV [INF] Finished handling request. (d2c25297)
+2017-04-20T12:03:58.5983680-05:00 0HL481SR1D5UV [DBG] Connection id ""0HL481SQTVFU2"" completed keep alive response. (9784cde9)
+2017-04-20T12:03:58.5984560-05:00 0HL481SR1D5UV [INF] Request finished in 36.5465ms 400 application/json; charset=utf-8 (15c52c40)
+2017-04-20T12:04:02.4319320-05:00 0HL481SR1D5V0 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/auth/register application/x-www-form-urlencoded 42 (e5be5b71)
+2017-04-20T12:04:02.4333870-05:00 0HL481SR1D5V0 [INF] Handling request: /api/auth/register (2c1017b8)
+2017-04-20T12:04:02.4335050-05:00 0HL481SR1D5V0 [DBG] "POST" requests are not supported (1c759b4c)
+2017-04-20T12:04:02.4337520-05:00 0HL481SR1D5V0 [INF] "Bearer" was not authenticated. Failure message: "Authentication failed because the access token was invalid." (48071232)
+2017-04-20T12:04:02.4338740-05:00 0HL481SR1D5V0 [INF] "Bearer" was not authenticated. Failure message: "No SecurityTokenValidator available for token: null" (48071232)
+2017-04-20T12:04:02.4340060-05:00 0HL481SR1D5V0 [DBG] Request successfully matched the route with name 'null' and template '"api/auth/register"'. (555ac2ba)
+2017-04-20T12:04:02.4341090-05:00 0HL481SR1D5V0 [DBG] Executing action "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" (3f3ef15a)
+2017-04-20T12:04:02.4344650-05:00 0HL481SR1D5V0 [INF] Executing action method "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" with arguments (["aspnetCoreReactTemplate.ViewModels.NewUser"]) - ModelState is Valid (ba7f4ac2)
+2017-04-20T12:04:02.5105070-05:00 0HL481SR1D5V0 [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:04:02.5130100-05:00 0HL481SR1D5V0 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT "u"."Id", "u"."AccessFailedCount", "u"."ConcurrencyStamp", "u"."Email", "u"."EmailConfirmed", "u"."GivenName", "u"."LockoutEnabled", "u"."LockoutEnd", "u"."NormalizedEmail", "u"."NormalizedUserName", "u"."PasswordHash", "u"."PhoneNumber", "u"."PhoneNumberConfirmed", "u"."SecurityStamp", "u"."TwoFactorEnabled", "u"."UserName"
+FROM "AspNetUsers" AS "u"
+WHERE "u"."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1 (6438bdd5)
+2017-04-20T12:04:02.5135100-05:00 0HL481SR1D5V0 [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:04:02.5546810-05:00 0HL481SR1D5V0 [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:04:02.5548090-05:00 0HL481SR1D5V0 [DBG] Beginning transaction with isolation level 'Unspecified'. (3b5ca34b)
+2017-04-20T12:04:02.5626250-05:00 0HL481SR1D5V0 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?', @p4='?', @p5='?', @p6='?', @p7='?', @p8='?', @p9='?', @p10='?', @p11='?', @p12='?', @p13='?', @p14='?', @p15='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO "AspNetUsers" ("Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "GivenName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15); (6438bdd5)
+2017-04-20T12:04:02.5720760-05:00 0HL481SR1D5V0 [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:04:02.5739830-05:00 0HL481SR1D5V0 [INF] New user registered (id: 5314c967-f171-4f79-88f5-e75489da4d37) (ffbe08cf)
+2017-04-20T12:04:02.5947020-05:00 0HL481SR1D5V0 [DBG] Reading data from file '"/Users/bholt/.aspnet/DataProtection-Keys/key-2115e1cc-6a7a-4f94-a5af-79045dd7268a.xml"'. (5ce001c4)
+2017-04-20T12:04:02.5994620-05:00 0HL481SR1D5V0 [DBG] Reading data from file '"/Users/bholt/.aspnet/DataProtection-Keys/key-65a1dbdc-ff60-43d0-ad97-4b44b66d8604.xml"'. (5ce001c4)
+2017-04-20T12:04:02.6046770-05:00 0HL481SR1D5V0 [DBG] Found key {2115e1cc-6a7a-4f94-a5af-79045dd7268a}. (f843275d)
+2017-04-20T12:04:02.6110710-05:00 0HL481SR1D5V0 [DBG] Found key {65a1dbdc-ff60-43d0-ad97-4b44b66d8604}. (f843275d)
+2017-04-20T12:04:02.6232370-05:00 0HL481SR1D5V0 [DBG] Considering key {2115e1cc-6a7a-4f94-a5af-79045dd7268a} with expiration date 2017-07-15 20:23:44Z as default key. (ca2e3b22)
+2017-04-20T12:04:02.6380090-05:00 0HL481SR1D5V0 [DBG] Using managed symmetric algorithm '"System.Security.Cryptography.Aes"'. (0f299fe5)
+2017-04-20T12:04:02.6389190-05:00 0HL481SR1D5V0 [DBG] Using managed keyed hash algorithm '"System.Security.Cryptography.HMACSHA256"'. (47d8f6fe)
+2017-04-20T12:04:02.6506800-05:00 0HL481SR1D5V0 [DBG] Using key {2115e1cc-6a7a-4f94-a5af-79045dd7268a} as the default key. (4cf2d764)
+2017-04-20T12:04:02.9026460-05:00 0HL481SR1D5V0 [INF] Sent email confirmation email (id: 5314c967-f171-4f79-88f5-e75489da4d37) (c5bc96c6)
+2017-04-20T12:04:03.0144530-05:00 0HL481SR1D5V0 [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:04:03.0172700-05:00 0HL481SR1D5V0 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT "role"."Name"
+FROM "AspNetUserRoles" AS "userRole"
+INNER JOIN "AspNetRoles" AS "role" ON "userRole"."RoleId" = "role"."Id"
+WHERE "userRole"."UserId" = @__userId_0 (6438bdd5)
+2017-04-20T12:04:03.0186440-05:00 0HL481SR1D5V0 [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:04:03.0457040-05:00 0HL481SR1D5V0 [DBG] Opening connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:04:03.0474650-05:00 0HL481SR1D5V0 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT "uc"."Id", "uc"."ClaimType", "uc"."ClaimValue", "uc"."UserId"
+FROM "AspNetUserClaims" AS "uc"
+WHERE "uc"."UserId" = @__user_Id_0 (6438bdd5)
+2017-04-20T12:04:03.0476680-05:00 0HL481SR1D5V0 [DBG] Closing connection to database 'dotnetcore' on server 'tcp://localhost:5433'. (3b5ca34b)
+2017-04-20T12:04:03.0565200-05:00 0HL481SR1D5V0 [INF] User logged in (id: 5314c967-f171-4f79-88f5-e75489da4d37) (d87185fb)
+2017-04-20T12:04:03.0567800-05:00 0HL481SR1D5V0 [DBG] Executed action method "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)", returned result "Microsoft.AspNetCore.Mvc.OkResult". (f72615e0)
+2017-04-20T12:04:03.0595620-05:00 0HL481SR1D5V0 [INF] Executing HttpStatusCodeResult, setting HTTP status code 200 (e28ccfae)
+2017-04-20T12:04:03.0604090-05:00 0HL481SR1D5V0 [INF] Executed action "aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers.AuthController.Register (api)" in 626.3141ms (afa2e885)
+2017-04-20T12:04:03.0605200-05:00 0HL481SR1D5V0 [INF] Finished handling request. (d2c25297)
+2017-04-20T12:04:03.0616630-05:00 0HL481SR1D5V0 [DBG] Connection id ""0HL481SQTVFU2"" completed keep alive response. (9784cde9)
+2017-04-20T12:04:03.0617160-05:00 0HL481SR1D5V0 [INF] Request finished in 629.8908ms 200  (15c52c40)
+2017-04-20T12:05:49.8207400-05:00  [DBG] Connection id ""0HL481SQTVFU3"" disconnecting. (b29b9868)
+2017-04-20T12:05:49.8211020-05:00  [DBG] Connection id ""0HL481SQTVFU3"" sending FIN. (ffb251f5)
+2017-04-20T12:05:49.8262480-05:00  [DBG] Connection id ""0HL481SQTVFU3"" sent FIN with status "0". (69d90ca7)
+2017-04-20T12:05:49.8263780-05:00  [DBG] Connection id ""0HL481SQTVFU3"" stopped. (056149f8)
+2017-04-20T12:06:03.8291950-05:00  [DBG] Connection id ""0HL481SQTVFU2"" disconnecting. (b29b9868)
+2017-04-20T12:06:03.8293130-05:00  [DBG] Connection id ""0HL481SQTVFU2"" sending FIN. (ffb251f5)
+2017-04-20T12:06:03.8294370-05:00  [DBG] Connection id ""0HL481SQTVFU2"" sent FIN with status "0". (69d90ca7)
+2017-04-20T12:06:03.8295040-05:00  [DBG] Connection id ""0HL481SQTVFU2"" stopped. (056149f8)

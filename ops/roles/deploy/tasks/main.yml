@@ -11,13 +11,13 @@
 - name: Configure email.smtpConfig
   lineinfile: dest="{{ deploy_directory }}/appsettings.release.json"
     regexp="smtpConfig\":"
-    line="\"smtpConfig\"{{':'}} \"{{email_smtp_config}}\""
+    line="\"smtpConfig\"{{':'}} \"{{smtp_config}}\","
     state="present"
 
 - name: Configure email.emailFromName
   lineinfile: dest="{{ deploy_directory }}/appsettings.release.json"
     regexp="emailFromName\":"
-    line="\"emailFromName\"{{':'}} \"{{email_from_name}}\""
+    line="\"emailFromName\"{{':'}} \"{{email_from_name}}\","
     state="present"
 
 - name: Configure email.emailFromAddress

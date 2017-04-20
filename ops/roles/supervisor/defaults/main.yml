@@ -1,1 +1,3 @@
 entry_dll_file_name: "{{app_name}}.dll"
+log_file: "/var/log/{{app_name}}.out.log"
+error_file: "/var/log/{{app_name}}.err.log"

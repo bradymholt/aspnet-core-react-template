@@ -112,13 +112,8 @@ namespace aspnetCoreReactTemplate
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IDefaultDbContextInitializer databaseInitializer)
         {
-            loggerFactory.AddFile(Configuration.GetSection("logging"));
-
-            if (this.CurrentEnvironment.IsDevelopment())
-            {
-                loggerFactory.AddConsole(Configuration.GetSection("logging"));
-            }
-
+            // Log to console (stdout) - in production stdout will be written to /var/log/{{app_name}}.out.log
+            loggerFactory.AddConsole(Configuration.GetSection("logging"));
             loggerFactory.AddDebug();
 
             // Apply any pending migrations

@@ -3,8 +3,8 @@ command=/usr/bin/dotnet {{deploy_directory}}/{{entry_dll_file_name}}
 directory={{deploy_directory}}
 autostart=true
 autorestart=true
-stderr_logfile=/var/log/{{app_name}}.err.log
-stdout_logfile=/var/log/{{app_name}}.out.log
+stderr_logfile={{ error_file }}
+stdout_logfile={{ log_file }}
 environment=HOME=/var/www/,ASPNETCORE_ENVIRONMENT=Production
 user=www-data
 stopsignal=INT

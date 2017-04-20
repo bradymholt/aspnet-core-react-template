@@ -78,7 +78,7 @@ This script will:
   - Updates the `appsettings.release.json` file with PostgresSQL credentials specified in ops/hosts file and the app URL (needed for JWT tokens)
   - Restarts the app so that changes will be picked up
 
-## Email Delivery
+## Development Email Delivery
 
 This template includes a [MailCatcher](https://mailcatcher.me/) Docker image so that when email is sent during development (i.e. new user registration), it can be viewed
 in the MailCacher web interface at [http://localhost:1080/](http://localhost:1080/).

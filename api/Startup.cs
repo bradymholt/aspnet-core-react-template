@@ -11,6 +11,7 @@ using aspnetCoreReactTemplate.Models;
 using System.IdentityModel.Tokens.Jwt;
 using AspNet.Security.OpenIdConnect.Primitives;
 using aspnetCoreReactTemplate.Services;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace aspnetCoreReactTemplate
 {
@@ -140,6 +141,14 @@ namespace aspnetCoreReactTemplate
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                // Read and use headers coming from reverse proxy: X-Forwarded-For X-Forwarded-Proto
+                // This is particularly important so that HttpContet.Request.Scheme will be correct behind a SSL terminating proxy
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor |
+                ForwardedHeaders.XForwardedProto
+            });
 
             // Register the validation middleware, that is used to decrypt
             // the access tokens and populate the HttpContext.User property.

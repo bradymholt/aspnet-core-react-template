@@ -28,13 +28,6 @@ namespace aspnetCoreReactTemplate
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables();
 
-
-            if (!this.CurrentEnvironment.IsDevelopment())
-            {
-                // If not development, merge in release config
-                builder.AddJsonFile($"appsettings.release.json", optional: true);
-            }
-
             Configuration = builder.Build();
         }
 

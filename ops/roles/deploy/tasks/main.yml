@@ -3,31 +3,31 @@
   notify: Reload supervisor app config
 
 - name: Configure PostgresSQL connection string
-  lineinfile: dest="{{ deploy_directory }}/appsettings.release.json"
+  lineinfile: dest="{{ deploy_directory }}/{{ appsetting_file }}"
     regexp="defaultConnection\":"
     line="\"defaultConnection\"{{':'}} \"Host=127.0.0.1;Username={{database_username}};Password={{database_password}};Database={{database_name}}\""
     state="present"
 
 - name: Configure email.smtpConfig
-  lineinfile: dest="{{ deploy_directory }}/appsettings.release.json"
+  lineinfile: dest="{{ deploy_directory }}/{{ appsetting_file }}"
     regexp="smtpConfig\":"
     line="\"smtpConfig\"{{':'}} \"{{smtp_config}}\","
     state="present"
 
 - name: Configure email.emailFromName
-  lineinfile: dest="{{ deploy_directory }}/appsettings.release.json"
+  lineinfile: dest="{{ deploy_directory }}/{{ appsetting_file }}"
     regexp="emailFromName\":"
     line="\"emailFromName\"{{':'}} \"{{email_from_name}}\","
     state="present"
 
 - name: Configure email.emailFromAddress
-  lineinfile: dest="{{ deploy_directory }}/appsettings.release.json"
+  lineinfile: dest="{{ deploy_directory }}/{{ appsetting_file }}"
     regexp="emailFromAddress\":"
     line="\"emailFromAddress\"{{':'}} \"{{email_from_address}}\""
     state="present"
 
 - name: Configure app url
-  lineinfile: dest="{{ deploy_directory }}/appsettings.release.json"
+  lineinfile: dest="{{ deploy_directory }}/{{ appsetting_file }}"
     regexp="url\":"
     line="\"url\"{{':'}} \"http://{{webserver_name}}/\","
     state="present"

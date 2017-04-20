@@ -3,3 +3,7 @@ body {
   font-family: "century gothic", verdana;
 
 }
+
+.btn-link {
+  cursor: pointer;
+}

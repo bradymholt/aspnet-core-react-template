@@ -13,7 +13,7 @@ export class SignIn extends React.Component<RouteComponentProps<any>, any> {
 
     state = {
         redirectToReferrer: false,
-        error: null as string[]
+        error: null as string
     }
 
     handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -21,10 +21,10 @@ export class SignIn extends React.Component<RouteComponentProps<any>, any> {
 
         this.setState({ errors: null });
         authService.signIn(this.refs.username.value, this.refs.password.value).then(response => {
-            if (!response.error) {
+            if (!response.is_error) {
                 this.setState({ redirectToReferrer: true })
             } else {
-                this.setState({ error: response.error.errorDescription });
+                this.setState({ error: response.error_content.errorDescription });
             }
         });
     }
@@ -86,10 +86,10 @@ export class Register extends React.Component<any, any> {
 
         this.setState({ errors: {} });
         authService.register(this.refs.email.value, this.refs.password.value).then(response => {
-            if (!response.error) {
+            if (!response.is_error) {
                 this.setState({ registerComplete: true })
             } else {
-                this.setState({ errors: response.error });
+                this.setState({ errors: response.error_content });
             }
         });
     }
@@ -109,9 +109,9 @@ export class Register extends React.Component<any, any> {
             return <div className={authStyle.auth}>
                 <form className={authStyle.formAuth} onSubmit={(e) => this.handleSubmit(e)}>
                     <h2 className={authStyle.formAuthHeading}>Please register for access</h2>
-                    {this.state.errors.all &&
+                    {this.state.errors.general &&
                         <div className="alert alert-danger" role="alert">
-                            {this.state.errors.all}
+                            {this.state.errors.general}
                         </div>
                     }
                     <div className={this._formGroupClass(this.state.errors.username)}>

@@ -7,12 +7,18 @@ import { Landing } from './Landing';
 import { Header } from './Header';
 import AuthService from '../services/Auth';
 
+export class RoutePaths {
+    public static Landing: string = "/";
+    public static SignIn: string = "/sign-in";
+    public static Register: string = "/register";
+}
+
 export default class Routes extends React.Component<any, any> {
     render() {
         return <div>
-            <DefaultLayout exact path='/' component={Landing} />
-            <Route path='/sign-in' component={SignIn} />
-            <Route path='/register' component={Register} />
+            <DefaultLayout exact path={RoutePaths.Landing} component={Landing} />
+            <Route path={RoutePaths.SignIn} component={SignIn} />
+            <Route path={RoutePaths.Register} component={Register} />
             <Route path='/error/:code?' component={ErrorPage} />
         </div>
     }
@@ -29,7 +35,7 @@ const DefaultLayout = ({ component: Component, ...rest }: { component: any, path
             </div>
         ) : (
                 <Redirect to={{
-                    pathname: '/sign-in',
+                    pathname: RoutePaths.SignIn,
                     state: { from: props.location }
                 }} />
             )

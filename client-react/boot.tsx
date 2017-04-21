@@ -2,6 +2,12 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from './components/Routes';
+
+// Polyfills
+import 'whatwg-fetch';
+import './polyfills/object-assign';
+
+// Styles
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import './styles/global.css';
 

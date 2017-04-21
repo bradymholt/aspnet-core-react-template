@@ -121,7 +121,7 @@ namespace aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers
             }
             else
             {
-                return BadRequest(new { all = result.Errors.Select(x => x.Description) });
+                return BadRequest(new { general = result.Errors.Select(x => x.Description) });
             }
         }
 

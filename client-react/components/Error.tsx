@@ -3,7 +3,7 @@ import { Link, RouteComponentProps } from 'react-router-dom';
 
 export class ErrorPage extends React.Component<RouteComponentProps<any>, any> {
 
-    get getErrorCode() {
+    getErrorCode() {
         return this.props.match.params.code;
     }
 
@@ -21,11 +21,12 @@ export class ErrorPage extends React.Component<RouteComponentProps<any>, any> {
     }
 
     render() {
+        let code = this.getErrorCode();
         return <div>
             <h1>Error</h1>
             <p>{this.getErrorMessage()}</p>
-            {this.getErrorCode() &&
-                <p>Code: {this.getErrorCode()}</p>
+            {code &&
+                <p>Code: {code}</p>
             }
 
         </div>;

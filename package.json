@@ -10,6 +10,7 @@
     "pretest:react": "webpack --config ./client-react.test/webpack.config.js",
     "test:react": "mocha ./client-react.test/build/tests.js",
     "test": "npm run test:api && npm run test:react",
+    "migrate": "cd ./api/ && dotnet ef migrations add $(date +%s) && dotnet ef database update",
     "prestart": "docker-compose up -d",
     "start": "cd ./api && cross-env NODE_PATH=../node_modules/ ASPNETCORE_ENVIRONMENT=Development dotnet watch run",
     "start:release": "npm run prerelease && cd ./api/bin/Release/netcoreapp1.0/publish/ && dotnet api.dll",

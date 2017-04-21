@@ -48,6 +48,10 @@ To start the app for development, run this command.  This will:
 - Run dotnet watch run which will build the app (if changed), watch for changes and start the web server on http://localhost:5000
 - Run Webpack dev middleware with HMR via [ASP.NET JavaScriptServices](https://github.com/aspnet/JavaScriptServices)
 
+### `npm run migrate`
+
+After making changes to Entity Framework models, run this command to generate and run a migration.  A timestamp will be used for the migration name.
+
 ### `npm test`
 
 This will run the xUnit tests in api.test/ and the Mocha tests in client-react.test/.

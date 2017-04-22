@@ -19,8 +19,8 @@ export default class RestUtilities {
         return RestUtilities.request<T>('GET', url);
     }
 
-    static delete(url: string): Promise<IRestResponse<boolean>> {
-        return RestUtilities.request<boolean>('DELETE', url);
+    static delete(url: string): Promise<IRestResponse<void>> {
+        return RestUtilities.request<void>('DELETE', url);
     }
 
     static put<T>(url: string, data: Object | string): Promise<IRestResponse<T>> {
@@ -35,20 +35,25 @@ export default class RestUtilities {
 
         let isJsonResponse: boolean = false;
         let isBadRequest = false;
+        let body = data;
         let headers: { [key: string]: string } = {
             'Authorization': `Bearer ${AuthStore.getToken()}`,
             'Accept': 'application/json'
         };
 
         if (data) {
-            let contentType = (typeof data === 'object') ? 'application/json' : 'application/x-www-form-urlencoded';
-            headers['Content-Type'] = contentType;
+            if ((typeof data === 'object')) {
+                headers['Content-Type'] = 'application/json';
+                body = JSON.stringify(data);
+            } else {
+                headers['Content-Type'] = 'application/x-www-form-urlencoded';
+            }
         }
 
         return fetch(url, {
             method: method,
             headers: headers,
-            body: data,
+            body: body,
         }).then((response) => {
             if (response.status == 401) {
                 // Unauthorized; redirect to sign-in

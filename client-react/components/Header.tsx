@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Link, Redirect } from 'react-router-dom';
+import { RoutePaths } from './Routes';
 import AuthService from '../services/Auth';
 import AuthStore from '../stores/Auth';
 
@@ -18,7 +19,7 @@ export class Header extends React.Component<any, any> {
     render() {
         if (this.state.redirectToSignIn) {
             return (
-                <Redirect to="/" />
+                <Redirect to={RoutePaths.SignIn} />
             );
         }
 

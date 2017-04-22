@@ -1,19 +1,20 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
-import Routes from './components/Routes';
+import { Router } from 'react-router-dom';
+import Routes, { History } from './components/Routes';
 
 // Polyfills
 import 'whatwg-fetch';
 import './polyfills/object-assign';
+import './polyfills/array-find';
 
 // Styles
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import './styles/global.css';
 
 ReactDOM.render(
-    <Router>
-        <Routes/>
+    <Router history={History}>
+        <Routes />
     </Router>,
     document.getElementById("app")
 );

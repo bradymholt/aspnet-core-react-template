@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Link, Redirect, RouteComponentProps } from 'react-router-dom';
+import { RoutePaths } from './Routes';
 import AuthService from '../services/Auth';
 let authStyle = require('../styles/auth.styl');
 
@@ -32,7 +33,7 @@ export class SignIn extends React.Component<RouteComponentProps<any>, any> {
     render() {
         if (this.state.redirectToReferrer) {
             return (
-                <Redirect to="/" />
+                <Redirect to={RoutePaths.Landing} />
             );
         }
 

@@ -1,7 +1,10 @@
 import * as React from "react";
 import { Link, Redirect } from 'react-router-dom';
+import { RoutePaths } from './Routes';
 import { Contact } from './Contact';
-import ContactService, { IContact } from '../services/Contacts'
+import ContactService, { IContact } from '../services/Contacts';
+
+import { History } from './Routes';
 
 let contactService = new ContactService();
 
@@ -19,22 +22,41 @@ export class ContactList extends React.Component<any, any> {
     }
 
     delete(contact: IContact) {
-        let contacts = this.state.contacts;
-        contacts.splice(this.state.contacts.indexOf(contact), 1);
-        this.setState({ contacts });
+        contactService.delete(contact.contactId).then((response) => {
+            let updatedContacts = this.state.contacts;
+            updatedContacts.splice(updatedContacts.indexOf(contact), 1);
+            this.setState({ contacts: updatedContacts });
+        });
     }
 
     edit(contact: IContact) {
+        History.push(`${RoutePaths.Landing}/edit`);
         this.setState({ editContact: contact });
     }
 
     add() {
-        this.setState({ editContact: {}, isAddMode: true });
+        let newContact: IContact = {
+            lastName: '', firstName: '', email: '', phone: ''
+        };
+        this.setState({ editContact: newContact, isAddMode: true });
     }
 
     onSave(contact: IContact) {
-        contactService.save(contact);
-        this.setState({ editContact: null, isAddMode: false, contacts: [] });
+        let contacts = this.state.contacts;
+
+        if (this.state.isAddMode) {
+            contactService.create(contact).then((response) => {
+                contacts.push(response.content);
+                this.setState({ editContact: null, isAddMode: false, contacts: contacts });
+            });
+        } else {
+            contactService.update(contact).then((response) => {
+                let existingContact = contacts.find((c) => c.contactId == contact.contactId);
+                let updatedContact = Object.assign({}, existingContact, response.content) as IContact;
+                contacts[contacts.indexOf(existingContact)] = updatedContact;
+                this.setState({ editContact: null, isAddMode: false, contacts: contacts });
+            });
+        }
     }
 
     render() {
@@ -53,7 +75,7 @@ export class ContactList extends React.Component<any, any> {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.contacts.map(contact =>
+                        {this.state.contacts && this.state.contacts.map((contact, index) =>
                             <tr key={contact.contactId}>
                                 <td>{contact.lastName}</td>
                                 <td>{contact.firstName}</td>

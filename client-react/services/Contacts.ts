@@ -1,7 +1,7 @@
 import RestUtilities from './RestUtilities';
 
 export interface IContact {
-    contactId: number,
+    contactId?: number,
     lastName: string;
     firstName: string;
     phone: string;
@@ -21,15 +21,15 @@ export default class Contacts {
         return RestUtilities.get<Array<IContact>>(`/api/contacts/search/?q=${query}`);
     }
 
-    save(contact: IContact) {
-        return RestUtilities.put<IContact>('/api/contacts', contact);
+    update(contact: IContact) {
+        return RestUtilities.put<IContact>(`/api/contacts/${contact.contactId}`, contact);
     }
 
     create(contact: IContact) {
         return RestUtilities.post<IContact>('/api/contacts', contact);
     }
 
-    delete(contactId: string) {
+    delete(contactId: number) {
         return RestUtilities.delete(`/api/contacts/${contactId}`);
     }
 }

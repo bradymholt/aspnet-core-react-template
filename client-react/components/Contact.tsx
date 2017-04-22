@@ -29,9 +29,8 @@ export class Contact extends React.Component<ContactProps, any> {
             [name]: value
         }
 
-        let updated = Object.assign({}, this.props.contact, contactUpdates);
         this.setState({
-            contact: updated
+            contact: Object.assign(this.state.contact, contactUpdates)
         });
     }
 
@@ -46,23 +45,23 @@ export class Contact extends React.Component<ContactProps, any> {
     render() {
         return <form onSubmit={(e) => this.handleSubmit(e)}>
             <div className={this._formGroupClass(this.state.errors.lastName)}>
-                <label htmlFor="inputLastName" className="form-control-label">First Name</label>
-                <input type="text" name="name" id="inputLastName" value={this.state.contact.lastName} onChange={(e) => this.handleInputChange(e)} className="form-control form-control-danger" required />
+                <label htmlFor="inputLastName" className="form-control-label">Last Name</label>
+                <input type="text" name="lastName" id="inputLastName" value={this.state.contact.lastName} onChange={(e) => this.handleInputChange(e)} className="form-control form-control-danger" required />
                 <div className="form-control-feedback">{this.state.errors.lastName}</div>
             </div>
             <div className={this._formGroupClass(this.state.errors.firstName)}>
                 <label htmlFor="inputFirstName" className="form-control-label">First Name</label>
-                <input type="text" id="inputFirstName" ref="firstName" value={this.state.contact.firstName} className="form-control form-control-danger" required />
+                <input type="text" name="firstName" id="inputFirstName" value={this.state.contact.firstName} onChange={(e) => this.handleInputChange(e)} className="form-control form-control-danger" required />
                 <div className="form-control-feedback">{this.state.errors.firstName}</div>
             </div>
             <div className={this._formGroupClass(this.state.errors.email)}>
                 <label htmlFor="inputEmail" className="form-control-label">Email</label>
-                <input type="email" id="inputEmail" ref="email" value={this.state.contact.email} className="form-control form-control-danger" required />
+                <input type="email" name="email" id="inputEmail" value={this.state.contact.email} onChange={(e) => this.handleInputChange(e)} className="form-control form-control-danger" required />
                 <div className="form-control-feedback">{this.state.errors.email}</div>
             </div>
             <div className={this._formGroupClass(this.state.errors.phone)}>
                 <label htmlFor="inputPhone" className="form-control-label">Phone</label>
-                <input type="tel" id="inputPhone" ref="phone" value={this.state.contact.phone} className="form-control form-control-danger" required />
+                <input type="tel" name="phone" id="inputPhone" value={this.state.contact.phone} onChange={(e) => this.handleInputChange(e)} className="form-control form-control-danger" required />
                 <div className="form-control-feedback">{this.state.errors.phone}</div>
             </div>
             <button className="btn btn-lg btn-primary btn-block" type="submit">Save</button>

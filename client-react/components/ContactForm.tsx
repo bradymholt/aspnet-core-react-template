@@ -1,7 +1,7 @@
 import 'object-assign';
 import * as React from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import ContactService from '../services/Contacts'
+import ContactService, { IContact } from '../services/Contacts'
 
 let contactService = new ContactService();
 
@@ -10,7 +10,7 @@ interface ContactProps {
     onSave: any;
 }
 
-export class Contact extends React.Component<ContactProps, any> {
+export class ContactForm extends React.Component<ContactProps, any> {
     state = {
         contact: this.props.contact,
         errors: {} as { [key: string]: string }
@@ -18,7 +18,7 @@ export class Contact extends React.Component<ContactProps, any> {
 
     handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        this.props.onSave(this.state.contact);
+        this.onSave(this.state.contact);
     }
 
     handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -32,6 +32,27 @@ export class Contact extends React.Component<ContactProps, any> {
         this.setState({
             contact: Object.assign(this.state.contact, contactUpdates)
         });
+    }
+
+    onSave(contact: IContact) {
+        if (!this.state.contact.contactId) {
+            contactService.create(contact).then((response) => {
+                if (!response.is_error) {
+                    // back to parent
+                    this.props.onSave(response.content);
+                } else {
+                    this.setState({ errors: response.error_content });
+                }
+            });
+        } else {
+            contactService.update(contact).then((response) => {
+                if (!response.is_error) {
+                    this.props.onSave(response.content);
+                } else {
+                    this.setState({ errors: response.error_content });
+                }
+            });
+        }
     }
 
     _formGroupClass(field: string) {
@@ -56,12 +77,12 @@ export class Contact extends React.Component<ContactProps, any> {
             </div>
             <div className={this._formGroupClass(this.state.errors.email)}>
                 <label htmlFor="inputEmail" className="form-control-label">Email</label>
-                <input type="email" name="email" id="inputEmail" value={this.state.contact.email} onChange={(e) => this.handleInputChange(e)} className="form-control form-control-danger" required />
+                <input type="email" name="email" id="inputEmail" value={this.state.contact.email} onChange={(e) => this.handleInputChange(e)} className="form-control form-control-danger" />
                 <div className="form-control-feedback">{this.state.errors.email}</div>
             </div>
             <div className={this._formGroupClass(this.state.errors.phone)}>
                 <label htmlFor="inputPhone" className="form-control-label">Phone</label>
-                <input type="tel" name="phone" id="inputPhone" value={this.state.contact.phone} onChange={(e) => this.handleInputChange(e)} className="form-control form-control-danger" required />
+                <input type="tel" name="phone" id="inputPhone" value={this.state.contact.phone} onChange={(e) => this.handleInputChange(e)} className="form-control form-control-danger" />
                 <div className="form-control-feedback">{this.state.errors.phone}</div>
             </div>
             <button className="btn btn-lg btn-primary btn-block" type="submit">Save</button>

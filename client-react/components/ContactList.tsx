@@ -1,9 +1,8 @@
 import * as React from "react";
 import { Link, Redirect } from 'react-router-dom';
 import { RoutePaths } from './Routes';
-import { Contact } from './Contact';
+import { ContactForm } from './ContactForm';
 import ContactService, { IContact } from '../services/Contacts';
-
 import { History } from './Routes';
 
 let contactService = new ContactService();
@@ -30,7 +29,6 @@ export class ContactList extends React.Component<any, any> {
     }
 
     edit(contact: IContact) {
-        History.push(`${RoutePaths.Landing}/edit`);
         this.setState({ editContact: contact });
     }
 
@@ -45,23 +43,19 @@ export class ContactList extends React.Component<any, any> {
         let contacts = this.state.contacts;
 
         if (this.state.isAddMode) {
-            contactService.create(contact).then((response) => {
-                contacts.push(response.content);
-                this.setState({ editContact: null, isAddMode: false, contacts: contacts });
-            });
+            contacts.push(contact);
+            this.setState({ editContact: null, isAddMode: false, contacts: contacts });
         } else {
-            contactService.update(contact).then((response) => {
-                let existingContact = contacts.find((c) => c.contactId == contact.contactId);
-                let updatedContact = Object.assign({}, existingContact, response.content) as IContact;
-                contacts[contacts.indexOf(existingContact)] = updatedContact;
-                this.setState({ editContact: null, isAddMode: false, contacts: contacts });
-            });
+            let existingContact = contacts.find((c) => c.contactId == contact.contactId);
+            let updatedContact = Object.assign({}, existingContact, contact) as IContact;
+            contacts[contacts.indexOf(existingContact)] = updatedContact;
+            this.setState({ editContact: null, isAddMode: false, contacts: contacts });
         }
     }
 
     render() {
         if (this.state.editContact || this.state.isAddMode) {
-            return <Contact onSave={(c: any) => this.onSave(c)} contact={this.state.editContact}></Contact>
+            return <ContactForm onSave={(c: any) => this.onSave(c)} contact={this.state.editContact}></ContactForm>
         } else {
             return <div>
                 <table className="table">

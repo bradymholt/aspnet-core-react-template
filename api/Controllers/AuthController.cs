@@ -133,7 +133,7 @@ namespace aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers
             var confirmResult = await _userManager.ConfirmEmailAsync(user, token);
             if (confirmResult.Succeeded)
             {
-                return Redirect("/sign-in/?confirmed=1");
+                return Redirect("/?confirmed=1");
             }
             else
             {

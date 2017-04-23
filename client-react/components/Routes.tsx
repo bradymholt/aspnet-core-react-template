@@ -12,21 +12,18 @@ const History = createBrowserHistory();
 export { History };
 
 export class RoutePaths {
-    public static Landing: string = "/landing";
-    public static SignIn: string = "/sign-in";
-    public static Register: string = "/register";
+    public static Landing: string = "/landing/";
+    public static SignIn: string = "/";
+    public static Register: string = "/register/";
 }
 
 export default class Routes extends React.Component<any, any> {
     render() {
         return <div>
-            <DefaultLayout path={RoutePaths.Landing} component={Landing} />
-            <Route path={RoutePaths.SignIn} component={SignIn} />
+            <Route exact path={RoutePaths.SignIn} component={SignIn} />
             <Route path={RoutePaths.Register} component={Register} />
+            <DefaultLayout path={RoutePaths.Landing} component={Landing} />
             <Route path='/error/:code?' component={ErrorPage} />
-            <Switch>
-                <Redirect from='/' to={RoutePaths.Landing} />
-            </Switch>
         </div>
     }
 }

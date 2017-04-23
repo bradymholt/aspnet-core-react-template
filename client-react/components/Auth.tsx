@@ -33,7 +33,7 @@ export class SignIn extends React.Component<RouteComponentProps<any>, any> {
     render() {
         if (this.state.redirectToReferrer) {
             return (
-                <Redirect to={RoutePaths.Landing} />
+                <Redirect to={RoutePaths.Contacts} />
             );
         }
 

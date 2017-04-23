@@ -4,27 +4,26 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 import { SignIn, Register } from './Auth';
 import { ErrorPage } from './Error';
-import { Landing } from './Landing';
+import { Contacts } from './Contacts';
 import { Header } from './Header';
 import AuthService from '../services/Auth';
 
-const History = createBrowserHistory();
-export { History };
-
 export class RoutePaths {
-    public static Landing: string = "/landing/";
+    public static Contacts: string = "/contacts";
+    public static ContactEdit: string = "/contacts/edit/:id";
+    public static ContactNew: string = "/contacts/new";
     public static SignIn: string = "/";
     public static Register: string = "/register/";
 }
 
 export default class Routes extends React.Component<any, any> {
     render() {
-        return <div>
+        return <Switch>
             <Route exact path={RoutePaths.SignIn} component={SignIn} />
             <Route path={RoutePaths.Register} component={Register} />
-            <DefaultLayout path={RoutePaths.Landing} component={Landing} />
+            <DefaultLayout path={RoutePaths.Contacts} component={Contacts} />
             <Route path='/error/:code?' component={ErrorPage} />
-        </div>
+        </Switch>
     }
 }
 

@@ -3,11 +3,11 @@ import { Link, Redirect } from 'react-router-dom';
 import { RoutePaths } from './Routes';
 import { ContactForm } from './ContactForm';
 import ContactService, { IContact } from '../services/Contacts';
-import { History } from './Routes';
+import { RouteComponentProps } from "react-router";
 
 let contactService = new ContactService();
 
-export class ContactList extends React.Component<any, any> {
+export class ContactList extends React.Component<RouteComponentProps<any>, any> {
     state = {
         contacts: [] as Array<IContact>,
         editContact: null as Object,
@@ -28,61 +28,32 @@ export class ContactList extends React.Component<any, any> {
         });
     }
 
-    edit(contact: IContact) {
-        this.setState({ editContact: contact });
-    }
-
-    add() {
-        let newContact: IContact = {
-            lastName: '', firstName: '', email: '', phone: ''
-        };
-        this.setState({ editContact: newContact, isAddMode: true });
-    }
-
-    onSave(contact: IContact) {
-        let contacts = this.state.contacts;
-
-        if (this.state.isAddMode) {
-            contacts.push(contact);
-            this.setState({ editContact: null, isAddMode: false, contacts: contacts });
-        } else {
-            let existingContact = contacts.find((c) => c.contactId == contact.contactId);
-            let updatedContact = Object.assign({}, existingContact, contact) as IContact;
-            contacts[contacts.indexOf(existingContact)] = updatedContact;
-            this.setState({ editContact: null, isAddMode: false, contacts: contacts });
-        }
-    }
-
     render() {
-        if (this.state.editContact || this.state.isAddMode) {
-            return <ContactForm onSave={(c: any) => this.onSave(c)} contact={this.state.editContact}></ContactForm>
-        } else {
-            return <div>
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th>Last Name</th>
-                            <th>First Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.contacts && this.state.contacts.map((contact, index) =>
-                            <tr key={contact.contactId}>
-                                <td>{contact.lastName}</td>
-                                <td>{contact.firstName}</td>
-                                <td>{contact.email}</td>
-                                <td>{contact.phone}</td>
-                                <td><button type="button" className="btn btn-link" onClick={(e) => this.edit(contact)}>edit</button>&nbsp;
+        return <div>
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.state.contacts && this.state.contacts.map((contact, index) =>
+                        <tr key={contact.contactId}>
+                            <td>{contact.lastName}</td>
+                            <td>{contact.firstName}</td>
+                            <td>{contact.email}</td>
+                            <td>{contact.phone}</td>
+                            <td><Link to={`/contacts/edit/${contact.contactId}`}>edit</Link>
                             <button type="button" className="btn btn-link" onClick={(e) => this.delete(contact)}>delete</button></td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-                <button type="button" className="btn btn-link" onClick={(e) => this.add()}>add</button>
-            </div>
-        };
-    }
+                        </tr>
+                    )}
+                </tbody>
+            </table>
+            <Link to="/contacts/new">add</Link>
+        </div>
+    };
 }

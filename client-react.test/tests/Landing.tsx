@@ -4,10 +4,10 @@ import * as React from "react";
 import * as ReactDOM from "react-dom"
 import * as ReactTestUtilsfrom from "react-addons-test-utils";
 
-import { Landing } from '../../client-react/components/Landing';
+import { Contacts } from '../../client-react/components/Contacts';
 
-describe("<Landing/> component ", function () {    it("renders a h1", function () {
-        const wrapper = mount(<Landing compiler="foo" framework="bar" />);
+describe("<Contacts/> component ", function () {    it("renders a h1", function () {
+        const wrapper = mount(<Contacts />);
         expect(wrapper.find('h1')).to.have.length(1);
     });
 });

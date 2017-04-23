@@ -1,5 +1,5 @@
 import AuthStore from '../stores/Auth';
-import { RoutePaths, History } from '../components/Routes';
+import { RoutePaths } from '../components/Routes';
 
 export interface IErrorContent {
     error: string;
@@ -58,8 +58,7 @@ export default class RestUtilities {
             if (response.status == 401) {
                 // Unauthorized; redirect to sign-in
                 AuthStore.removeToken();
-                History.push(`${RoutePaths.SignIn}?expired=1`);
-                throw Error("Not Authorized");
+                window.location.replace(`${RoutePaths.SignIn}?expired=1`);
             }
 
             isBadRequest = (response.status == 400);

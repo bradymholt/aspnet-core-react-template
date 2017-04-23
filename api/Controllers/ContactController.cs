@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using aspnetCoreReactTemplate.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
-using System;
+using System.Linq;
 
 namespace aspnetCoreReactTemplate.Controllers
 {
@@ -23,14 +23,14 @@ namespace aspnetCoreReactTemplate.Controllers
         [HttpGet]
         public IEnumerable<Contact> Get()
         {
-            return _context.Contacts;
+            return _context.Contacts.OrderBy((o)=> o.lastName);
         }
 
         // GET api/contacts/5
         [HttpGet("{id}", Name = "GetContact")]
-        public string Get(int id)
+        public Contact Get(int id)
         {
-            return "value";
+            return _context.Contacts.Find(id);
         }
 
         // POST api/contacts

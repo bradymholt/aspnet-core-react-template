@@ -29,6 +29,14 @@ export default class Contacts {
         return RestUtilities.post<IContact>('/api/contacts', contact);
     }
 
+    save(contact: IContact) {
+        if (contact.contactId) {
+            return this.update(contact);
+        } else {
+            return this.create(contact);
+        }
+    }
+
     delete(contactId: number) {
         return RestUtilities.delete(`/api/contacts/${contactId}`);
     }

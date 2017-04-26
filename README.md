@@ -24,7 +24,7 @@ This app is a template application using ASP.NET Core for a REST/JSON API server
 ## Setup
 
 1. Install the following:
-   - [.NET Core](https://www.microsoft.com/net/core)
+   - [.NET Core 1.1](https://www.microsoft.com/net/core)
    - [Node.js >= 4.0](https://nodejs.org/en/download/)
    - [Ansible >= 2.0](http://docs.ansible.com/ansible/intro_installation.html)
    - [Docker](https://docs.docker.com/engine/installation/)

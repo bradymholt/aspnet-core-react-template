@@ -1,27 +1,21 @@
 import * as React from "react";
 import { Link, Redirect } from 'react-router-dom';
+import { RouteComponentProps } from "react-router";
 import { RoutePaths } from './Routes';
 import AuthService from '../services/Auth';
 import AuthStore from '../stores/Auth';
 
 let authService = new AuthService();
 
-export class Header extends React.Component<any, any> {
-    state = {
-        redirectToSignIn: false
-    }
-
+export class Header extends React.Component<RouteComponentProps<any>, any> {
     signOut() {
         authService.signOut();
-        this.setState({ redirectToSignIn: true });
+        this.props.history.push(RoutePaths.SignIn, { signedOut: true });
     }
 
     render() {
-        if (this.state.redirectToSignIn) {
-            return (
-                <Redirect to={RoutePaths.SignIn} />
-            );
-        }
+        const search = this.props.location.search;
+        const params = new URLSearchParams(search);
 
         return <nav className="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
             <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
@@ -51,11 +45,7 @@ export class Header extends React.Component<any, any> {
                         </div>
                     </li>
                 </ul>
-                <form className="form-inline my-2 my-lg-0">
-                    <input className="form-control mr-sm-2" type="text" placeholder="Search" />
-                    <button className="btn btn-outline-success my-2 my-sm-0 search" type="submit">Search</button>&nbsp;
-                    <button className="btn btn-outline-warning my-2 my-sm-0" type="button" onClick={() => this.signOut()}>Sign out</button>
-                </form>
+                <button className="btn btn-outline-warning my-2 my-sm-0" type="button" onClick={() => this.signOut()}>Sign out</button>
             </div>
         </nav>;
     }

@@ -33,6 +33,15 @@ namespace aspnetCoreReactTemplate.Controllers
             return _context.Contacts.Find(id);
         }
 
+        // GET api/contacts/?=
+        [HttpGet("search")]
+        public IEnumerable<Contact> Search(string q)
+        {
+            return _context.Contacts.
+            Where((c)=> c.lastName.Contains(q) || c.firstName.Contains(q)).
+            OrderBy((o) => o.lastName);
+        }
+
         // POST api/contacts
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]Contact model)

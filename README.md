@@ -100,7 +100,7 @@ This project has [Visual Studio Code](https://code.visualstudio.com/) test and d
 
 With the following debugger launch configs, you can set breakpoints in api/ or the the Mocha tests in client-react.test/ and have full debugging support.
 
-- **Debug api/ (server)** - Runs the vscode debugger (breakpoints) on the api/ .NET Core
+- **Debug api/ (server)** - Runs the vscode debugger (breakpoints) on the api/ .NET Core app
 - **Debug client-react.test/ (Mocha tests)** - Runs the vscode debugger on the client-react.test/ Mocha tests
 
 ## Credit

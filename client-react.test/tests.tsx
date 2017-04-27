@@ -1,4 +1,5 @@
 import * as jsdom from "jsdom";
+import * as localStorage from './polyfill/localStorage.js';
 
 before(function () {
     const doc = jsdom.jsdom('<!doctype html><html><body></body></html>');
@@ -7,14 +8,7 @@ before(function () {
     (global as any).document = doc;
     (global as any).window = win;
 
-    (window as any).localStorage = (window as any).sessionStorage = {
-        getItem: function (key:string) {
-            return this[key];
-        },
-        setItem: function (key:string, value:Object) {
-            this[key] = value;
-        }
-    };
+    localStorage.polyfill();
 
-    console.log("Successfully mocked a DOM with jsdom.");
+    console.log("Successfully mocked a DOM with jsdom and polyfilled localStorage.");
 });

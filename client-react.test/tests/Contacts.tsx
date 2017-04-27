@@ -1,40 +1,30 @@
 import { expect } from "chai";
-import { mount } from 'enzyme'
+import { mount, shallow } from 'enzyme'
 import * as React from "react";
-import * as ReactDOM from "react-dom"
-import * as ReactTestUtilsfrom from "react-addons-test-utils";
 import { MemoryRouter as Router, Route } from 'react-router-dom';
-import * as sinon from 'sinon';
-import Routes from '../../client-react/components/Routes';
+import { stubFetch } from '../utils';
+
 import { Contacts } from '../../client-react/components/Contacts';
 
 describe("<Contacts/> component ", function () {
-    it("renders a h1", function (done) {
-        var res = {
-            status: 200,
-            headers: {
-                get: function (key: string) { return 'application/json'; }
-            },
-            json: function () { return Promise.resolve([{ contactId: 1, lastName: 'holt', firstName: 'brady' }]) }
-        };
-        (global as any).fetch = function () { }
-        sinon.stub(global, 'fetch').resolves(res);
+    it("renders a h1", function () {
+        let emptyArgs: any = {};
+        const wrapper = shallow(<Contacts {...emptyArgs} />);
+        expect(wrapper.find('h1')).to.have.length(1);
+    });
 
-        const mountWithRouter = (args: any) => mount(<Contacts {...args} />);
+    it("renders a list of contacts", function (done) {
+        let fakeContactsData = [{ contactId: 1, lastName: 'Smith', firstName: 'John' }];
+        let fetchStub = stubFetch(fakeContactsData);
+
         const wrapper = mount(<Router>
             <Route component={Contacts} />
         </Router>);
 
-        setImmediate(function(){
-            expect(wrapper.find('tr').last().html()).to.contain("holt");
+        setImmediate(function () {
+            expect(wrapper.find('tr').last().html()).to.contain(fakeContactsData[fakeContactsData.length - 1].lastName);
+            fetchStub.restore();
             done();
         });
-        // return new Promise((resolve, reject) => {
-        //     setTimeout(function () {
-        //         expect(wrapper.find('tr')).to.have.length(1);
-        //         resolve();
-        //     }, 1000)
-        // });
-
     });
 });

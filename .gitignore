@@ -15,8 +15,9 @@ typings/
 npm-debug.log
 
 # client-react
-/client-react/components/*.js
-/client-react.test/build/
+client-react/components/*.js
+client-react.test/build/
+!/client-react.test/build/client-react/styles
 
 *.js.map
 

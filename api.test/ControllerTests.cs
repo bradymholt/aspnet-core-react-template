@@ -2,7 +2,7 @@
 
 namespace Tests
 {
-    public class Tests
+    public class ControllerTests
     {
         [Fact]
         public void Test1()

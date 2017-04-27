@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug server",
+      "name": "Debug api/ (server)",
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
@@ -18,7 +18,7 @@
       "internalConsoleOptions": "openOnSessionStart"
     },
     {
-      "name": "Debug client-react Mocha tests",
+      "name": "Debug client-react.test/ (Mocha tests)",
       "type": "node",
       "request": "launch",
       "protocol": "inspector",

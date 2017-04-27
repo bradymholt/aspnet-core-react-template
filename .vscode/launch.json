@@ -18,28 +18,6 @@
       "internalConsoleOptions": "openOnSessionStart"
     },
     {
-      "name": "Debug server xUnit tests",
-      "type": "coreclr",
-      "request": "launch",
-      "preLaunchTask": "build",
-      "program": "/usr/local/share/dotnet/dotnet",
-      "args": [
-        "exec",
-        "--runtimeconfig",
-        "${workspaceRoot}/api.test/bin/Debug/netcoreapp1.0/api.test.runtimeconfig.json",
-        "--depsfile",
-        "${workspaceRoot}/api.test/bin/Debug/netcoreapp1.0/api.test.deps.json",
-        "--additionalprobingpath",
-        "/Users/bholt/.nuget/packages",
-        "/Users/bholt/.nuget/packages/dotnet-test-xunit/1.0.0-rc2-build10015/lib/netcoreapp1.0/dotnet-test-xunit.dll",
-        "${workspaceRoot}/api.test/bin/Debug/netcoreapp1.0/api.test.dll",
-        "-namespace",
-        "Tests"
-      ],
-      "cwd": "${workspaceRoot}",
-      "stopAtEntry": false
-    },
-    {
       "name": "Debug client-react Mocha tests",
       "type": "node",
       "request": "launch",

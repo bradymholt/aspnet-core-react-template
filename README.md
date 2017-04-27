@@ -87,6 +87,22 @@ This script will:
 This template includes a [MailCatcher](https://mailcatcher.me/) Docker image so that when email is sent during development (i.e. new user registration), it can be viewed
 in the MailCacher web interface at [http://localhost:1080/](http://localhost:1080/).
 
+## Visual Studio Code config
+
+This project has [Visual Studio Code](https://code.visualstudio.com/) test and debugger launch config located in .vscode/.
+
+### Tasks
+
+- **Command+Shift+B** - Runs the "build" task which builds the api/ project
+- **Command+Shift+T** - Runs the "test" task which runs the xUnit tests in api.test/ and Mocha/Enzyme tests in client-react.test/.
+
+### Debug Launcher
+
+With the following debugger launch configs, you can set breakpoints in api/ or the the Mocha tests in client-react.test/ and have full debugging support.
+
+- **Debug api/ (server)** - Runs the vscode debugger (breakpoints) on the api/ .NET Core
+- **Debug client-react.test/ (Mocha tests)** - Runs the vscode debugger on the client-react.test/ Mocha tests
+
 ## Credit
 
 The following resources were helpful in setting up this template:

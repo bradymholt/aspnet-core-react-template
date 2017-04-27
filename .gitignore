@@ -16,11 +16,13 @@ npm-debug.log
 
 # client-react
 client-react/components/*.js
-client-react.test/build/
-!/client-react.test/build/client-react/styles
-
-*.js.map
+client-react.test/build
+!client-react.test/build/client-react/styles/
 
 # ops
 ops/hosts
 ops/*.retry
+
+# other
+*.js.map
+

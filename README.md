@@ -89,7 +89,7 @@ in the MailCacher web interface at [http://localhost:1080/](http://localhost:108
 
 ## Visual Studio Code config
 
-This project has [Visual Studio Code](https://code.visualstudio.com/) test and debugger launch config located in .vscode/.
+This project has [Visual Studio Code](https://code.visualstudio.com/) tasks and debugger launch config located in .vscode/.
 
 ### Tasks
 

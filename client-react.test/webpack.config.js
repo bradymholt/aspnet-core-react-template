@@ -21,11 +21,24 @@ module.exports = {
     },
 
     module: {
-        loaders: [
+        rules: [
+            {
+                test: /\.styl$/,
+                use: [{
+                    loader: 'css-loader',
+                    options: {
+                        modules: true,
+                        camelCase: true,
+                        importLoaders: 2,
+                        sourceMap: false,
+                        localIdentName: "[local]___[hash:base64:5]"
+                    }
+                }, {
+                    loader: 'stylus-loader'
+                }]
+            },
             // Use react-hot for HMR and then ts-loader to transpile TS (pass path to tsconfig because it is not in root (cwd) path)
-            { test: /\.ts(x?)$/, loaders: ['ts-loader'] },
-            { test: /\.styl$/, loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader?modules&importLoaders=2&localIdentName=[local]___[hash:base64:5]!stylus-loader' }) },
-            { test: /\.css/, loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' }) }
+            { test: /\.ts(x?)$/, loaders: ['ts-loader'] }
         ]
     },
 
@@ -35,11 +48,9 @@ module.exports = {
         mocha: true,
         chai: true,
         enzyme: true
-
     },
 
     devtool: 'source-map',
     plugins: [
-        new ExtractTextPlugin("[name].css")
     ]
 };

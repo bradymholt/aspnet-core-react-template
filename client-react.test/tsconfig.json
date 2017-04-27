@@ -3,12 +3,14 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "module": "es2015",
-    "target": "es5",
+    "target":"es2015",
     "jsx": "react",
-    "outDir": "./build",
-    "skipLibCheck": true
+    "outDir": "./build"
   },
+  "files": [
+    "./global.tsx"
+  ],
   "include": [
-    "./boot.tsx"
+    "./tests/*.ts*"
   ]
 }

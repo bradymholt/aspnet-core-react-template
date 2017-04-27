@@ -3,7 +3,6 @@ import { Link, Redirect, RouteComponentProps } from 'react-router-dom';
 import { RoutePaths } from './Routes';
 import AuthService from '../services/Auth';
 let authStyle = require('../styles/auth.styl');
-
 let authService = new AuthService();
 
 export class SignIn extends React.Component<RouteComponentProps<any>, any> {

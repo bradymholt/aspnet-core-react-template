@@ -7,5 +7,14 @@ before(function () {
     (global as any).document = doc;
     (global as any).window = win;
 
+    (window as any).localStorage = (window as any).sessionStorage = {
+        getItem: function (key:string) {
+            return this[key];
+        },
+        setItem: function (key:string, value:Object) {
+            this[key] = value;
+        }
+    };
+
     console.log("Successfully mocked a DOM with jsdom.");
 });

@@ -8,10 +8,10 @@ This app is a template application using ASP.NET Core for a REST/JSON API server
   - PostgresSQL
   - Entity Framework Core w/ EF Migrations
   - JSON Web Token (JWT) authorization with OpenIddict
-  - Docker used for development PostgresSQL database
+  - Docker used for development PostgresSQL database and MailCatcher server
 - Client
   - React
-  - Webpack for asset bundling and HMR
+  - Webpack for asset bundling and HMR (Hot Module Replacement)
   - CSS Modules
 - Testing
   - xUnit for .NET Core
@@ -25,7 +25,7 @@ This app is a template application using ASP.NET Core for a REST/JSON API server
 
 1. Install the following:
    - [.NET Core 1.1](https://www.microsoft.com/net/core)
-   - [Node.js >= 4.0](https://nodejs.org/en/download/)
+   - [Node.js >= v7.8.0](https://nodejs.org/en/download/)
    - [Ansible >= 2.0](http://docs.ansible.com/ansible/intro_installation.html)
    - [Docker](https://docs.docker.com/engine/installation/)
 2. Run `npm install && npm start`
@@ -38,7 +38,7 @@ This app is a template application using ASP.NET Core for a REST/JSON API server
 When first cloning the repo or adding new dependencies, run this command.  This will:
 
 - Install Node dependencies from package.json
-- Install .NET Core dependencies from api/api.csproj and api.test/api.test.csproj (dotnet restore)
+- Install .NET Core dependencies from api/api.csproj and api.test/api.test.csproj (using dotnet restore)
 
 ### `npm start`
 
@@ -50,15 +50,15 @@ To start the app for development, run this command.  This will:
 
 ### `npm run migrate`
 
-After making changes to Entity Framework models, run this command to generate and run a migration.  A timestamp will be used for the migration name.
+After making changes to Entity Framework models in `api/Models/`, run this command to generate and run a migration on the database.  A timestamp will be used for the migration name.
 
 ### `npm test`
 
-This will run the xUnit tests in api.test/ and the Mocha tests in client-react.test/.
+This will run the xUnit tests in api.test/ and the Mocha/Enzyme tests in client-react.test/.
 
 ### `npm run provision:prod`
 
- _Before running this script, you need to create a ops/hosts file first.  See the [ops README](ops/) for instructions._
+ _Before running this script, you need to create an ops/hosts file first.  See the [ops README](ops/) for instructions._
 
  This will run the ops/provision.yml Ansible playbook and provision hosts in ops/hosts inventory file.  This prepares the hosts to recieve deployments by doing the following:
   - Install Nginx
@@ -89,7 +89,7 @@ in the MailCacher web interface at [http://localhost:1080/](http://localhost:108
 
 ## Credit
 
-The following posts were helpful in setting up this template.
+The following resources were helpful in setting up this template:
 
 - [Sample for implementing Authentication with a React Flux app and JWTs](https://github.com/auth0-blog/react-flux-jwt-authentication-sample)
 - [Angular 2, React, and Knockout apps on ASP.NET Core](http://blog.stevensanderson.com/2016/05/02/angular2-react-knockout-apps-on-aspnet-core/)
@@ -98,3 +98,4 @@ The following posts were helpful in setting up this template.
 - [Stack Overflow - Token Based Authentication in ASP.NET Core](http://stackoverflow.com/questions/30546542/token-based-authentication-in-asp-net-core-refreshed)
 - [SPA example of a token based authentication implementation using the Aurelia front end framework and ASP.NET core]( https://github.com/alexandre-spieser/AureliaAspNetCoreAuth)
 - [A Real-World React.js Setup for ASP.NET Core and MVC5](https://www.simple-talk.com/dotnet/asp-net/a-real-world-react-js-setup-for-asp-net-core-and-mvc)
+- My own perseverance because this took a _lot_ of time to get right 😁

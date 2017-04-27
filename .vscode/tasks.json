@@ -24,10 +24,10 @@
       "isTestCommand": true
     },
     {
-      "taskName": "pretest:react",
+      "taskName": "pretest:client",
       "args":[
         "run",
-        "pretest:react"
+        "pretest:client"
       ]
     }
   ]

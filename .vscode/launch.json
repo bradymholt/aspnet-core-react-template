@@ -43,28 +43,30 @@
       "name": "Debug client-react Mocha tests",
       "type": "node",
       "request": "launch",
+      "protocol": "inspector",
       "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
       "stopOnEntry": false,
       "args": [
-        "client-react.test/build/tests.js"
+        "--require",
+        "ignore-styles",
+        "--recursive",
+        "client-react.test/build/client-react.test"
       ],
       "cwd": "${workspaceRoot}",
-      "preLaunchTask": "pretest:react",
+      "preLaunchTask": "pretest:client",
       "runtimeArgs": [
         "--nolazy"
       ],
       "env": {
         "NODE_ENV": "development"
       },
-      "console": "internalConsole",
-      "sourceMaps": true,
-      "outDir": "${workspaceRoot}/client-react.test/build/"
+      "sourceMaps": true
     },
     {
       "name": ".NET Core Attach",
       "type": "coreclr",
       "request": "attach",
-      "processId": "${command.pickProcess}"
+      "processId": "${command:pickProcess}"
     }
   ]
 }

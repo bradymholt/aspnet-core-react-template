@@ -50,8 +50,8 @@ namespace aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers
             {
                 return BadRequest(new
                 {
-                    ErrorId = OpenIdConnectConstants.Errors.UnsupportedGrantType,
-                    ErrorDescription = "The specified grant type is not supported."
+                    error = OpenIdConnectConstants.Errors.UnsupportedGrantType,
+                    error_description = "The specified grant type is not supported."
                 });
             }
 
@@ -61,8 +61,8 @@ namespace aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers
             {
                 return BadRequest(new
                 {
-                    ErrorId = OpenIdConnectConstants.Errors.InvalidGrant,
-                    ErrorDescription = "The username or password is invalid."
+                    error = OpenIdConnectConstants.Errors.InvalidGrant,
+                    error_description = "The username or password is invalid."
                 });
             }
 
@@ -71,8 +71,8 @@ namespace aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers
             {
                 return BadRequest(new
                 {
-                    ErrorId = "email_not_confirmed",
-                    ErrorDescription = "You must have a confirmed email to log in."
+                    error = "email_not_confirmed",
+                    error_description = "You must have a confirmed email to log in."
                 });
             }
 

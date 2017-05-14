@@ -24,7 +24,7 @@ export class SignIn extends React.Component<RouteComponentProps<any>, any> {
             if (!response.is_error) {
                 this.props.history.push(RoutePaths.Contacts);
             } else {
-                this.setState({ error: response.error_content.errorDescription });
+                this.setState({ error: response.error_content.error_description });
             }
         });
     }
@@ -63,9 +63,9 @@ export class SignIn extends React.Component<RouteComponentProps<any>, any> {
                     </div>
                 }
                 <label htmlFor="inputEmail" className="form-control-label sr-only">Email address</label>
-                <input type="email" id="inputEmail" ref="username" defaultValue="user@test.com" className="form-control form-control-danger" placeholder="Email address" required />
+                <input type="email" id="inputEmail" ref="username" defaultValue="user@test.com" className="form-control form-control-danger" placeholder="Email address"/>
                 <label htmlFor="inputPassword" className="form-control-label sr-only">Password</label>
-                <input type="password" id="inputPassword" ref="password" defaultValue="P2ssw0rd!" className="form-control" placeholder="Password" required />
+                <input type="password" id="inputPassword" ref="password" defaultValue="P2ssw0rd!" className="form-control" placeholder="Password" />
                 <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
             </form>
             <div className={authStyle.authEtc}>
@@ -121,12 +121,12 @@ export class Register extends React.Component<any, any> {
                     }
                     <div className={this._formGroupClass(this.state.errors.username)}>
                         <label htmlFor="inputEmail">Email address</label>
-                        <input type="email" id="inputEmail" ref="email" className="form-control" placeholder="Email address" required />
+                        <input type="email" id="inputEmail" ref="email" className="form-control" placeholder="Email address" />
                         <div className="form-control-feedback">{this.state.errors.username}</div>
                     </div>
                     <div className={this._formGroupClass(this.state.errors.password)}>
                         <label htmlFor="inputPassword">Password</label>
-                        <input type="password" id="inputPassword" ref="password" className="form-control" placeholder="Password" required />
+                        <input type="password" id="inputPassword" ref="password" className="form-control" placeholder="Password" />
                         <div className="form-control-feedback">{this.state.errors.password}</div>
                     </div>
                     <button className="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
@@ -149,7 +149,7 @@ export class RegisterComplete extends React.Component<RegisterCompleteProps, any
             <p>
                 A confirmation email has been sent to {this.props.email}. You will need to follow the provided link to confirm your email address before signing in.
             </p>
-            <Link className="btn btn-lg btn-primary btn-block" role="button" to="/sign-in">Sign in</Link>
+            <Link className="btn btn-lg btn-primary btn-block" role="button" to="/">Sign in</Link>
         </div>;
     }
 }

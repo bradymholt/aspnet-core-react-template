@@ -28,6 +28,6 @@
 
 - name: Configure app url
   lineinfile: dest="{{ deploy_directory }}/{{ appsetting_file }}"
-    regexp="url\":"
-    line="\"url\"{{':'}} \"http://{{webserver_name}}/\","
+    regexp="frontEndUrl\":"
+    line="\"frontEndUrl\"{{':'}} \"http://{{webserver_name}}/\","
     state="present"

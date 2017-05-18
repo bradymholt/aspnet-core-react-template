@@ -165,7 +165,7 @@ namespace aspnetCoreReactTemplate
                 AutomaticChallenge = true,
                 RequireHttpsMetadata = false,
                 Audience = "resource-server",
-                Authority = Configuration["url"]
+                Authority = Configuration["frontEndUrl"]
             });
 
             app.UseOpenIddict();

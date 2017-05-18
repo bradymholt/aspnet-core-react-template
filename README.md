@@ -13,6 +13,7 @@ This app is a template application using ASP.NET Core for a REST/JSON API server
   - React
   - Webpack for asset bundling and HMR (Hot Module Replacement)
   - CSS Modules
+  - Fetch API for REST requests
 - Testing
   - xUnit for .NET Core
   - Enzyme for React

@@ -21,6 +21,10 @@ This app is a template application using ASP.NET Core for a REST/JSON API server
 - DevOps
   - Ansible playbook for provisioning (Nginx reverse proxy, SSL via Let's Encrypt, PostgresSQL backups to S3)
   - Ansible playbook for deployment
+  
+## Demo
+
+[![Demo Video](https://cloud.githubusercontent.com/assets/759811/26319004/e52a80ce-3ee2-11e7-8cc4-3505d585fa29.png)](https://www.youtube.com/watch?v=xh5plRGg3Nc)
 
 ## Setup
 

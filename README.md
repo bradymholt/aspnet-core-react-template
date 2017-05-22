@@ -24,7 +24,8 @@ This app is a template application using ASP.NET Core for a REST/JSON API server
   
 ## Demo
 
-[![Demo Video](https://cloud.githubusercontent.com/assets/759811/26319004/e52a80ce-3ee2-11e7-8cc4-3505d585fa29.png)](https://www.youtube.com/watch?v=xh5plRGg3Nc)
+[![Demo Video](![demo](https://cloud.githubusercontent.com/assets/759811/26319096/4075a7e2-3ee3-11e7-8017-26df7b278b27.png)
+)](https://www.youtube.com/watch?v=xh5plRGg3Nc)
 
 ## Setup
 

@@ -36,6 +36,8 @@ This app is a template application using ASP.NET Core for a REST/JSON API server
 2. Run `npm install && npm start`
 3. Open browser and navigate to [http://localhost:5000](http://localhost:5000).
 
+This template was developed and tested on macOS Sierra but should run on Windows as well.  If you experience any issues getting it to run on Windows and work through them, please submit a PR!
+
 ## Scripts
 
 ### `npm install`

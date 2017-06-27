@@ -5,6 +5,29 @@ using Microsoft.Extensions.Logging;
 
 namespace aspnetCoreReactTemplate
 {
+    /*
+        Middleware that will rewrite (not redirect!) nested SPA page requests to the SPA root path.
+        For SPA apps that are using client-side routing, a refresh or direct request for a nested path will
+        be received by the server but the root path page should be actually be served because the client
+        is responsible for routing, not the server.  Only those requests not prefixed with
+        options.ApiPathPrefix and not containing a path extention (i.e. image.png, scripts.js) will
+        be rewritten.
+
+        (SpaFallbackOptions options):
+            ApiPathPrefix - The api path prefix is what requests for the REST api begin with.  These
+                            will be ignored and not rewritten.  So, if this is supplied as 'api',
+                            any requests starting with 'api' will not be rewritten.
+            RewritePath   - What path to rewrite to (usually '/')
+
+        Examples:
+            (options.ApiPathPrefix == "api", options.RewritePath="/")
+            http://localhost:5000/api/auth/login => (no rewrite)
+            http://localhost:5000/style.css => (no rewrite)
+            http://localhost:5000/contacts => /
+            http://localhost:5000/contacts/5/edit => /
+    */
+
+
     public class SpaFallbackMiddleware
     {
         private readonly RequestDelegate _next;

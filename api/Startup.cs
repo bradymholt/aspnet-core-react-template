@@ -37,7 +37,7 @@ namespace aspnetCoreReactTemplate
         {
             services.AddEntityFrameworkNpgsql().AddDbContext<DefaultDbContext>(options =>
             {
-                options.UseNpgsql(Configuration.GetConnectionString("defaultConnection"));
+                options.UseNpgsql(System.Environment.ExpandEnvironmentVariables(Configuration.GetConnectionString("defaultConnection")));
                 options.UseOpenIddict();
             });
 

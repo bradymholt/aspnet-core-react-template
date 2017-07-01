@@ -19,9 +19,10 @@
          #.env is not supported in kompose
          #- FRONTEND_URL='${FRONTENDURL}'
          #frontendurl is the openid-configuration endpoint and available over loopback inside the container for the app itself
-         - frontEndUrl=http://127.0.0.1:5000
+         - frontEndUrl=http://127.0.0.1.nip.io/
          - VIRTUAL_HOST=127.0.0.1.nip.io
          - POSTGRES=postgres
+         - smtpConfig=smtp:1025
 
     postgres:
       container_name: 'postgres'
@@ -42,6 +43,8 @@
       # ports:
         - "1025:1025"
         - "1080:1080"
+      networks:
+        - frontend
 
     nginx-proxy:
       image: jwilder/nginx-proxy

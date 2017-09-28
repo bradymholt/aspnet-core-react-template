@@ -6,7 +6,7 @@ This app is a template application using ASP.NET Core for a REST/JSON API server
 
 ## Overview of Stack
 - Server
-  - ASP.NET Core
+  - ASP.NET Core 2.0
   - PostgresSQL
   - Entity Framework Core w/ EF Migrations
   - JSON Web Token (JWT) authorization

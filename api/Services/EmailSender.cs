@@ -1,7 +1,8 @@
+using System.Net;
+using System.Net.Mail;
+using System.Text;
 using System.Threading.Tasks;
-using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
-using MimeKit;
 
 namespace aspnetCoreReactTemplate.Services
 {
@@ -14,41 +15,30 @@ namespace aspnetCoreReactTemplate.Services
 
         public EmailSenderOptions Options { get; }
 
-        public Task SendEmailAsync(string toEmail, string subject, string htmlMessage, string textMessage = null)
+        public async Task SendEmailAsync(string toEmail, string subject, string htmlMessage, string textMessage = null)
         {
-            var mimeMessage = new MimeMessage();
-            mimeMessage.From.Add(new MailboxAddress(this.Options.emailFromName, this.Options.emailFromAddress));
-            mimeMessage.To.Add(new MailboxAddress(toEmail));
-            mimeMessage.Subject = subject;
+            MailMessage mailMessage = new MailMessage();
+            mailMessage.From = new MailAddress(this.Options.emailFromAddress, this.Options.emailFromName);
+            mailMessage.To.Add(toEmail);
+            mailMessage.Body = textMessage;
+            mailMessage.BodyEncoding = Encoding.UTF8;
+            mailMessage.Subject = subject;
+            mailMessage.SubjectEncoding = Encoding.UTF8;
 
-            var bodyBuilder = new BodyBuilder();
-            bodyBuilder.HtmlBody = htmlMessage;
-            bodyBuilder.TextBody = textMessage ?? htmlMessage;
-
-            mimeMessage.Body = bodyBuilder.ToMessageBody();
-
-            using (var client = new SmtpClient())
+            if (!string.IsNullOrEmpty(htmlMessage))
             {
-                // For demo-purposes, accept all SSL certificates (in case the server supports STARTTLS)
-                client.ServerCertificateValidationCallback = (s, c, h, e) => true;
-
-                client.Connect(this.Options.host, this.Options.port, false);
-
-                // Note: since we don't have an OAuth2 token, disable
-                // the XOAUTH2 authentication mechanism.
-                client.AuthenticationMechanisms.Remove("XOAUTH2");
-
-                // Note: only needed if the SMTP server requires authentication
-                if (!string.IsNullOrEmpty(this.Options.username))
-                {
-                    client.Authenticate(this.Options.username, this.Options.password);
-                }
-
-                client.Send(mimeMessage);
-                client.Disconnect(true);
+                AlternateView htmlView = AlternateView.CreateAlternateViewFromString(htmlMessage);
+                htmlView.ContentType = new System.Net.Mime.ContentType("text/html");
+                mailMessage.AlternateViews.Add(htmlView);
             }
 
-            return Task.FromResult(0);
+            using (SmtpClient client = new SmtpClient(this.Options.host, this.Options.port))
+            {
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential(this.Options.username, this.Options.password);
+                client.EnableSsl = true;
+                await client.SendMailAsync(mailMessage);
+            }
         }
     }
 }

@@ -2,7 +2,7 @@ import RestUtilities from './RestUtilities';
 import AuthStore from '../stores/Auth';
 
 interface IAuthResponse {
-    access_token: string;
+    token: string;
 }
 
 export default class Auth {
@@ -15,7 +15,7 @@ export default class Auth {
             `username=${email}&password=${password}${!isRegister ? '&grant_type=password' : ''}`)
             .then((response) => {
                 if (!response.is_error) {
-                    AuthStore.setToken(response.content.access_token);
+                    AuthStore.setToken(response.content.token);
                 }
                 return response;
             });

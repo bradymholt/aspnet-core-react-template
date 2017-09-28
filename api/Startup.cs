@@ -9,27 +9,23 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using aspnetCoreReactTemplate.Models;
 using System.IdentityModel.Tokens.Jwt;
-using AspNet.Security.OpenIdConnect.Primitives;
 using aspnetCoreReactTemplate.Services;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace aspnetCoreReactTemplate
 {
     public class Startup
     {
         public IHostingEnvironment CurrentEnvironment { get; protected set; }
-        public IConfigurationRoot Configuration { get; }
+        public IConfiguration Configuration { get; }
 
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            this.CurrentEnvironment = env;
-
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddEnvironmentVariables();
-
-            Configuration = builder.Build();
+            Configuration = configuration;
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -38,63 +34,37 @@ namespace aspnetCoreReactTemplate
             services.AddEntityFrameworkNpgsql().AddDbContext<DefaultDbContext>(options =>
             {
                 options.UseNpgsql(Configuration.GetConnectionString("defaultConnection"));
-                options.UseOpenIddict();
             });
 
             // Configure Entity Framework Initializer for seeding
             services.AddTransient<IDefaultDbContextInitializer, DefaultDbContextInitializer>();
 
             // Configure Entity Framework Identity for Auth
-            services.AddIdentity<ApplicationUser, IdentityRole>(o =>
-            {
-                // Do not 302 redirect when Unauthorized; just return 401 status code (ref: http://stackoverflow.com/a/38801130/626911)
-                o.Cookies.ApplicationCookie.AutomaticChallenge = false;
-            })
+            services.AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<DefaultDbContext>()
             .AddDefaultTokenProviders();
 
-            // Configure Identity to use the same JWT claims as OpenIddict instead
-            // of the legacy WS-Federation claims it uses by default (ClaimTypes),
-            // which saves you from doing the mapping in your authorization controller.
-            services.Configure<IdentityOptions>(options =>
+            services.AddAuthentication(options =>
             {
-                options.ClaimsIdentity.UserNameClaimType = OpenIdConnectConstants.Claims.Name;
-                options.ClaimsIdentity.UserIdClaimType = OpenIdConnectConstants.Claims.Subject;
-                options.ClaimsIdentity.RoleClaimType = OpenIdConnectConstants.Claims.Role;
-                options.SignIn.RequireConfirmedEmail = true;
-            });
-
-            // Configure OpenIddict for JSON Web Token (JWT) generation (Ref: http://capesean.co.za/blog/asp-net-5-jwt-tokens/)
-            // Register the OpenIddict services.
-            // Note: use the generic overload if you need
-            // to replace the default OpenIddict entities.
-            services.AddOpenIddict(options =>
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(config =>
             {
-                // Register the Entity Framework stores.
-                options.AddEntityFrameworkCoreStores<DefaultDbContext>();
+                config.RequireHttpsMetadata = false;
+                config.SaveToken = true;
 
-                // Register the ASP.NET Core MVC binder used by OpenIddict.
-                // Note: if you don't call this method, you won't be able to
-                // bind OpenIdConnectRequest or OpenIdConnectResponse parameters.
-                options.AddMvcBinders();
-
-                // Enable the token endpoint (required to use the password flow).
-                options.EnableTokenEndpoint("/api/auth/login");
-
-                // Allow client applications to use the grant_type=password flow.
-                options.AllowPasswordFlow();
-
-                // During development, you can disable the HTTPS requirement.
-                options.DisableHttpsRequirement();
-
-                options.AllowRefreshTokenFlow();
-                options.UseJsonWebTokens();
-                options.AddEphemeralSigningKey();
-                options.SetAccessTokenLifetime(TimeSpan.FromDays(1));
+                config.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidIssuer = Configuration["jwt:issuer"],
+                    ValidAudience = Configuration["jwt:issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["jwt:key"]))
+                };
             });
 
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<EmailSenderOptions>(Configuration.GetSection("email"));
+            services.Configure<JwtOptions>(Configuration.GetSection("jwt"));
 
             // Add framework services
             services.AddMvc().AddJsonOptions(options =>
@@ -150,26 +120,7 @@ namespace aspnetCoreReactTemplate
                 ForwardedHeaders.XForwardedProto
             });
 
-            // Register the validation middleware, that is used to decrypt
-            // the access tokens and populate the HttpContext.User property.
-            app.UseOAuthValidation();
-
-
-            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-            JwtSecurityTokenHandler.DefaultOutboundClaimTypeMap.Clear();
-
-            // Use JWT Bearer Authentication (i.e. authenitcate with JWT in HTTP request header)
-            app.UseJwtBearerAuthentication(new JwtBearerOptions
-            {
-                AutomaticAuthenticate = true,
-                AutomaticChallenge = true,
-                RequireHttpsMetadata = false,
-                Audience = "resource-server",
-                Authority = Configuration["frontEndUrl"]
-            });
-
-            app.UseOpenIddict();
-            app.UseIdentity();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }

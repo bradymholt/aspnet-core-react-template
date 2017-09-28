@@ -8,6 +8,18 @@
     line="\"defaultConnection\"{{':'}} \"Host=127.0.0.1;Username={{database_username}};Password={{database_password}};Database={{database_name}}\""
     state="present"
 
+- name: Configure JWT key
+  lineinfile: dest="{{ deploy_directory }}/{{ appsetting_file }}"
+    regexp="key\":"
+    line="\"key\"{{':'}} \"{jwt_key}\","
+    state="present"
+
+- name: Configure JWT issuer
+  lineinfile: dest="{{ deploy_directory }}/{{ appsetting_file }}"
+    regexp="issuer\":"
+    line="\"issuer\"{{':'}} \"http://{{webserver_name}}/\""
+    state="present"
+
 - name: Configure email.smtpConfig
   lineinfile: dest="{{ deploy_directory }}/{{ appsetting_file }}"
     regexp="smtpConfig\":"

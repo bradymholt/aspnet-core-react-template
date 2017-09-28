@@ -1,20 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
-    <DebugType>portable</DebugType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>api.test</AssemblyName>
     <PackageId>api.test</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
-    <PackageTargetFallback>$(PackageTargetFallback);dotnet5.4;portable-net451+win8</PackageTargetFallback>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="../api/api.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
-    <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
     <PackageReference Include="xunit" Version="2.2.0" />
-    <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.0-beta1-build3642" />
+    <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.0-beta5-build3769" />
   </ItemGroup>
 </Project>

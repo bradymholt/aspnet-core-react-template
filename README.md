@@ -9,7 +9,7 @@ This app is a template application using ASP.NET Core for a REST/JSON API server
   - ASP.NET Core
   - PostgresSQL
   - Entity Framework Core w/ EF Migrations
-  - JSON Web Token (JWT) authorization with OpenIddict
+  - JSON Web Token (JWT) authorization
   - Docker used for development PostgresSQL database and MailCatcher server
 - Client
   - React
@@ -23,7 +23,7 @@ This app is a template application using ASP.NET Core for a REST/JSON API server
 - DevOps
   - Ansible playbook for provisioning (Nginx reverse proxy, SSL via Let's Encrypt, PostgresSQL backups to S3)
   - Ansible playbook for deployment
-  
+
 ## Demo
 
 [![Demo Video](https://cloud.githubusercontent.com/assets/759811/26319096/4075a7e2-3ee3-11e7-8017-26df7b278b27.png)](https://www.youtube.com/watch?v=xh5plRGg3Nc)
@@ -31,7 +31,7 @@ This app is a template application using ASP.NET Core for a REST/JSON API server
 ## Setup
 
 1. Install the following:
-   - [.NET Core 1.1](https://www.microsoft.com/net/core)
+   - [.NET Core 2.0](https://www.microsoft.com/net/core)
    - [Node.js >= v8](https://nodejs.org/en/download/)
    - [Ansible >= 2.0](http://docs.ansible.com/ansible/intro_installation.html)
    - [Docker](https://docs.docker.com/engine/installation/)

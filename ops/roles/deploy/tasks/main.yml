@@ -8,38 +8,12 @@
     line="\"defaultConnection\"{{':'}} \"Host=127.0.0.1;Username={{database_username}};Password={{database_password}};Database={{database_name}}\""
     state="present"
 
-- name: Configure JWT key
-  lineinfile: dest="{{ deploy_directory }}/{{ appsetting_file }}"
-    regexp="key\":"
-    line="\"key\"{{':'}} \"{jwt_key}\","
-    state="present"
-
-- name: Configure JWT issuer
-  lineinfile: dest="{{ deploy_directory }}/{{ appsetting_file }}"
-    regexp="issuer\":"
-    line="\"issuer\"{{':'}} \"http://{{webserver_name}}/\""
-    state="present"
-
-- name: Configure email.smtpConfig
-  lineinfile: dest="{{ deploy_directory }}/{{ appsetting_file }}"
-    regexp="smtpConfig\":"
-    line="\"smtpConfig\"{{':'}} \"{{smtp_config}}\","
-    state="present"
-
-- name: Configure email.emailFromName
-  lineinfile: dest="{{ deploy_directory }}/{{ appsetting_file }}"
-    regexp="emailFromName\":"
-    line="\"emailFromName\"{{':'}} \"{{email_from_name}}\","
-    state="present"
-
-- name: Configure email.emailFromAddress
-  lineinfile: dest="{{ deploy_directory }}/{{ appsetting_file }}"
-    regexp="emailFromAddress\":"
-    line="\"emailFromAddress\"{{':'}} \"{{email_from_address}}\""
-    state="present"
-
-- name: Configure app url
-  lineinfile: dest="{{ deploy_directory }}/{{ appsetting_file }}"
-    regexp="frontEndUrl\":"
-    line="\"frontEndUrl\"{{':'}} \"http://{{webserver_name}}/\","
-    state="present"
+- name: Configure appsettings
+  ghetto_json:
+    path="{{ deploy_directory }}/{{ appsetting_file }}"
+    frontEndUrl="http://{{webserver_name}}/"
+    jwt.key={{jwt_key}}
+    jwt.issuer="http://{{webserver_name}}/"
+    email.smtpConfig={{smtp_config}}
+    email.emailFromName={{email_from_name}}
+    email.emailFromAddress={{email_from_address}}

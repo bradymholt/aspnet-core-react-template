@@ -1,0 +1,63 @@
+#!/usr/bin/env python
+
+# Source: https://github.com/FauxFaux/ansible-ghetto-json
+
+import json
+import sys
+import shlex
+
+try:
+    import commentjson
+    json_load = commentjson.load
+except ImportError:
+    json_load = json.load
+
+def main(params_list):
+    params = dict(x.split("=", 2) for x in params_list)
+    path = params.pop('path')
+    changed = False
+
+    for key in params.keys():
+      if key.startswith('_ansible_'):
+        params.pop(key)
+
+    with open(path) as f:
+        obj = json_load(f)
+        for (key, target) in params.items():
+            parts = key.split('.')
+            ref = obj
+            for part in parts[:-1]:
+                if part not in ref:
+                    ref[part] = {}
+                ref = ref[part]
+
+            last_part = parts[-1]
+            if target == 'unset':
+                if last_part in ref:
+                    del ref[last_part]
+                    changed = True
+            else:
+                if target.isdigit():
+                    target = int(target)
+                if target == 'null':
+                    target = None
+                if target == 'false':
+                    target = False
+                if target == 'true':
+                    target = True
+                if last_part not in ref or ref[last_part] != target:
+                    ref[last_part] = target
+                    changed = True
+
+    if changed:
+        with open(path, 'w') as f:
+            json.dump(obj, f, indent=2, separators=(',', ': '), sort_keys=True)
+
+    print(json.dumps({'changed': changed}))
+
+
+if __name__ == '__main__':
+    if len(sys.argv) == 2:
+        main(shlex.split(open(sys.argv[1]).read()))
+    else:
+        main(sys.argv[1:])

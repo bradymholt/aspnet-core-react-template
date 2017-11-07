@@ -35,17 +35,17 @@ export default class RestUtilities {
         let isJsonResponse: boolean = false;
         let isBadRequest = false;
         let body = data;
-        let headers: { [key: string]: string } = {
-            'Authorization': `Bearer ${AuthStore.getToken()}`,
-            'Accept': 'application/json'
-        };
+        let headers = new Headers();
+
+        headers.set('Authorization',`Bearer ${AuthStore.getToken()}`);
+        headers.set('Accept','application/json');
 
         if (data) {
             if ((typeof data === 'object')) {
-                headers['Content-Type'] = 'application/json';
+                headers.set('Content-Type','application/json');
                 body = JSON.stringify(data);
             } else {
-                headers['Content-Type'] = 'application/x-www-form-urlencoded';
+                headers.set('Content-Type','application/x-www-form-urlencoded');
             }
         }
 

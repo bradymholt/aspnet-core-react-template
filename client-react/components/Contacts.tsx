@@ -36,6 +36,11 @@ export class Contacts extends React.Component<RouteComponentProps<any>, any> {
     handleSeachSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
+        if(!this.state.searchQuery){
+            this.showAll();
+            return;
+        }
+
         contactService.search(this.state.searchQuery).then((response) => {
             this.setState({ contacts: response.content });
         });

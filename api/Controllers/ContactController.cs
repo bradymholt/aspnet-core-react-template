@@ -38,7 +38,7 @@ namespace aspnetCoreReactTemplate.Controllers
         public IEnumerable<Contact> Search(string q)
         {
             return _context.Contacts.
-            Where((c)=> c.lastName.Contains(q) || c.firstName.Contains(q)).
+            Where((c)=> c.lastName.ToLower().Contains(q.ToLower()) || c.firstName.ToLower().Contains(q.ToLower())).
             OrderBy((o) => o.lastName);
         }
 

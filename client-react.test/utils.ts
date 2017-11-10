@@ -8,8 +8,14 @@ import * as sinon from 'sinon';
 function stubFetch(returnData: Object) {
     let g = (global as any);
     if (!g.fetch) {
-        // If fetch not define; define it as a dummy function because sinon will only stub a defined function
+        // If fetch is not defined; define it as a dummy function because sinon will only stub a defined function
         g.fetch = function () { }
+    }
+    
+    if (!g.Headers) {
+        g.Headers = function () {
+            this.set = function(){}
+         }
     }
 
     let res = {

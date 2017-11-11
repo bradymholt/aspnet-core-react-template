@@ -19,7 +19,7 @@ using System;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 
-namespace aspnetCoreReactTemplate.aspnetCoreReactTemplate.Controllers
+namespace aspnetCoreReactTemplate.Controllers
 {
     public class AuthController : Controller
     {

@@ -92,7 +92,7 @@ export class Contacts extends React.Component<RouteComponentProps<any>, any> {
             {this.state.searchQuery &&
                 <button type="button" className="btn btn-primary" onClick={(e) => this.showAll()}>clear search</button>
             }
-            <Link className="btn btn-success" to="/contacts/new">add</Link>
+            <Link className="btn btn-success" to={RoutePaths.ContactNew}>add</Link>
 
         </div>
     };

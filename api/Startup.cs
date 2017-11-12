@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Collections.Generic;
 
 namespace aspnetCoreReactTemplate
 {
@@ -49,6 +50,7 @@ namespace aspnetCoreReactTemplate
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
+            
             .AddJwtBearer(config =>
             {
                 config.RequireHttpsMetadata = false;
@@ -94,6 +96,7 @@ namespace aspnetCoreReactTemplate
                 app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
                 {
                     HotModuleReplacement = true,
+                    HotModuleReplacementClientOptions = new Dictionary<string, string> {{ "reload", "true" }}, 
                     ReactHotModuleReplacement = true,
                     ConfigFile = System.IO.Path.Combine(Configuration["webClientPath"], "webpack.config.js")
                 });

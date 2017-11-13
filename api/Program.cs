@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace aspnetCoreReactTemplate
 {
@@ -14,10 +15,24 @@ namespace aspnetCoreReactTemplate
                   .AddJsonFile("appsettings.json")
                   .Build();
 
-            BuildWebHost(config["serverBindingUrl"], args).Run();
+            var host = BuildHost(config["serverBindingUrl"], args);
+            using (var scope = host.Services.CreateScope())
+            {
+                var dbInitializer = scope.ServiceProvider.GetRequiredService<Models.IDefaultDbContextInitializer>();
+                var env = scope.ServiceProvider.GetRequiredService<IHostingEnvironment>();
+                // Apply any pending migrations
+                dbInitializer.Migrate();
+                if (env.IsDevelopment())
+                {
+                    // Seed the database in development mode
+                    dbInitializer.Seed().GetAwaiter().GetResult();
+                }
+            }
+
+            host.Run();
         }
 
-        public static IWebHost BuildWebHost(string serverBindingUrl, string[] args) =>
+        public static IWebHost BuildHost(string serverBindingUrl, string[] args) =>
             WebHost.CreateDefaultBuilder(args)
             .UseContentRoot(Directory.GetCurrentDirectory())
             .UseUrls(serverBindingUrl)

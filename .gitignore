@@ -28,3 +28,5 @@ ops/*.retry
 # other
 *.js.map
 
+# IDE
+.idea/

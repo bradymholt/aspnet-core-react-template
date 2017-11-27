@@ -8,7 +8,6 @@ namespace aspnetCoreReactTemplate.Models
 
         [Required]
         [MinLength(3)]
-
         public string lastName { get; set; }
 
         [Required]

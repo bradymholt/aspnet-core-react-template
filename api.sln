@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api", "api.csproj", "{62842846-868D-4B6E-A191-C37121587533}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api", "api\api.csproj", "{62842846-868D-4B6E-A191-C37121587533}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api.test", "..\api.test\api.test.csproj", "{002B4B4F-3A5D-4342-98AB-C50F7147F863}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api.test", "api.test\api.test.csproj", "{002B4B4F-3A5D-4342-98AB-C50F7147F863}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

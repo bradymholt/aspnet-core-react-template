@@ -74,12 +74,13 @@ namespace aspnetCoreReactTemplate.Controllers
 
             _logger.LogInformation($"User logged in (id: {user.Id})");
 
-            // Generate and issue a JWT tokek
-            var claims = new Claim[] {
+            // Generate and issue a JWT token
+            var claims = new [] {
                 new Claim(ClaimTypes.Name, user.Email),
                 new Claim(JwtRegisteredClaimNames.Sub, user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
               };
+          
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.key));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 

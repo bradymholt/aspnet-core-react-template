@@ -12,7 +12,7 @@ namespace aspnetCoreReactTemplate.Controllers
     [Route("api/[controller]")]
     public class ContactsController : Controller
     {
-        DefaultDbContext _context;
+        private readonly DefaultDbContext _context;
 
         public ContactsController(DefaultDbContext context)
         {
@@ -75,7 +75,7 @@ namespace aspnetCoreReactTemplate.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            Contact contact = new Contact() { contactId = id };
+            var contact = new Contact() { contactId = id };
             _context.Entry(contact).State = EntityState.Deleted;
 
             await _context.SaveChangesAsync();

@@ -34,7 +34,7 @@ namespace aspnetCoreReactTemplate.Models
             var email = "user@test.com";
             if (await _userManager.FindByEmailAsync(email) == null)
             {
-                ApplicationUser user = new ApplicationUser
+                var user = new ApplicationUser
                 {
                     UserName = email,
                     Email = email,
@@ -64,6 +64,5 @@ namespace aspnetCoreReactTemplate.Models
         bool EnsureCreated();
         void Migrate();
         Task Seed();
-
     }
 }

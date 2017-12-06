@@ -123,4 +123,5 @@ The following resources were helpful in setting up this template:
 - [Stack Overflow - Token Based Authentication in ASP.NET Core](http://stackoverflow.com/questions/30546542/token-based-authentication-in-asp-net-core-refreshed)
 - [SPA example of a token based authentication implementation using the Aurelia front end framework and ASP.NET core]( https://github.com/alexandre-spieser/AureliaAspNetCoreAuth)
 - [A Real-World React.js Setup for ASP.NET Core and MVC5](https://www.simple-talk.com/dotnet/asp-net/a-real-world-react-js-setup-for-asp-net-core-and-mvc)
+- [Customising ASP.NET Core Identity EF Core naming conventions for PostgreSQL](https://andrewlock.net/customising-asp-net-core-identity-ef-core-naming-conventions-for-postgresql)
 - My own perseverance because this took a _lot_ of time to get right 😁

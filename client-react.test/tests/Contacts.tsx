@@ -14,7 +14,7 @@ describe("<Contacts/> component ", function () {
     });
 
     it("renders a list of contacts", function (done) {
-        let fakeContactsData = [{ contactId: 1, lastName: 'Smith', firstName: 'John' }];
+        let fakeContactsData = [{ id: 1, lastName: 'Smith', firstName: 'John' }];
         let fetchStub = stubFetch(fakeContactsData);
 
         const wrapper = mount(<Router>

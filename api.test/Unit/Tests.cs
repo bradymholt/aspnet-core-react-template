@@ -10,10 +10,10 @@ namespace Tests.Unit
         {
             var contact = new app.Models.Contact();
 
-            Assert.True(string.IsNullOrEmpty(contact.lastName));
-            Assert.True(string.IsNullOrEmpty(contact.firstName));
-            Assert.True(string.IsNullOrEmpty(contact.email));
-            Assert.True(string.IsNullOrEmpty(contact.phone));
+            Assert.True(string.IsNullOrEmpty(contact.LastName));
+            Assert.True(string.IsNullOrEmpty(contact.FirstName));
+            Assert.True(string.IsNullOrEmpty(contact.Email));
+            Assert.True(string.IsNullOrEmpty(contact.Phone));
         }
     }
 }

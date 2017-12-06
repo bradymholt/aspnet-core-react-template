@@ -2,7 +2,7 @@ import 'object-assign';
 import * as React from 'react';
 import { Link, Redirect, RouteComponentProps } from 'react-router-dom';
 import ContactService, { IContact } from '../services/Contacts'
-import { RoutePaths } from '../components/Routes';
+import { RoutePaths } from './Routes';
 
 let contactService = new ContactService();
 
@@ -36,7 +36,7 @@ export class ContactForm extends React.Component<RouteComponentProps<any>, any> 
         const name = target.name;
         let contactUpdates = {
             [name]: value
-        }
+        };
 
         this.setState({
             contact: Object.assign(this.state.contact, contactUpdates)
@@ -68,7 +68,7 @@ export class ContactForm extends React.Component<RouteComponentProps<any>, any> 
         }
         else {
             return <fieldset className="form-group">
-                <legend>{this.state.contact.contactId ? "Edit Contact" : "New Contact" }</legend>
+                <legend>{this.state.contact.id ? "Edit Contact" : "New Contact" }</legend>
                 <form onSubmit={(e) => this.handleSubmit(e)}>
                     <div className={this._formGroupClass(this.state.errors.lastName)}>
                         <label htmlFor="inputLastName" className="form-control-label">Last Name</label>

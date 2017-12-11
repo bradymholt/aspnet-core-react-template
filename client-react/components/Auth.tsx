@@ -9,12 +9,12 @@ export class SignIn extends React.Component<RouteComponentProps<any>, any> {
     refs: {
         username: HTMLInputElement;
         password: HTMLInputElement;
-    }
+    };
 
     state = {
         initialLoad: true,
         error: null as string
-    }
+    };
 
     handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -79,12 +79,12 @@ export class Register extends React.Component<any, any> {
     refs: {
         email: HTMLInputElement;
         password: HTMLInputElement;
-    }
+    };
 
     state = {
         registerComplete: false,
         errors: {} as { [key: string]: string }
-    }
+    };
 
     handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();

@@ -10,14 +10,14 @@ let contactService = new ContactService();
 export class Contacts extends React.Component<RouteComponentProps<any>, any> {
     refs: {
         query: HTMLInputElement;
-    }
+    };
 
     state = {
         contacts: [] as Array<IContact>,
         editContact: null as Object,
         isAddMode: false as boolean,
         searchQuery: '' as string
-    }
+    };
 
     componentDidMount() {
         this.showAll();
@@ -47,7 +47,7 @@ export class Contacts extends React.Component<RouteComponentProps<any>, any> {
     }
 
     delete(contact: IContact) {
-        contactService.delete(contact.contactId).then((response) => {
+        contactService.delete(contact.id).then((response) => {
             let updatedContacts = this.state.contacts;
             updatedContacts.splice(updatedContacts.indexOf(contact), 1);
             this.setState({ contacts: updatedContacts });
@@ -77,12 +77,12 @@ export class Contacts extends React.Component<RouteComponentProps<any>, any> {
                     </thead>
                     <tbody>
                         {this.state.contacts.map((contact, index) =>
-                            <tr key={contact.contactId}>
+                            <tr key={contact.id}>
                                 <td>{contact.lastName}</td>
                                 <td>{contact.firstName}</td>
                                 <td>{contact.email}</td>
                                 <td>{contact.phone}</td>
-                                <td><Link to={RoutePaths.ContactEdit.replace(":id", contact.contactId.toString())}>edit</Link>
+                                <td><Link to={RoutePaths.ContactEdit.replace(":id", contact.id.toString())}>edit</Link>
                                     <button type="button" className="btn btn-link" onClick={(e) => this.delete(contact)}>delete</button></td>
                             </tr>
                         )}

@@ -23,7 +23,7 @@ namespace aspnetCoreReactTemplate.Controllers
         [HttpGet]
         public IEnumerable<Contact> Get()
         {
-            return _context.Contacts.OrderBy((o)=> o.lastName);
+            return _context.Contacts.OrderBy((o)=> o.LastName);
         }
 
         // GET api/contacts/5
@@ -38,8 +38,8 @@ namespace aspnetCoreReactTemplate.Controllers
         public IEnumerable<Contact> Search(string q)
         {
             return _context.Contacts.
-            Where((c)=> c.lastName.ToLower().Contains(q.ToLower()) || c.firstName.ToLower().Contains(q.ToLower())).
-            OrderBy((o) => o.lastName);
+            Where((c)=> c.LastName.ToLower().Contains(q.ToLower()) || c.FirstName.ToLower().Contains(q.ToLower())).
+            OrderBy((o) => o.LastName);
         }
 
         // POST api/contacts
@@ -53,7 +53,7 @@ namespace aspnetCoreReactTemplate.Controllers
 
             _context.Contacts.Add(model);
             await _context.SaveChangesAsync();
-            return CreatedAtRoute("GetContact", new { id = model.contactId }, model);
+            return CreatedAtRoute("GetContact", new { id = model.Id }, model);
         }
 
         // PUT api/contacts/5
@@ -65,7 +65,7 @@ namespace aspnetCoreReactTemplate.Controllers
                 return BadRequest(ModelState);
             }
 
-            model.contactId = id;
+            model.Id = id;
             _context.Update(model);
             await _context.SaveChangesAsync();
             return Ok();
@@ -75,7 +75,7 @@ namespace aspnetCoreReactTemplate.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var contact = new Contact() { contactId = id };
+            var contact = new Contact() { Id = id };
             _context.Entry(contact).State = EntityState.Deleted;
 
             await _context.SaveChangesAsync();

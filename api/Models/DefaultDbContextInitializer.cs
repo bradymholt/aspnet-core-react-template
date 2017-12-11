@@ -53,8 +53,8 @@ namespace aspnetCoreReactTemplate.Models
                 }
             }
 
-            _context.Contacts.Add(new Contact() { lastName = "Finkley", firstName = "Adam", phone = "555-555-5555", email = "adam@somewhere.com" });
-            _context.Contacts.Add(new Contact() { lastName = "Biles", firstName = "Steven", phone = "555-555-5555", email = "sbiles@somewhere.com" });
+            _context.Contacts.Add(new Contact() { LastName = "Finkley", FirstName = "Adam", Phone = "555-555-5555", Email = "adam@somewhere.com" });
+            _context.Contacts.Add(new Contact() { LastName = "Biles", FirstName = "Steven", Phone = "555-555-5555", Email = "sbiles@somewhere.com" });
             _context.SaveChanges();
         }
     }

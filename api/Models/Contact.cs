@@ -4,19 +4,19 @@ namespace aspnetCoreReactTemplate.Models
 {
     public class Contact
     {
-        public int contactId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MinLength(3)]
-        public string lastName { get; set; }
+        public string LastName { get; set; }
 
         [Required]
-        public string firstName { get; set; }
+        public string FirstName { get; set; }
 
-        public string phone { get; set; }
+        public string Phone { get; set; }
 
         [DataType(DataType.EmailAddress)]
         [StringLength(30, MinimumLength = 0)]
-        public string email { get; set; }
+        public string Email { get; set; }
     }
 }

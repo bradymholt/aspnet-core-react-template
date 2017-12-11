@@ -1,7 +1,7 @@
 import RestUtilities from './RestUtilities';
 
 export interface IContact {
-    contactId?: number,
+    id?: number,
     lastName: string;
     firstName: string;
     phone: string;
@@ -22,7 +22,7 @@ export default class Contacts {
     }
 
     update(contact: IContact) {
-        return RestUtilities.put<IContact>(`/api/contacts/${contact.contactId}`, contact);
+        return RestUtilities.put<IContact>(`/api/contacts/${contact.id}`, contact);
     }
 
     create(contact: IContact) {
@@ -30,7 +30,7 @@ export default class Contacts {
     }
 
     save(contact: IContact) {
-        if (contact.contactId) {
+        if (contact.id) {
             return this.update(contact);
         } else {
             return this.create(contact);

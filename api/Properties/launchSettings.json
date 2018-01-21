@@ -11,7 +11,9 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
+      "launchUrl": "http://localhost:5000",
       "environmentVariables": {
+        "NODE_PATH": "../node_modules/",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
@@ -19,6 +21,7 @@
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
+		"NODE_PATH": "../node_modules/",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "http://localhost:5000/"

@@ -54,7 +54,7 @@ When first cloning the repo or adding new dependencies, run this command.  This 
 To start the app for development, run this command.  This will:
 
 - Run `docker-compose up` to ensure the PostgreSQL and MailCatcher Docker images are up and running
-- Run dotnet watch run which will build the app (if changed), watch for changes and start the web server on http://localhost:5000
+- Run `dotnet watch run` which will build the app (if changed), watch for changes and start the web server on http://localhost:5000
 - Run Webpack dev middleware with HMR via [ASP.NET JavaScriptServices](https://github.com/aspnet/JavaScriptServices)
 
 ### `npm run migrate`

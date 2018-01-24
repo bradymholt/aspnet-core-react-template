@@ -13,7 +13,7 @@ This app is a template application using ASP.NET Core 2.0 for a REST/JSON API se
   - Docker used for development PostgreSQL database and MailCatcher server
 - Client
   - React 15.6
-  - Webpack for asset bundling and HMR (Hot Module Replacement)
+  - Webpack 2 for asset bundling and HMR (Hot Module Replacement)
   - CSS Modules
   - Fetch API for REST requests
 - Testing

@@ -24,38 +24,4 @@
   </ItemGroup>
   
   
-  <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' ">
-	<Message Importance="high" Text="Installing any non-peer missing dependencies.." />
-    <Exec Command="npm install" />
-	
-	<!-- It would seem, that the npm install cmd targets the parent directory(natural path of the routine), and yet, the node webpack execution does not. So we go up one level  -->
-    <Message Importance="high" Text="Performing first-run Webpack build..." />
-    <Exec Command="node ../node_modules/webpack/bin/webpack.js --config ../client-react/webpack.config.js" />
-	
-	<Message Importance="high" Text="Starting up docker instances (if not started).." />
-	<Exec Command="docker-compose up -d" />
-  </Target>
-  
-  <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
-    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
-    <Exec Command="npm install" />
-    <Exec Command="node ../node_modules/webpack/bin/webpack.js --config ../client-react/webpack.config.js --env.prod" />
-
-    <!-- Include the newly-built files in the publish output -->
-    <ItemGroup>
-      <DistFiles Include="wwwroot\*.js;" />
-      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
-        <RelativePath>%(DistFiles.Identity)</RelativePath>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </ResolvedFileToPublish>
-    </ItemGroup>
-
-    <ItemGroup Condition="'$(Configuration)'=='Debug'">
-      <NpmFiles Include="..\node_modules\**;..\package.json;..\client-react\webpack.config.js;..\client-react\tsconfig.json;..\postcss.config.js;..\.babelrc" />
-      <ResolvedFileToPublish Include="@(NpmFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
-        <RelativePath>%(NpmFiles.Identity)</RelativePath>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </ResolvedFileToPublish>
-    </ItemGroup>
-  </Target>
 </Project>

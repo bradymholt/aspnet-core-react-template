@@ -91,26 +91,26 @@ namespace api.Migrations
 
             modelBuilder.Entity("aspnetCoreReactTemplate.Models.Contact", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("id");
 
-                    b.Property<string>("email")
+                    b.Property<string>("Email")
                         .HasColumnName("email")
                         .HasMaxLength(30);
 
-                    b.Property<string>("firstName")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnName("first_name");
 
-                    b.Property<string>("lastName")
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnName("last_name");
 
-                    b.Property<string>("phone")
+                    b.Property<string>("Phone")
                         .HasColumnName("phone");
 
-                    b.HasKey("id")
+                    b.HasKey("Id")
                         .HasName("pk_contacts");
 
                     b.ToTable("contacts");

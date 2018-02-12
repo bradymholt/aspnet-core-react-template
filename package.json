@@ -10,7 +10,7 @@
     "pretest:client": "./node_modules/typescript/bin/tsc -p ./client-react.test/",
     "test:client": "mocha --require ignore-styles --recursive client-react.test/build/client-react.test",
     "test": "npm run test:api && npm run test:client",
-    "migrate": "cd ./api/ && dotnet ef migrations add $(date +%s) && dotnet ef database update",
+    "migrate": "cd ./api/ && node ../scripts/create-migration.js && dotnet ef database update",
     "prestart": "docker-compose up -d",
     "start": "cd ./api && cross-env NODE_PATH=../node_modules/ ASPNETCORE_ENVIRONMENT=Development dotnet watch run",
     "start:release": "npm run prerelease && cd ./api/bin/Release/netcoreapp1.0/publish/ && dotnet api.dll",

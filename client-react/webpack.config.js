@@ -45,7 +45,11 @@ var config = {
     plugins: [ // plugins should not be empty: https://github.com/aspnet/JavaScriptServices/tree/dev/src/Microsoft.AspNetCore.SpaServices'[
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'index.ejs'), inject: true
-        })
+        }),
+        new webpack.WatchIgnorePlugin([
+            /\.js$/,
+            /\.d\.ts$/
+        ])
         // new webpack.NamedModulesPlugin()
         // We do not use ExtractTextPlugin in development mode so that HMR will work with styles
     ]

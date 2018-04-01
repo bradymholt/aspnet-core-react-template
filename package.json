@@ -55,6 +55,8 @@
     "react-hot-loader": "^3.0.0",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
+    "semantic-ui-css": "^2.3.1",
+    "semantic-ui-react": "^0.79.0",
     "sinon": "2.1.0",
     "source-map-loader": "^0.2.1",
     "style-loader": "^0.18.2",

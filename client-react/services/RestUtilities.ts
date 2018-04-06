@@ -52,7 +52,7 @@ export default class RestUtilities {
         return fetch(url, {
             method: method,
             headers: headers,
-            body: body,
+            body: <any>body,
         }).then((response) => {
             if (response.status == 401) {
                 // Unauthorized; redirect to sign-in

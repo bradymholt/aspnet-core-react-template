@@ -19,7 +19,6 @@ export class SignIn extends React.Component<RouteComponentProps<any>, any> {
 
     handleSubmit = () => {
         event.preventDefault();
-
         this.setState({ errors: null, initialLoad: false });
         authService.signIn(this.refs.username.value, this.refs.password.value).then(response => {
             if (!response.is_error) {
@@ -103,28 +102,14 @@ export class Register extends React.Component<any, any> {
         errors: {} as { [key: string]: string }
     };
 
-    // handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    //     event.preventDefault();
-
-    //     this.setState({ errors: {} });
-    //     authService.register(this.refs.email.value, this.refs.password.value).then(response => {
-    //         if (!response.is_error) {
-    //             this.setState({ registerComplete: true })
-    //         } else {
-    //             this.setState({ errors: response.error_content });
-    //         }
-    //     });
-    // }
-
     handleSubmit = () => {
         event.preventDefault();
-
-        this.setState({ errors: null, initialLoad: false });
-        authService.signIn(this.refs.email.value, this.refs.password.value).then(response => {
+        this.setState({ errors: {} });
+        authService.register(this.refs.email.value, this.refs.password.value).then(response => {
             if (!response.is_error) {
                 this.setState({ registerComplete: true })
             } else {
-                this.setState({ error: response.error_content.error_description });
+                this.setState({ errors: response.error_content });
             }
         });
 
@@ -143,25 +128,45 @@ export class Register extends React.Component<any, any> {
             return <RegisterComplete email={this.refs.email.value} />
         } else {
             return <div>
-                <form className={authStyle.formAuth} onSubmit={(e) => this.handleSubmit()}>
-                    <h2 className={authStyle.formAuthHeading}>Please register for access</h2>
-                    {this.state.errors.general &&
-                        <div className="alert alert-danger" role="alert">
-                            {this.state.errors.general}
-                        </div>
-                    }
-                    <div className={this._formGroupClass(this.state.errors.username)}>
-                        <label htmlFor="inputEmail">Email address</label>
-                        <input type="email" id="inputEmail" ref="email" className="form-control" placeholder="Email address" />
-                        <div className="form-control-feedback">{this.state.errors.username}</div>
-                    </div>
-                    <div className={this._formGroupClass(this.state.errors.password)}>
-                        <label htmlFor="inputPassword">Password</label>
-                        <input type="password" id="inputPassword" ref="password" className="form-control" placeholder="Password" />
-                        <div className="form-control-feedback">{this.state.errors.password}</div>
-                    </div>
-                    <button className="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-                </form>
+                <Grid centered columns={2}>
+                    <Grid.Column>
+                        <Message
+                            positive
+                            attached
+                            header='Please register for access'
+                            content="Access all the features."
+                        />
+                        {this.state.errors.general &&
+                            <Message icon='warning sign' header='Something`s wrong' content={this.state.errors.general} warning attached />
+                        }
+                        <Form className="segment attached" size='large' onSubmit={this.handleSubmit}>
+                            <Form.Field>
+                                <label htmlFor="inputEmail">E-mail</label>
+                                <input
+                                    type="email" 
+                                    id="inputEmail" 
+                                    ref="email" 
+                                    placeholder="Email address"
+                                />
+                            </Form.Field>
+                            <Form.Field>
+                                <label htmlFor="inputPassword">Password</label>
+                                <input
+                                    id="inputPassword"
+                                    placeholder='Password'
+                                    type='password'
+                                    name="inputPassword" 
+                                    ref="password"
+                                />
+                            </Form.Field>
+                            <Divider hidden />
+                            <Button color='teal' fluid size='large' type="submit">Sign up</Button>
+                        </Form>
+                        <Segment attached='bottom'>
+                            <Link to="/">Already have account? Login</Link>
+                        </Segment>
+                    </Grid.Column>
+                </Grid>
             </div>;
         };
     }

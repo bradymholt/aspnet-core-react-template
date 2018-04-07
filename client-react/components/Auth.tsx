@@ -131,13 +131,16 @@ export class Register extends React.Component<any, any> {
                 <Grid centered columns={2}>
                     <Grid.Column>
                         <Message
-                            positive
                             attached
                             header='Please register for access'
                             content="Access all the features."
                         />
                         {this.state.errors.general &&
-                            <Message icon='warning sign' header='Something`s wrong' content={this.state.errors.general} warning attached />
+                            <Message icon='warning sign' header='Something`s wrong' content={this.state.errors.general} error attached />
+                        }
+                        {this.state.errors && Object.keys(this.state.errors).length !== 0 && this.state.errors.constructor === Object ?
+                            <Message icon='warning sign' attached error role="alert" list={Object.keys(this.state.errors).map(key => this.state.errors[key])} />
+                            : null
                         }
                         <Form className="segment attached" size='large' onSubmit={this.handleSubmit}>
                             <Form.Field>
@@ -178,14 +181,26 @@ interface RegisterCompleteProps {
 
 export class RegisterComplete extends React.Component<RegisterCompleteProps, any> {
     render() {
-        return <div className={authStyle.auth}>
-            <div className="alert alert-success" role="alert">
-                <strong>Success!</strong>  Your account has been created.
-            </div>
-            <p>
-                A confirmation email has been sent to {this.props.email}. You will need to follow the provided link to confirm your email address before signing in.
-            </p>
-            <Link className="btn btn-lg btn-primary btn-block" role="button" to="/">Sign in</Link>
+        return <div>
+            <Grid centered columns={2}>
+                <Grid.Column>
+                    <Message
+                        positive
+                        icon='checkmark'
+                        attached
+                        header='Success!'
+                        content="Your account has been created."
+                    />
+                    <Segment attached>
+                        <p>
+                            A confirmation email has been sent to {this.props.email}. You will need to follow the provided link to confirm your email address before signing in.
+                        </p>
+                    </Segment>
+                    <Segment attached='bottom'>
+                        <Link role="button" to="/">Sign in</Link>
+                        </Segment>
+                </Grid.Column>
+            </Grid>
         </div>;
     }
 }

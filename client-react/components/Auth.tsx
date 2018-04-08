@@ -47,7 +47,7 @@ export class SignIn extends React.Component<RouteComponentProps<any>, any> {
                 initialLoadContent = <Message icon='info' header='Signed Out'  info attached />
             }
         }
-        return <div>
+        return <div className={authStyle.auth}>
             <Grid centered columns={2}>
                 <Grid.Column>
                     <Message
@@ -127,7 +127,7 @@ export class Register extends React.Component<any, any> {
         if (this.state.registerComplete) {
             return <RegisterComplete email={this.refs.email.value} />
         } else {
-            return <div>
+            return <div className={authStyle.auth}>
                 <Grid centered columns={2}>
                     <Grid.Column>
                         <Message
@@ -181,7 +181,7 @@ interface RegisterCompleteProps {
 
 export class RegisterComplete extends React.Component<RegisterCompleteProps, any> {
     render() {
-        return <div>
+        return <div className={authStyle.auth}>
             <Grid centered columns={2}>
                 <Grid.Column>
                     <Message

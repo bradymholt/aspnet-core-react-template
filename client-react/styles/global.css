@@ -1,17 +1,8 @@
 body {
-  padding-top: 5rem;
   font-family: "century gothic", verdana;
-
 }
 
-.btn-link {
-  cursor: pointer;
+.ui.menu { 
+  margin: 1.5em 0 3em!important;
 }
 
-.btn {
-  margin: 10px 3px 10px 3px;
-}
-
-.table td{
-  vertical-align: middle;
-}

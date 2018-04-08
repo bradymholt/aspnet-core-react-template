@@ -4,7 +4,7 @@ import { RouteComponentProps } from "react-router";
 import { RoutePaths } from './Routes';
 import AuthService from '../services/Auth';
 import AuthStore from '../stores/Auth';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Button } from 'semantic-ui-react';
 
 let authService = new AuthService();
 
@@ -26,7 +26,7 @@ export class Header extends React.Component<RouteComponentProps<any>, any> {
                 <Menu.Item>Link 2</Menu.Item>
                 <Menu.Menu position='right'>
                     <Menu.Item name='signup'>
-                    <button className="btn btn-outline-warning my-2 my-sm-0" type="button" onClick={() => this.signOut()}>Sign out</button>
+                        <Button onClick={() => this.signOut()}>Sign out</Button>
                     </Menu.Item>
                 </Menu.Menu>
             </Menu>;

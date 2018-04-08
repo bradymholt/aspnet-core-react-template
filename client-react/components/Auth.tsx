@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link, Redirect, RouteComponentProps } from 'react-router-dom';
 import { RoutePaths } from './Routes';
 import AuthService from '../services/Auth';
-import { Icon, Message, Grid, Form, Segment, Divider, Button, Input } from 'semantic-ui-react';
+import { Icon, Label, Message, Grid, Form, Segment, Divider, Button, Input } from 'semantic-ui-react';
 let authStyle = require('../styles/auth.styl');
 let authService = new AuthService();
 
@@ -115,14 +115,6 @@ export class Register extends React.Component<any, any> {
 
     }
 
-    _formGroupClass(field: string) {
-        var className = "form-group ";
-        if (field) {
-            className += " has-danger"
-        }
-        return className;
-    }
-
     render() {
         if (this.state.registerComplete) {
             return <RegisterComplete email={this.refs.email.value} />
@@ -138,12 +130,11 @@ export class Register extends React.Component<any, any> {
                         {this.state.errors.general &&
                             <Message icon='warning sign' header='Something`s wrong' content={this.state.errors.general} error attached />
                         }
-                        {this.state.errors && Object.keys(this.state.errors).length !== 0 && this.state.errors.constructor === Object ?
-                            <Message icon='warning sign' attached error role="alert" list={Object.keys(this.state.errors).map(key => this.state.errors[key])} />
-                            : null
+                        {this.state.errors && Object.keys(this.state.errors).length !== 0 && this.state.errors.constructor === Object &&
+                            <Message icon='warning sign' header='Something`s wrong' attached error role="alert" />
                         }
                         <Form className="segment attached" size='large' onSubmit={this.handleSubmit}>
-                            <Form.Field>
+                            <Form.Field required error={this.state.errors.username && true}>
                                 <label htmlFor="inputEmail">E-mail</label>
                                 <input
                                     type="email" 
@@ -151,8 +142,9 @@ export class Register extends React.Component<any, any> {
                                     ref="email" 
                                     placeholder="Email address"
                                 />
+                                {this.state.errors.username && <Label basic color='red' pointing>{this.state.errors.username}</Label>}
                             </Form.Field>
-                            <Form.Field>
+                            <Form.Field required error={this.state.errors.password && true}>
                                 <label htmlFor="inputPassword">Password</label>
                                 <input
                                     id="inputPassword"
@@ -161,6 +153,7 @@ export class Register extends React.Component<any, any> {
                                     name="inputPassword" 
                                     ref="password"
                                 />
+                                {this.state.errors.password && <Label basic color='red' pointing>{this.state.errors.password}</Label>}
                             </Form.Field>
                             <Divider hidden />
                             <Button color='teal' fluid size='large' type="submit">Sign up</Button>
@@ -198,7 +191,7 @@ export class RegisterComplete extends React.Component<RegisterCompleteProps, any
                     </Segment>
                     <Segment attached='bottom'>
                         <Link role="button" to="/">Sign in</Link>
-                        </Segment>
+                    </Segment>
                 </Grid.Column>
             </Grid>
         </div>;

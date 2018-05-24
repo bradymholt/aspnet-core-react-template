@@ -2,6 +2,7 @@
 database_name: "{{ app_name }}"
 database_username: "{{ app_name }}"
 deploy_directory: "/home/{{ deploy_user }}/apps/{{ app_name }}"
+email_enable_ssl: true
 email_from_name: "{{ app_name }}"
 postgresql_backup_to_s3: false
 s3_bucket_name: "s3://app.{{ app_name }}"

@@ -15,5 +15,6 @@
     jwt.key={{jwt_key}}
     jwt.issuer="http://{{webserver_name}}/"
     email.smtpConfig={{smtp_config}}
+    email.enableSSL={{email_enable_ssl}}
     email.emailFromName={{email_from_name}}
     email.emailFromAddress={{email_from_address}}

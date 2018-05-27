@@ -6,8 +6,8 @@
   "scripts": {
     "postinstall": "dotnet restore ./api && dotnet restore ./api.test",
     "build": "dotnet build ./api",
-    "test:api": "cd ./api.test && dotnet xunit",
-    "pretest:client": "./node_modules/typescript/bin/tsc -p ./client-react.test/",
+    "test:api": "cd ./api.test && dotnet test",
+    "pretest:client": "npx tsc -p ./client-react.test/",
     "test:client": "mocha --require ignore-styles --recursive client-react.test/build/client-react.test",
     "test": "npm run test:api && npm run test:client",
     "migrate": "cd ./api/ && node ../scripts/create-migration.js && dotnet ef database update",

@@ -31,7 +31,7 @@ export default class Routes extends React.Component<any, any> {
 
 const DefaultLayout = ({ component: Component, ...rest }: { component: any, path: string, exact?: boolean }) => (
     <Route {...rest} render={props => (
-        AuthService.isSignedInIn() ? (
+        AuthService.isSignedIn() ? (
             <div>
                 <Header {...props} />
                 <div className="container">

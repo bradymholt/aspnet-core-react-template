@@ -2,7 +2,7 @@ This folder contains [Ansible](https://www.ansible.com/) assets responsible for 
 
 ## Setup
 
-1. Procure access to Ubuntu 16 host(s) which will be used to host this application.  [AWS](aws.amazon.com) or [Digital Ocean](https://m.do.co/c/974ef9a471c1) are good options.
+1. Procure access to Ubuntu 16.04 (Xenial) or Ubuntu 18.04 (Bionic) host which will be used to host this application.  [AWS](aws.amazon.com) or [Digital Ocean](https://m.do.co/c/974ef9a471c1) are good options.
 2. Setup DNS records to point to these host(s).
 3. Create `hosts` file in this directory, using `hosts.example` as a pattern.
 

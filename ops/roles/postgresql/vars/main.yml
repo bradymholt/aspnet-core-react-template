@@ -1,2 +1,2 @@
 ---
-postgresql_version: '9.5'
+postgresql_major_version: '10'

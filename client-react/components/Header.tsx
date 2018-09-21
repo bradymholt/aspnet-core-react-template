@@ -17,13 +17,12 @@ export class Header extends React.Component<RouteComponentProps<any>, any> {
         const search = this.props.location.search;
         const params = new URLSearchParams(search);
 
-        return <nav className="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+        return <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
                 aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
             <a className="navbar-brand" href="#">Template</a>
-
             <div className="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item active">

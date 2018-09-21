@@ -4,6 +4,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path = require('path');
 
 var config = {
+    mode: "production",
     module: {
         rules: [
             // Use react-hot for HMR and then ts-loader to transpile TS (pass path to tsconfig because it is not in root (cwd) path)
@@ -27,12 +28,6 @@ var config = {
                 removeComments: true
             }
         }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        }),
         new ExtractTextPlugin("styles.css")
-
     ]
 };

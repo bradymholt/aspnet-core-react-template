@@ -12,7 +12,7 @@ This app is a template application using ASP.NET Core 2.1 for a REST/JSON API se
   - JSON Web Token (JWT) authorization
   - Docker used for development PostgreSQL database and MailCatcher server
 - Client
-  - React 15.6
+  - React 16
   - Webpack 2 for asset bundling and HMR (Hot Module Replacement)
   - CSS Modules
   - Fetch API for REST requests
@@ -33,7 +33,7 @@ This app is a template application using ASP.NET Core 2.1 for a REST/JSON API se
 1. Install the following:
    - [.NET Core 2.1](https://www.microsoft.com/net/core)
    - [Node.js >= v8](https://nodejs.org/en/download/)
-   - [Ansible >= 2.0](http://docs.ansible.com/ansible/intro_installation.html)
+   - [Ansible >= 2.6](http://docs.ansible.com/ansible/intro_installation.html)
    - [Docker](https://docs.docker.com/engine/installation/)
 2. Run `npm install && npm start`
 3. Open browser and navigate to [http://localhost:5000](http://localhost:5000).
@@ -128,4 +128,4 @@ The following resources were helpful in setting up this template:
 - [SPA example of a token based authentication implementation using the Aurelia front end framework and ASP.NET core]( https://github.com/alexandre-spieser/AureliaAspNetCoreAuth)
 - [A Real-World React.js Setup for ASP.NET Core and MVC5](https://www.simple-talk.com/dotnet/asp-net/a-real-world-react-js-setup-for-asp-net-core-and-mvc)
 - [Customising ASP.NET Core Identity EF Core naming conventions for PostgreSQL](https://andrewlock.net/customising-asp-net-core-identity-ef-core-naming-conventions-for-postgresql)
-- My own perseverance because this took a _lot_ of time to get right 😁
+- My own perseverance because this took a _lot_ of time to get right 🤓

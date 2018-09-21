@@ -91,7 +91,7 @@ export class ContactForm extends React.Component<RouteComponentProps<any>, any> 
                         <div className="form-control-feedback">{this.state.errors.phone}</div>
                     </div>
                     <button className="btn btn-lg btn-primary btn-block" type="submit">Save</button>
-                    <Link className="btn btn-lg btn-secondary btn-block" to="/contacts">Cancel</Link>
+                    <Link className="btn btn-lg btn-light btn-block" to="/contacts">Cancel</Link>
                 </form>
             </fieldset>
         }

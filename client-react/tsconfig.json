@@ -3,11 +3,8 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "module": "es2015",
-    "target": "es5",
+    "target": "es2015",
     "jsx": "react"
   },
-  "files": [
-    "./boot.tsx",
-    "./styles/styles.d.ts"
-  ]
+  "files": ["./boot.tsx", "./styles/styles.d.ts"]
 }

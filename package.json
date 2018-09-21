@@ -14,9 +14,9 @@
     "prestart": "docker-compose up -d",
     "start": "cd ./api && cross-env NODE_PATH=../node_modules/ ASPNETCORE_ENVIRONMENT=Development dotnet watch run",
     "start:release": "npm run prerelease && cd ./api/bin/Release/netcoreapp1.0/publish/ && dotnet api.dll",
-    "provision:prod": "ansible-playbook -l production -i ./ops/hosts ./ops/provision.yml",
+    "provision:prod": "ansible-playbook -l production -i ./ops/config.yml ./ops/provision.yml",
     "prerelease": "cross-env ASPNETCORE_ENVIRONMENT=Production webpack --config ./client-react/webpack.config.js && cd ./api && dotnet publish --configuration Release",
-    "deploy:prod": "npm run prerelease && ansible-playbook -l production -i ./ops/hosts ./ops/deploy.yml",
+    "deploy:prod": "npm run prerelease && ansible-playbook -l production -i ./ops/config.yml ./ops/deploy.yml",
     "ssh:prod": "ssh `grep 'deploy_user=' ./ops/hosts | tail -n1 | awk -F'=' '{ print $2}'`@`awk 'f{print;f=0} /[production]/{f=1}' ./ops/hosts | head -n 1`"
   },
   "author": "",

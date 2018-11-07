@@ -1,10 +1,13 @@
 ---
 - name: Install Supervisor
+  become: true
   apt: pkg=supervisor state=present cache_valid_time=86400
 
 - name: Setup app config
+  become: true
   template: src=etc_supervisor_conf.d_app_name.conf.j2 dest=/etc/supervisor/conf.d/{{app_name}}.conf
   notify: Reload supervisor
 
 - name: Create .NET Core cert cache directory and give access to {{ webserver_user }}
+  become: true
   file: path=/var/www/.dotnet/corefx/cryptography/crls state=directory owner={{ webserver_user }} group={{ webserver_user }} mode=0775

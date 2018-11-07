@@ -1,6 +1,7 @@
 ---
 database_name: "{{ app_name }}"
 database_username: "{{ app_name }}"
+source_directory: ../api/bin/Release/netcoreapp2.1/publish/
 deploy_directory: "/home/{{ deploy_user }}/apps/{{ app_name }}"
 email_enable_ssl: true
 email_from_name: "{{ app_name }}"

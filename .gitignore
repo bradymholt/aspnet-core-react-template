@@ -4,7 +4,6 @@
 bin/
 obj/
 project.lock.json
-.NETCoreApp,Version=v2.0.AssemblyAttributes.cs
 NuGetScratch/
 
 api/wwwroot/**
@@ -23,6 +22,7 @@ client-react.test/build
 
 # ops
 ops/hosts
+ops/config.yml
 ops/*.retry
 
 # other

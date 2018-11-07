@@ -6,7 +6,7 @@ interface IAuthResponse {
 }
 
 export default class Auth {
-    static isSignedInIn(): boolean {
+    static isSignedIn(): boolean {
         return !!AuthStore.getToken();
     }
 

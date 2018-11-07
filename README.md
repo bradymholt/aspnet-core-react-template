@@ -1,18 +1,18 @@
 # ASP.NET Core / React SPA Template App
 
-This app is a template application using ASP.NET Core 2.0 for a REST/JSON API server and React for a web client.
+This app is a template application using ASP.NET Core 2.1 for a REST/JSON API server and React for a web client.
 
 ![screen recording 2017-06-10 at 04 12 pm](https://user-images.githubusercontent.com/759811/27006360-bd3b8152-4df7-11e7-9011-f22204abe4d5.gif)
 
 ## Overview of Stack
 - Server
-  - ASP.NET Core 2.0
-  - PostgreSQL
+  - ASP.NET Core 2.1
+  - PostgreSQL 10
   - Entity Framework Core w/ EF Migrations
   - JSON Web Token (JWT) authorization
   - Docker used for development PostgreSQL database and MailCatcher server
 - Client
-  - React 15.6
+  - React 16
   - Webpack 2 for asset bundling and HMR (Hot Module Replacement)
   - CSS Modules
   - Fetch API for REST requests
@@ -31,9 +31,9 @@ This app is a template application using ASP.NET Core 2.0 for a REST/JSON API se
 ## Setup
 
 1. Install the following:
-   - [.NET Core 2.0](https://www.microsoft.com/net/core)
+   - [.NET Core 2.1](https://www.microsoft.com/net/core)
    - [Node.js >= v8](https://nodejs.org/en/download/)
-   - [Ansible >= 2.0](http://docs.ansible.com/ansible/intro_installation.html)
+   - [Ansible >= 2.6](http://docs.ansible.com/ansible/intro_installation.html)
    - [Docker](https://docs.docker.com/engine/installation/)
 2. Run `npm install && npm start`
 3. Open browser and navigate to [http://localhost:5000](http://localhost:5000).
@@ -69,7 +69,9 @@ This will run the xUnit tests in api.test/ and the Mocha/Enzyme tests in client-
 
  _Before running this script, you need to create an ops/hosts file first.  See the [ops README](ops/) for instructions._
 
- This will run the ops/provision.yml Ansible playbook and provision hosts in ops/hosts inventory file.  This prepares the hosts to recieve deployments by doing the following:
+ This will run the ops/provision.yml Ansible playbook and provision hosts in ops/hosts inventory file.  Ubuntu 16.04 (Xenial) and Ubuntu 18.04 (Bionic) is supported and tested.
+
+ This prepares the hosts to recieve deployments by doing the following:
   - Install Nginx
   - Generate a SSL certificate from [Let's Encrypt](https://letsencrypt.org/) and configure Nginx to use it
   - Install .Net Core
@@ -86,7 +88,9 @@ _Before running this script, you need to create a ops/hosts file first.  See the
 This script will:
  - Build release Webpack bundles
  - Package the .NET Core application in Release mode (dotnet publish)
- - Run the ops/deploy.yml Ansible playbook to deploy this app to hosts in /ops/hosts inventory file.  This does the following:
+ - Run the ops/deploy.yml Ansible playbook to deploy this app to hosts in /ops/hosts inventory file.
+
+ This does the following:
   - Copies the build assets to the remote host(s)
   - Updates the `appsettings.json` file with PostgreSQL credentials specified in ops/hosts file and the app URL (needed for JWT tokens)
   - Restarts the app so that changes will be picked up
@@ -124,4 +128,4 @@ The following resources were helpful in setting up this template:
 - [SPA example of a token based authentication implementation using the Aurelia front end framework and ASP.NET core]( https://github.com/alexandre-spieser/AureliaAspNetCoreAuth)
 - [A Real-World React.js Setup for ASP.NET Core and MVC5](https://www.simple-talk.com/dotnet/asp-net/a-real-world-react-js-setup-for-asp-net-core-and-mvc)
 - [Customising ASP.NET Core Identity EF Core naming conventions for PostgreSQL](https://andrewlock.net/customising-asp-net-core-identity-ef-core-naming-conventions-for-postgresql)
-- My own perseverance because this took a _lot_ of time to get right 😁
+- My own perseverance because this took a _lot_ of time to get right 🤓

@@ -1,17 +1,15 @@
 ---
-- name: Create dotnetdev.list file
-  command: touch /etc/apt/sources.list.d/dotnetdev.list creates="/etc/apt/sources.list.d/dotnetdev.list"
+- name: Download product repository file
+  get_url:
+    url: "https://packages.microsoft.com/config/ubuntu/{{ansible_distribution_major_version}}.04/packages-microsoft-prod.deb"
+    dest: "/tmp/packages-microsoft-prod.deb"
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "18"
 
-- name: Set apt-get feed for Ubuntu Xenial
-  lineinfile: dest=/etc/apt/sources.list.d/dotnetdev.list line="deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ xenial main"
-  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "16"
+- name: Execute dehydrated shell script
+  shell: "dpkg -i /tmp/packages-microsoft-prod.deb"
 
-- name: Set apt-get feed for Ubuntu Trusty
-  lineinfile: dest=/etc/apt/sources.list.d/dotnetdev.list line="deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ trusty main"
-  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "14"
-
-- name: Add apt key
-  apt_key: keyserver=apt-mo.trafficmanager.net id=417A0893
+- name: Install transport-https
+  apt: pkg=apt-transport-https state=present update_cache=yes
 
 - name: Install dotnet core SDK
-  apt: name={{ dotnetcore_package_name }} state=present update_cache=yes
+  apt: name={{ dotnetcore_package_name }} state=present

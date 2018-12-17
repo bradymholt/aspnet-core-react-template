@@ -88,11 +88,11 @@ _Before running this script, you need to create a ops/hosts file first.  See the
 This script will:
  - Build release Webpack bundles
  - Package the .NET Core application in Release mode (dotnet publish)
- - Run the ops/deploy.yml Ansible playbook to deploy this app to hosts in /ops/hosts inventory file.
+ - Run the ops/deploy.yml Ansible playbook to deploy this app to hosts in /ops/config.yml inventory file.
 
  This does the following:
   - Copies the build assets to the remote host(s)
-  - Updates the `appsettings.json` file with PostgreSQL credentials specified in ops/hosts file and the app URL (needed for JWT tokens)
+  - Updates the `appsettings.json` file with PostgreSQL credentials specified in ops/group_vars/all file and the app URL (needed for JWT tokens)
   - Restarts the app so that changes will be picked up
 
 ## Development Email Delivery

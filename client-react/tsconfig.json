@@ -4,8 +4,7 @@
     "noImplicitAny": true,
     "module": "es2015",
     "target": "es2015",
-    "jsx": "react",
-    "moduleResolution": "node"
+    "jsx": "react"
   },
   "files": ["./boot.tsx", "./styles/styles.d.ts"]
 }

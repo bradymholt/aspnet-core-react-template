@@ -2,7 +2,6 @@ import * as React from "react";
 import { Link, Redirect, RouteComponentProps } from 'react-router-dom';
 import { RoutePaths } from './Routes';
 import AuthService from '../services/Auth';
-import { Icon, Label, Message, Grid, Form, Segment, Divider, Button, Input } from 'semantic-ui-react';
 let authStyle = require('../styles/auth.styl');
 let authService = new AuthService();
 
@@ -17,8 +16,9 @@ export class SignIn extends React.Component<RouteComponentProps<any>, any> {
         error: null as string
     };
 
-    handleSubmit = () => {
+    handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
+
         this.setState({ errors: null, initialLoad: false });
         authService.signIn(this.refs.username.value, this.refs.password.value).then(response => {
             if (!response.is_error) {
@@ -36,57 +36,41 @@ export class SignIn extends React.Component<RouteComponentProps<any>, any> {
         let initialLoadContent = null;
         if (this.state.initialLoad) {
             if (params.get('confirmed')) {
-                initialLoadContent = <Message icon='checkmark' header='Your email address has been successfully confirmed.' success attached />
+                initialLoadContent = <div className="alert alert-success" role="alert">
+                    Your email address has been successfully confirmed.
+                    </div>
             }
 
             if (params.get('expired')) {
-                initialLoadContent = <Message icon='info' header='Sesion Expired' content='You need to sign in again.' info attached />
+                initialLoadContent = <div className="alert alert-info" role="alert">
+                    <strong>Sesion Expired</strong> You need to sign in again.
+                    </div>
             }
 
             if (this.props.history.location.state && this.props.history.location.state.signedOut) {
-                initialLoadContent = <Message icon='info' header='Signed Out'  info attached />
+                initialLoadContent = <div className="alert alert-info" role="alert">
+                    <strong>Signed Out</strong>
+                </div>
             }
         }
         return <div className={authStyle.auth}>
-            <Grid centered columns={2}>
-                <Grid.Column>
-                    <Message
-                        positive
-                        attached
-                        header='Login to your account'
-                        content="Access all the features."
-                    />
-                    {initialLoadContent}
-                    {this.state.error &&
-                        <Message icon='warning sign' header='Something`s wrong' content={this.state.error} warning attached />
-                    }
-                    <Form className="segment attached" size='large' onSubmit={this.handleSubmit}>
-                        <Form.Field>
-                            <label htmlFor="inputEmail">E-mail</label>
-                            <input
-                                type="email" 
-                                id="inputEmail" 
-                                ref="username" 
-                                placeholder="Email address"
-                            />
-                        </Form.Field>
-                        <Form.Field>
-                            <label htmlFor="inputPassword">Password</label>
-                            <input
-                                placeholder='Password'
-                                type='password'
-                                name="inputPassword" 
-                                ref="password"
-                            />
-                        </Form.Field>
-                        <Divider hidden />
-                        <Button color='teal' fluid size='large' type="submit">Login</Button>
-                    </Form>
-                    <Segment attached='bottom'>
-                        <Link to="/register">No account? Register</Link>
-                    </Segment>
-                </Grid.Column>
-            </Grid>            
+            <form className={authStyle.formAuth} onSubmit={(e) => this.handleSubmit(e)}>
+                <h2 className={authStyle.formAuthHeading}>Please sign in</h2>
+                {initialLoadContent}
+                {this.state.error &&
+                    <div className="alert alert-danger" role="alert">
+                        {this.state.error}
+                    </div>
+                }
+                <label htmlFor="inputEmail" className="form-control-label sr-only">Email address</label>
+                <input type="email" id="inputEmail" ref="username" defaultValue="user@test.com" className="form-control form-control-danger" placeholder="Email address"/>
+                <label htmlFor="inputPassword" className="form-control-label sr-only">Password</label>
+                <input type="password" id="inputPassword" ref="password" defaultValue="P2ssw0rd!" className="form-control" placeholder="Password" />
+                <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            </form>
+            <div className={authStyle.authEtc}>
+                <Link to="/register">Register</Link>
+            </div>
         </div>;
     }
 }
@@ -102,8 +86,9 @@ export class Register extends React.Component<any, any> {
         errors: {} as { [key: string]: string }
     };
 
-    handleSubmit = () => {
+    handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
+
         this.setState({ errors: {} });
         authService.register(this.refs.email.value, this.refs.password.value).then(response => {
             if (!response.is_error) {
@@ -112,7 +97,14 @@ export class Register extends React.Component<any, any> {
                 this.setState({ errors: response.error_content });
             }
         });
+    }
 
+    _formGroupClass(field: string) {
+        var className = "form-group ";
+        if (field) {
+            className += " has-danger"
+        }
+        return className;
     }
 
     render() {
@@ -120,49 +112,25 @@ export class Register extends React.Component<any, any> {
             return <RegisterComplete email={this.refs.email.value} />
         } else {
             return <div className={authStyle.auth}>
-                <Grid centered columns={2}>
-                    <Grid.Column>
-                        <Message
-                            attached
-                            header='Please register for access'
-                            content="Access all the features."
-                        />
-                        {this.state.errors.general &&
-                            <Message icon='warning sign' header='Something`s wrong' content={this.state.errors.general} error attached />
-                        }
-                        {this.state.errors && Object.keys(this.state.errors).length !== 0 && this.state.errors.constructor === Object &&
-                            <Message icon='warning sign' header='Something`s wrong' attached error role="alert" />
-                        }
-                        <Form className="segment attached" size='large' onSubmit={this.handleSubmit}>
-                            <Form.Field required error={this.state.errors.username && true}>
-                                <label htmlFor="inputEmail">E-mail</label>
-                                <input
-                                    type="email" 
-                                    id="inputEmail" 
-                                    ref="email" 
-                                    placeholder="Email address"
-                                />
-                                {this.state.errors.username && <Label basic color='red' pointing>{this.state.errors.username}</Label>}
-                            </Form.Field>
-                            <Form.Field required error={this.state.errors.password && true}>
-                                <label htmlFor="inputPassword">Password</label>
-                                <input
-                                    id="inputPassword"
-                                    placeholder='Password'
-                                    type='password'
-                                    name="inputPassword" 
-                                    ref="password"
-                                />
-                                {this.state.errors.password && <Label basic color='red' pointing>{this.state.errors.password}</Label>}
-                            </Form.Field>
-                            <Divider hidden />
-                            <Button color='teal' fluid size='large' type="submit">Sign up</Button>
-                        </Form>
-                        <Segment attached='bottom'>
-                            <Link to="/">Already have account? Login</Link>
-                        </Segment>
-                    </Grid.Column>
-                </Grid>
+                <form className={authStyle.formAuth} onSubmit={(e) => this.handleSubmit(e)}>
+                    <h2 className={authStyle.formAuthHeading}>Please register for access</h2>
+                    {this.state.errors.general &&
+                        <div className="alert alert-danger" role="alert">
+                            {this.state.errors.general}
+                        </div>
+                    }
+                    <div className={this._formGroupClass(this.state.errors.username)}>
+                        <label htmlFor="inputEmail">Email address</label>
+                        <input type="email" id="inputEmail" ref="email" className="form-control" placeholder="Email address" />
+                        <div className="form-control-feedback">{this.state.errors.username}</div>
+                    </div>
+                    <div className={this._formGroupClass(this.state.errors.password)}>
+                        <label htmlFor="inputPassword">Password</label>
+                        <input type="password" id="inputPassword" ref="password" className="form-control" placeholder="Password" />
+                        <div className="form-control-feedback">{this.state.errors.password}</div>
+                    </div>
+                    <button className="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+                </form>
             </div>;
         };
     }
@@ -175,25 +143,13 @@ interface RegisterCompleteProps {
 export class RegisterComplete extends React.Component<RegisterCompleteProps, any> {
     render() {
         return <div className={authStyle.auth}>
-            <Grid centered columns={2}>
-                <Grid.Column>
-                    <Message
-                        positive
-                        icon='checkmark'
-                        attached
-                        header='Success!'
-                        content="Your account has been created."
-                    />
-                    <Segment attached>
-                        <p>
-                            A confirmation email has been sent to {this.props.email}. You will need to follow the provided link to confirm your email address before signing in.
-                        </p>
-                    </Segment>
-                    <Segment attached='bottom'>
-                        <Link role="button" to="/">Sign in</Link>
-                    </Segment>
-                </Grid.Column>
-            </Grid>
+            <div className="alert alert-success" role="alert">
+                <strong>Success!</strong>  Your account has been created.
+            </div>
+            <p>
+                A confirmation email has been sent to {this.props.email}. You will need to follow the provided link to confirm your email address before signing in.
+            </p>
+            <Link className="btn btn-lg btn-primary btn-block" role="button" to="/">Sign in</Link>
         </div>;
     }
 }

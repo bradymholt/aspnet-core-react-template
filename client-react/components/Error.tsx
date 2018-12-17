@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Link, RouteComponentProps } from 'react-router-dom';
-import { Header, Segment } from 'semantic-ui-react';
 
 export class ErrorPage extends React.Component<RouteComponentProps<any>, any> {
 
@@ -24,13 +23,12 @@ export class ErrorPage extends React.Component<RouteComponentProps<any>, any> {
     render() {
         let code = this.getErrorCode();
         return <div>
-            <Header as='h1'>Error</Header>
-            <Segment attached>{this.getErrorMessage()}</Segment>
-            <Segment attached>
-                {code &&
-                    <p>Code: {code}</p>
-                }
-            </Segment>
+            <h1>Error</h1>
+            <p>{this.getErrorMessage()}</p>
+            {code &&
+                <p>Code: {code}</p>
+            }
+
         </div>;
     }
 }

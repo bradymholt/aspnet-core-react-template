@@ -34,7 +34,7 @@ const DefaultLayout = ({ component: Component, ...rest }: { component: any, path
         AuthService.isSignedIn() ? (
             <div>
                 <Header {...props} />
-                <div className="ui container">
+                <div className="container">
                     <Component {...props} />
                 </div>
             </div>

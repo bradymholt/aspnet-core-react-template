@@ -52,8 +52,8 @@ export default class RestUtilities {
         return fetch(url, {
             method: method,
             headers: headers,
-            body: <any>body,
-        }).then((response) => {
+            body: <string>body,
+        }).then((response:any) => {
             if (response.status == 401) {
                 // Unauthorized; redirect to sign-in
                 AuthStore.removeToken();

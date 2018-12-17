@@ -4,7 +4,6 @@ import { RoutePaths } from './Routes';
 import { ContactForm } from './ContactForm';
 import ContactService, { IContact } from '../services/Contacts';
 import { RouteComponentProps } from "react-router";
-import { Table, Message, Form, Divider, Button, Input, Header } from 'semantic-ui-react';
 
 let contactService = new ContactService();
 
@@ -34,7 +33,7 @@ export class Contacts extends React.Component<RouteComponentProps<any>, any> {
         this.setState({ searchQuery: event.target.value });
     }
 
-    handleSeachSubmit = () => {
+    handleSeachSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
         if(!this.state.searchQuery){
@@ -57,53 +56,44 @@ export class Contacts extends React.Component<RouteComponentProps<any>, any> {
 
     render() {
         return <div>
-            <Header as='h1'>Contacts</Header>
-            <Form onSubmit={this.handleSeachSubmit}>
-                <Input 
-                    value={this.state.searchQuery} 
-                    onChange={this.handleSearchQueryChange.bind(this)}  
-                    action='Search' 
-                    placeholder='Search...' 
-                />
-            </Form>
-            <Divider hidden/>
+            <h1>Contacts</h1>
+            <form className="form-inline my-2 my-lg-0" onSubmit={(e) => this.handleSeachSubmit(e)}>
+                <input className="form-control form-control form-control-sm" type="text" value={this.state.searchQuery} onChange={(e) => this.handleSearchQueryChange(e)} placeholder="Search" />
+                <button className="btn btn-outline-success btn-sm" type="submit">Search</button>&nbsp;
+            </form>
             {this.state.searchQuery && this.state.contacts && this.state.contacts.length == 0 &&
-                <Message header='No results!' content='Try with another keyword'/>
+                <p>No results!</p>
             }
             {this.state.contacts && this.state.contacts.length > 0 &&
-                <Table basic>
-                    <Table.Header>
-                        <Table.Row>
-                            <Table.HeaderCell>Last Name</Table.HeaderCell>
-                            <Table.HeaderCell>First Name</Table.HeaderCell>
-                            <Table.HeaderCell>Email</Table.HeaderCell>
-                            <Table.HeaderCell>Phone</Table.HeaderCell>
-                            <Table.HeaderCell>Actions</Table.HeaderCell>
-                        </Table.Row>
-                    </Table.Header>
-                    <Table.Body>
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th>Last Name</th>
+                            <th>First Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         {this.state.contacts.map((contact, index) =>
-                            <Table.Row key={contact.id}>
-                                <Table.Cell>{contact.lastName}</Table.Cell>
-                                <Table.Cell>{contact.firstName}</Table.Cell>
-                                <Table.Cell>{contact.email}</Table.Cell>
-                                <Table.Cell>{contact.phone}</Table.Cell>
-                                <Table.Cell>
-                                    <Button size='small' basic onClick={() => this.props.history.push(RoutePaths.ContactEdit.replace(":id", contact.id.toString()))}>Edit</Button>
-                                    <Button size='small' basic color='red' danger onClick={(e) => this.delete(contact)}>Delete</Button>
-                                </Table.Cell>
-                            </Table.Row>
-                        )}                       
-                    </Table.Body>
-                </Table>
+                            <tr key={contact.id}>
+                                <td>{contact.lastName}</td>
+                                <td>{contact.firstName}</td>
+                                <td>{contact.email}</td>
+                                <td>{contact.phone}</td>
+                                <td><Link to={RoutePaths.ContactEdit.replace(":id", contact.id.toString())}>edit</Link>
+                                    <button type="button" className="btn btn-link" onClick={(e) => this.delete(contact)}>delete</button></td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
             }
-            <Divider hidden/>
-            <Button.Group>
-                {this.state.searchQuery &&
-                    <Button onClick={(e) => this.showAll()}>Clear search</Button>
-                }
-                <Button positive onClick={() => this.props.history.push(RoutePaths.ContactNew)}>Add</Button>
-            </Button.Group>
+            {this.state.searchQuery &&
+                <button type="button" className="btn btn-primary" onClick={(e) => this.showAll()}>clear search</button>
+            }
+            <Link className="btn btn-success" to={RoutePaths.ContactNew}>add</Link>
+
         </div>
     };
 }

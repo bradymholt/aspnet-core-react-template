@@ -94,6 +94,8 @@ This script will:
   - Copies the build assets to the remote host(s)
   - Updates the `appsettings.json` file with PostgreSQL credentials specified in ops/group_vars/all file and the app URL (needed for JWT tokens)
   - Restarts the app so that changes will be picked up
+  
+ Entity Framework Migrations are [automatically applied upon startup](https://github.com/bradymholt/aspnet-core-react-template/blob/master/api/Program.cs#L23-L24) so they will run when the app restarts.
 
 ## Development Email Delivery
 

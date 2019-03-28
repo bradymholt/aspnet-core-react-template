@@ -1,14 +1,15 @@
-import * as jsdom from "jsdom";
-import * as localStorage from './polyfill/localStorage.js';
+import { JSDOM } from "jsdom";
+import * as localStorage from "./polyfill/localStorage.js";
 
-before(function () {
-    const doc = jsdom.jsdom('<!doctype html><html><body></body></html>');
-    const win = doc.defaultView;
+before(function() {
+    const dom = new JSDOM("<!doctype html><html><body></body></html>");
 
-    (global as any).document = doc;
-    (global as any).window = win;
+    (global as any).window = dom.window;
+    (global as any).document = dom.window.document;
 
     localStorage.polyfill();
 
-    console.log("Successfully mocked a DOM with jsdom and polyfilled localStorage.");
+    console.log(
+        "Successfully mocked a DOM with jsdom and polyfilled localStorage."
+    );
 });

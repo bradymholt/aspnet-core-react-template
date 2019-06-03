@@ -43,23 +43,23 @@ export default class RestUtilities {
         let isJsonResponse: boolean = false;
         let isBadRequest = false;
         let body = data;
-        //let headers = new Headers();
+        let headers = new Headers();
 
-        //headers.set('Authorization',`Bearer ${AuthStore.getToken()}`);
-        //headers.set('Accept','application/json');
+        headers.set('Authorization',`Bearer ${AuthStore.getToken()}`);
+        headers.set('Accept','application/json');
 
         if (data) {
             if (typeof data === "object") {
-                //headers.set('Content-Type','application/json');
+                headers.set('Content-Type','application/json');
                 body = JSON.stringify(data);
             } else {
-                //headers.set('Content-Type','application/x-www-form-urlencoded');
+                headers.set('Content-Type','application/x-www-form-urlencoded');
             }
         }
 
         return fetch(url, {
             method: method,
-            headers: null,
+            headers: headers,
             body: <string>body
         }).then((response: any) => {
                 if (response.status == 401) {

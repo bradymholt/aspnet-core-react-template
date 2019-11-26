@@ -1,5 +1,6 @@
 import * as sinon from 'sinon';
 
+
 /**
  * Stubs browser Fetch API and returns given returnData object
  *
@@ -11,7 +12,7 @@ function stubFetch(returnData: Object) {
         // If fetch is not defined; define it as a dummy function because sinon will only stub a defined function
         g.fetch = function () { }
     }
-    
+
     if (!g.Headers) {
         g.Headers = function () {
             this.set = function(){}
@@ -26,7 +27,7 @@ function stubFetch(returnData: Object) {
         json: function () { return Promise.resolve(returnData) }
     };
 
-    return sinon.stub(global, 'fetch').resolves(res);
+    return sinon.stub(global, "fetch" as any).callsFake(()=> Promise.resolve(res));
 
 }
 

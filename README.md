@@ -67,7 +67,7 @@ This will run the xUnit tests in api.test/ and the Mocha/Enzyme tests in client-
 
 ### `npm run provision:prod`
 
- _Before running this script, you need to create an ops/hosts file first.  See the [ops README](ops/) for instructions._
+ _Before running this script, you need to create an ops/config.yml file first.  See the [ops README](ops/) for instructions._
 
  This will run the ops/provision.yml Ansible playbook and provision hosts in ops/hosts inventory file.  Ubuntu 16.04 (Xenial) and Ubuntu 18.04 (Bionic) is supported and tested.
 
@@ -83,7 +83,7 @@ This will run the xUnit tests in api.test/ and the Mocha/Enzyme tests in client-
 
 ### `npm run deploy:prod`
 
-_Before running this script, you need to create a ops/hosts file first.  See the [ops README](ops/) for instructions._
+_Before running this script, you need to create a ops/config.yml file first.  See the [ops README](ops/) for instructions._
 
 This script will:
  - Build release Webpack bundles
@@ -94,6 +94,8 @@ This script will:
   - Copies the build assets to the remote host(s)
   - Updates the `appsettings.json` file with PostgreSQL credentials specified in ops/group_vars/all file and the app URL (needed for JWT tokens)
   - Restarts the app so that changes will be picked up
+  
+ Entity Framework Migrations are [automatically applied upon startup](https://github.com/bradymholt/aspnet-core-react-template/blob/master/api/Program.cs#L23-L24) so they will run when the app restarts.
 
 ## Development Email Delivery
 

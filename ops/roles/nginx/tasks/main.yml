@@ -7,7 +7,7 @@
   notify: Reload nginx
 
 - name: Setup app config
-  template: src="etc_nginx_sites-available.conf.j2" dest={{ nginx_conf_file }} group={{webserver_user}} owner={{webserver_user}}
+  template: src="etc_nginx_sites-available.conf.j2" dest={{ nginx_conf_file }} group={{ webserver_user }} owner={{ webserver_user }}
 
 - name: Enable app
   file: src={{ nginx_conf_file }} dest="{{ nginx_conf_enabled_link_file }}" state=link

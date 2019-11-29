@@ -5,7 +5,7 @@
 
 - name: Setup app config
   become: true
-  template: src=etc_supervisor_conf.d_app_name.conf.j2 dest=/etc/supervisor/conf.d/{{app_name}}.conf
+  template: src=etc_supervisor_conf.d_app_name.conf.j2 dest=/etc/supervisor/conf.d/{{ app_name }}.conf
   notify: Reload supervisor
 
 - name: Create .NET Core cert cache directory and give access to {{ webserver_user }}

@@ -1,2 +1,2 @@
-log_file: "/var/log/{{app_name}}.out.log"
-error_file: "/var/log/{{app_name}}.err.log"
+log_file: "/var/log/{{ app_name }}.out.log"
+error_file: "/var/log/{{ app_name }}.err.log"

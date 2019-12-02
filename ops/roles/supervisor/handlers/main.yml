@@ -5,4 +5,4 @@
 
 - name: Reload supervisor app config
   become: true
-  command: supervisorctl restart {{app_name}}
+  command: supervisorctl restart {{ app_name }}

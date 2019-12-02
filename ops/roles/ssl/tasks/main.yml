@@ -1,13 +1,14 @@
 # Source: https://gist.github.com/raphaelm/10226edb0e46f7ce844e
+# Source: https://github.com/lukas2511/dehydrated
 ---
 - name: Ensure Challenge directory exists
-  file: path="{{ challenge_root_dir }}{{challenge_relative_dir}}" state=directory mode=0755 owner=root group={{webserver_user}} recurse=yes
+  file: path="{{ challenge_root_dir }}{{ challenge_relative_dir }}" state=directory mode=0755 owner=root group={{ webserver_user }} recurse=yes
 
 - name: Ensure curl is installed
-  apt: name=curl state=installed
+  apt: name=curl state=present
 
 - name: Ensure SSL base directory exists
-  file: path={{ dehydrated_install_dir }} state=directory mode=0750 owner=root group={{webserver_user}}
+  file: path={{ dehydrated_install_dir }} state=directory mode=0750 owner=root group={{ webserver_user }}
 
 - name: Ensure SSL domain list exists
   command: "touch {{ dehydrated_install_dir }}/domains.txt"
@@ -20,7 +21,7 @@
 - name: Download dehydrated shell script
   get_url:
     url: https://raw.githubusercontent.com/lukas2511/dehydrated/master/dehydrated
-    dest: "{{ dehydrated_install_dir }}/{{dehydrated_script_name}}"
+    dest: "{{ dehydrated_install_dir }}/{{ dehydrated_script_name }}"
     mode: 0700
 
 - name: Add line to domains file
@@ -45,7 +46,7 @@
   when: challenge_directory_config.changed
 
 - name: Execute dehydrated shell script
-  shell: "./{{dehydrated_script_name}} --register --accept-terms && ./{{dehydrated_script_name}} -c"
+  shell: "./{{ dehydrated_script_name }} --register --accept-terms && ./{{ dehydrated_script_name }} -c"
   args:
     chdir: "{{ dehydrated_install_dir }}"
   notify: Reload nginx
@@ -57,8 +58,8 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK (SSL CONFIG)"
     block: |
       listen 443 ssl;
-      ssl_certificate {{dehydrated_install_dir}}/certs/{{ webserver_name }}/fullchain.pem;
-      ssl_certificate_key {{dehydrated_install_dir}}/certs/{{ webserver_name }}/privkey.pem;
+      ssl_certificate {{ dehydrated_install_dir }}/certs/{{ webserver_name }}/fullchain.pem;
+      ssl_certificate_key {{ dehydrated_install_dir }}/certs/{{ webserver_name }}/privkey.pem;
   notify: Reload nginx
 
 - name: Remove default listen port (will be replaced with another server block)

@@ -2,9 +2,7 @@
 - name: Install Packages | apt
   apt:
     state: latest
-    pkg: "{{ item }}"
-  with_items:
-    - postgresql-client
+    pkg: 'postgresql-client'
   when: postgresql_client
   tags:
     - software-installation
@@ -13,15 +11,15 @@
 - name: Install Packages | apt
   apt:
     state: latest
-    pkg: "{{ item }}"
-  with_items:
-    - libpq-dev
-    - python-dev
-    - python-pip
-    - postgresql
-    - postgresql-contrib
-    - postgresql-server-dev-all
-    - python-dev
+    pkg: [
+      'libpq-dev',
+      'python-dev',
+      'python-pip',
+      'postgresql',
+      'postgresql-contrib',
+      'postgresql-server-dev-all',
+      'python-dev'
+    ]
   when: postgresql_server
   tags:
     - software-installation
@@ -30,9 +28,7 @@
 - name: Install Packages | pip
   pip:
     state: latest
-    name: "{{ item }}"
-  with_items:
-    - psycopg2
+    name: 'psycopg2'
   when: postgresql_server
   tags:
     - software-installation
@@ -41,9 +37,7 @@
 - name: Install Packages | apt
   apt:
     state: latest
-    pkg: "{{ item }}"
-  with_items:
-    - p7zip-full
+    pkg: 'p7zip-full'
   when: postgresql_backup_enabled
   tags:
     - p7zip

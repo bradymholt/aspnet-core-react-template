@@ -1,20 +1,20 @@
 - name: Copy app files
-  synchronize: src={{source_directory}} dest={{ deploy_directory }} delete=yes rsync_opts=--exclude=.git/
+  synchronize: src={{ source_directory }} dest={{ deploy_directory }} delete=yes rsync_opts=--exclude=.git/
   notify: Reload supervisor app config
 
 - name: Configure PostgresSQL connection string
   lineinfile: dest="{{ deploy_directory }}/{{ appsetting_file }}"
     regexp="defaultConnection\":"
-    line="\"defaultConnection\"{{':'}} \"Host=127.0.0.1;Username={{database_username}};Password={{database_password}};Database={{database_name}}\""
+    line="\"defaultConnection\"{{':'}} \"Host=127.0.0.1;Username={{ database_username }};Password={{ database_password }};Database={{ database_name }}\""
     state="present"
 
 - name: Configure appsettings
   ghetto_json:
     path="{{ deploy_directory }}/{{ appsetting_file }}"
-    frontEndUrl="http://{{webserver_name}}/"
-    jwt.key={{jwt_key}}
-    jwt.issuer="http://{{webserver_name}}/"
-    email.smtpConfig={{smtp_config}}
-    email.enableSSL={{email_enable_ssl}}
-    email.emailFromName={{email_from_name}}
-    email.emailFromAddress={{email_from_address}}
+    frontEndUrl="http://{{ webserver_name }}/"
+    jwt.key={{ jwt_key }}
+    jwt.issuer="http://{{ webserver_name }}/"
+    email.smtpConfig={{ smtp_config }}
+    email.enableSSL={{ email_enable_ssl }}
+    email.emailFromName={{ email_from_name }}
+    email.emailFromAddress={{ email_from_address }}

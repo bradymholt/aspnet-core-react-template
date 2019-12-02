@@ -6,4 +6,4 @@
   roles:
     - deploy
   post_tasks:
-    - debug: msg="Deployed to http://{{webserver_name}}"
+    - debug: msg="Deployed to https://{{ webserver_name }}"

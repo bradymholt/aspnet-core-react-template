@@ -1,12 +1,12 @@
-[program:{{app_name}}]
-command=/usr/bin/dotnet {{deploy_directory}}/api.dll
-directory={{deploy_directory}}
+[program:{{ app_name }}]
+command=/usr/bin/dotnet {{ deploy_directory }}/api.dll
+directory={{ deploy_directory }}
 autostart=true
 autorestart=true
 stderr_logfile={{ error_file }}
 stdout_logfile={{ log_file }}
 environment=HOME=/var/www/,ASPNETCORE_ENVIRONMENT=Production
-user={{webserver_user}}
+user={{ webserver_user }}
 stopsignal=INT
 stopasgroup=true
 killasgroup=true

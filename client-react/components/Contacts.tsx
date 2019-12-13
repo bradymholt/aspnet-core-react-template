@@ -58,7 +58,7 @@ export class Contacts extends React.Component<RouteComponentProps<any>, any> {
         return <div>
             <h1>Contacts</h1>
             <form className="form-inline my-2 my-lg-0" onSubmit={(e) => this.handleSeachSubmit(e)}>
-                <input className="form-control form-control form-control-sm" type="text" value={this.state.searchQuery} onChange={(e) => this.handleSearchQueryChange(e)} placeholder="Search" />
+                <input className="form-control form-control form-control-sm" type="text" value={this.state.searchQuery} onChange={(e) => this.handleSearchQueryChange(e)} placeholder="Search!" />
                 <button className="btn btn-outline-success btn-sm" type="submit">Search</button>&nbsp;
             </form>
             {this.state.searchQuery && this.state.contacts && this.state.contacts.length == 0 &&

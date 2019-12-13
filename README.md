@@ -1,12 +1,12 @@
 # ASP.NET Core / React SPA Template App
 
-This app is a template application using ASP.NET Core 2.1 for a REST/JSON API server and React for a web client.
+This app is a template application using ASP.NET Core 3.1 for a REST/JSON API server and React for a web client.
 
 ![screen recording 2017-06-10 at 04 12 pm](https://user-images.githubusercontent.com/759811/27006360-bd3b8152-4df7-11e7-9011-f22204abe4d5.gif)
 
 ## Overview of Stack
 - Server
-  - ASP.NET Core 2.1
+  - ASP.NET Core 3.1
   - PostgreSQL 10
   - Entity Framework Core w/ EF Migrations
   - JSON Web Token (JWT) authorization
@@ -31,7 +31,7 @@ This app is a template application using ASP.NET Core 2.1 for a REST/JSON API se
 ## Setup
 
 1. Install the following:
-   - [.NET Core 2.1](https://www.microsoft.com/net/core)
+   - [.NET Core 3.1](https://www.microsoft.com/net/core)
    - [Node.js >= v8](https://nodejs.org/en/download/)
    - [Ansible >= 2.6](http://docs.ansible.com/ansible/intro_installation.html)
    - [Docker](https://docs.docker.com/engine/installation/)
@@ -94,7 +94,7 @@ This script will:
   - Copies the build assets to the remote host(s)
   - Updates the `appsettings.json` file with PostgreSQL credentials specified in ops/group_vars/all file and the app URL (needed for JWT tokens)
   - Restarts the app so that changes will be picked up
-  
+
  Entity Framework Migrations are [automatically applied upon startup](https://github.com/bradymholt/aspnet-core-react-template/blob/master/api/Program.cs#L23-L24) so they will run when the app restarts.
 
 ## Development Email Delivery

@@ -12,7 +12,7 @@
     "test": "npm run test:api && npm run test:client",
     "migrate": "cd ./api/ && node ../scripts/create-migration.js && dotnet ef database update",
     "prestart": "docker-compose up -d",
-    "start": "cd ./api && cross-env NODE_PATH=../node_modules/ ASPNETCORE_ENVIRONMENT=Development dotnet watch run",
+    "start": "cross-env NODE_PATH=../node_modules/ ASPNETCORE_ENVIRONMENT=Development npx concurrently \"cd ./api && dotnet watch run\" \"cd ./client-react && npx webpack-dev-server\"",
     "start:release": "npm run prerelease && cd ./api/bin/Release/netcoreapp2.1/publish/ && dotnet api.dll",
     "provision:prod": "ansible-playbook -l production -i ./ops/config.yml ./ops/provision.yml",
     "prerelease": "cross-env ASPNETCORE_ENVIRONMENT=Production webpack --config ./client-react/webpack.config.js && cd ./api && dotnet publish --configuration Release",
@@ -37,6 +37,7 @@
     "aspnet-webpack-react": "^4.0.0",
     "bootstrap": "4.3.1",
     "chai": "^4.2.0",
+    "concurrently": "^5.0.1",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.1",
     "dom": "^0.0.3",
@@ -66,7 +67,9 @@
     "typescript": "^3.3.4000",
     "url-loader": "^1.1.2",
     "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.10",
     "webpack-dev-middleware": "^3.6.1",
+    "webpack-dev-server": "^3.9.0",
     "webpack-hot-middleware": "^2.24.3",
     "whatwg-fetch": "^3.0.0"
   }

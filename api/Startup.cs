@@ -103,18 +103,7 @@ namespace aspnetCoreReactTemplate
       {
         app.UseSpa(spa =>
         {
-          // Configure Webpack Middleware
           spa.UseProxyToSpaDevelopmentServer("http://localhost:8080/");
-          // // Configure Webpack Middleware (Ref: http://blog.stevensanderson.com/2016/05/02/angular2-react-knockout-apps-on-aspnet-core/)
-          // //  - Intercepts requests for webpack bundles and routes them through Webpack - this prevents needing to run Webpack file watcher separately
-          // //  - Enables Hot module replacement (HMR)
-          // app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
-          // {
-          //     HotModuleReplacement = true,
-          //     HotModuleReplacementClientOptions = new Dictionary<string, string> {{ "reload", "true" }},
-          //     ReactHotModuleReplacement = true,
-          //     ConfigFile = System.IO.Path.Combine(Configuration["webClientPath"], "webpack.config.js")
-          // });
         });
 
         app.UseDeveloperExceptionPage();

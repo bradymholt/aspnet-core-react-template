@@ -31,10 +31,8 @@ var config = {
                         loader: "css-loader",
                         options: {
                             modules: true,
-                            camelCase: true,
                             importLoaders: 2,
-                            sourceMap: false,
-                            localIdentName: "[local]___[hash:base64:5]"
+                            sourceMap: false
                         }
                     },
                     {

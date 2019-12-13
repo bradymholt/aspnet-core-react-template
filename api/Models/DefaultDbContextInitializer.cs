@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace aspnetCoreReactTemplate.Models
 {
@@ -22,11 +20,6 @@ namespace aspnetCoreReactTemplate.Models
         public bool EnsureCreated()
         {
             return _context.Database.EnsureCreated();
-        }
-
-        public void Migrate()
-        {
-            _context.Database.Migrate();
         }
 
         public async Task Seed()
@@ -62,7 +55,6 @@ namespace aspnetCoreReactTemplate.Models
     public interface IDefaultDbContextInitializer
     {
         bool EnsureCreated();
-        void Migrate();
         Task Seed();
     }
 }

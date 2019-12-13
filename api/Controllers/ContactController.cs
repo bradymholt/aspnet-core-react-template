@@ -1,10 +1,10 @@
+using System.Linq;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using aspnetCoreReactTemplate.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
-using System.Linq;
 
 namespace aspnetCoreReactTemplate.Controllers
 {

@@ -1,10 +1,8 @@
+using System;
+using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -15,9 +13,6 @@ using aspnetCoreReactTemplate.ViewModels;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Text;
-using Microsoft.Extensions.Configuration;
 
 namespace aspnetCoreReactTemplate.Controllers
 {
@@ -80,7 +75,7 @@ namespace aspnetCoreReactTemplate.Controllers
                 new Claim(JwtRegisteredClaimNames.Sub, user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
               };
-          
+
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.key));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 

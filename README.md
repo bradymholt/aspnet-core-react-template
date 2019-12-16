@@ -102,6 +102,10 @@ This script will:
 This template includes a [MailCatcher](https://mailcatcher.me/) Docker image so that when email is sent during development (i.e. new user registration), it can be viewed
 in the MailCacher web interface at [http://localhost:1080/](http://localhost:1080/).
 
+## Older Versions
+
+This template was originally created on .NET Core 1.0 and has been upgraded with new versions of .NET Core.  Older versions can be found on the [Releases](https://github.com/bradymholt/aspnet-core-react-template/releases) page.
+
 ## Visual Studio Code config
 
 This project has [Visual Studio Code](https://code.visualstudio.com/) tasks and debugger launch config located in .vscode/.

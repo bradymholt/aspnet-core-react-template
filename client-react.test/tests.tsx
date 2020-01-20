@@ -2,7 +2,7 @@ import { JSDOM } from "jsdom";
 import * as localStorage from "./polyfill/localStorage.js";
 
 before(function() {
-    const dom = new JSDOM("<!doctype html><html><body></body></html>");
+    const dom = new JSDOM("<!doctype html><html><body></body></html>", { url: "http://localhost" });
 
     (global as any).window = dom.window;
     (global as any).document = dom.window.document;

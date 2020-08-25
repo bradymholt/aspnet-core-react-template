@@ -38,7 +38,7 @@ This app is a template application using ASP.NET Core 3.1 for a REST/JSON API se
 2. Run `npm install && npm start`
 3. Open browser and navigate to [http://localhost:5000](http://localhost:5000).
 
-This template was developed and tested on macOS Sierra but should run on Windows as well.  If you experience any issues getting it to run on Windows and work through them, please submit a PR!
+This template was developed and tested on macOS Sierra but should run on Windows (for development) as well.  If you experience any issues getting it to run on Windows and work through them, please submit a PR!  The production provisioning and deployment scripts (`provision:prod` and `deploy:prod`) use Ansible and require a Linux/Ubuntu >= 16.04 target host.
 
 ## Scripts
 

@@ -37,6 +37,8 @@ namespace aspnetCoreReactTemplate
       // Configure Entity Framework Initializer for seeding
       services.AddTransient<IDefaultDbContextInitializer, DefaultDbContextInitializer>();
 
+      services.AddDatabaseDeveloperPageExceptionFilter();
+
       // Configure Entity Framework Identity for Auth
       services.AddIdentity<ApplicationUser, IdentityRole>()
       .AddEntityFrameworkStores<DefaultDbContext>()
@@ -107,7 +109,7 @@ namespace aspnetCoreReactTemplate
         });
 
         app.UseDeveloperExceptionPage();
-        app.UseDatabaseErrorPage();
+        app.UseMigrationsEndPoint();
       }
 
     }

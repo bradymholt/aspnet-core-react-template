@@ -1,5 +1,14 @@
 # ASP.NET Core / React SPA Template App
 
+<img align="left" src="https://user-images.githubusercontent.com/759811/210273710-b13913e2-0a71-4d9d-94da-1fe538b8a73e.gif"/>
+
+<br/>
+
+ &nbsp;**Would you take a quick second and ⭐️ my repo?**
+
+<br/>
+
+
 This app is a template application using ASP.NET Core 3.1 for a REST/JSON API server and React for a web client.
 
 ![screen recording 2017-06-10 at 04 12 pm](https://user-images.githubusercontent.com/759811/27006360-bd3b8152-4df7-11e7-9011-f22204abe4d5.gif)
